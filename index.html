@@ -187,40 +187,76 @@
       color: var(--muted);
     }
 
-    /* HOW IT WORKS */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+    /* HOW IT WORKS - PROCESS */
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+    position: relative;
+    margin-top: 45px;
+}
+
+/* Cyan connecting line */
+.process-steps::before {
+    content: "";
+    position: absolute;
+    top: 38px;
+    left: 7%;
+    right: 7%;
+    height: 3px;
+    background: var(--cyan);
+    opacity: 0.55;
+    z-index: 0;
+}
+
+.process-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.process-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 18px;
+    border: 3px solid var(--cyan);
+    border-radius: 50%;
+    background: #08090b;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 30px;
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.18);
+}
+
+.process-step h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.process-step p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 28px;
     }
 
-    .card {
-      background: var(--panel);
-      border: 1px solid #252832;
-      border-radius: 22px;
-      padding: 32px;
+    .process-steps::before {
+        display: none;
     }
 
-    .number {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: var(--cyan);
-      color: #071013;
-      font-weight: 900;
-      margin-bottom: 20px;
+    .process-icon {
+        margin-bottom: 12px;
     }
-
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: var(--muted);
-    }
+}
 
     /* PACKAGE */
     .package-section {
@@ -398,27 +434,43 @@
         <p>Proper draught beer at home without the hassle.</p>
       </div>
 
-      <div class="steps">
+     <div class="process-step">
+    <div class="process-icon">▣</div>
+    <h3>PICK YOUR DATE</h3>
+    <p>Tell us when the party starts.</p>
+  </div>
 
-        <div class="card">
-          <div class="number">1</div>
-          <h3>Pick your pint</h3>
-          <p>Choose your beer and the package that suits your party.</p>
-        </div>
+  <div class="process-step">
+    <div class="process-icon">🍺</div>
+    <h3>CHOOSE YOUR PINT</h3>
+    <p>Choose your draught beer.</p>
+  </div>
 
-        <div class="card">
-          <div class="number">2</div>
-          <h3>We set it up</h3>
-          <p>We deliver your draught setup, connect everything and get it pouring properly.</p>
-        </div>
+  <div class="process-step">
+    <div class="process-icon">▣</div>
+    <h3>BOOK &amp; PAY ONLINE</h3>
+    <p>Secure your Tap’d Up package.</p>
+  </div>
 
-        <div class="card">
-          <div class="number">3</div>
-          <h3>Get Tap’d Up</h3>
-          <p>Pour your own draught pints at home. We'll collect the equipment afterwards.</p>
-        </div>
+  <div class="process-step">
+    <div class="process-icon">▣</div>
+    <h3>WE DELIVER</h3>
+    <p>We bring the keg and draught setup.</p>
+  </div>
 
-      </div>
+  <div class="process-step">
+    <div class="process-icon">▣</div>
+    <h3>YOU POUR</h3>
+    <p>Pour proper draught pints at home.</p>
+  </div>
+
+  <div class="process-step">
+    <div class="process-icon">↻</div>
+    <h3>WE COLLECT</h3>
+    <p>We collect the equipment afterwards.</p>
+  </div>
+
+</div>
     </div>
   </section>
 
