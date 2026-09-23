@@ -1,1 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Tap’d Up | Pour Your Own Pint!</title>
+  <meta name="description" content="Tap’d Up brings fresh draught beer to your party. Keg, draught machine, delivery, setup and collection. Pour your own pint!">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08090b;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    /* BRAND COLOURS */
+    :root {
+      --cyan: #16d9e3;
+      --pink: #ff3d8d;
+      --dark: #08090b;
+      --panel: #111318;
+      --white: #ffffff;
+      --muted: #b8bcc5;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 9, 11, 0.95);
+      border-bottom: 1px solid #24262c;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 72px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.7rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 22px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 90px 24px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(22,217,227,.14), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(255,61,141,.12), transparent 35%),
+        #08090b;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: .85rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: .9;
+      letter-spacing: -5px;
+      margin-bottom: 22px;
+    }
+
+    .hero h2 {
+      color: var(--pink);
+      font-size: clamp(1.4rem, 4vw, 2.3rem);
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 32px;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 25px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #071013;
+    }
+
+    .btn-secondary {
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* GENERAL */
+    section {
+      padding: 90px 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid #252832;
+      border-radius: 22px;
+      padding: 32px;
+    }
+
+    .number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--cyan);
+      color: #071013;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    /* PACKAGE */
+    .package-section {
+      background: #0d0f13;
+    }
+
+    .package {
+      max-width: 680px;
+      margin: auto;
+      background: var(--panel);
+      border: 2px solid var(--cyan);
+      border-radius: 28px;
+      padding: 42px;
+    }
+
+    .package-label {
+      color: var(--pink);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .package h3 {
+      font-size: 2.4rem;
+      margin: 8px 0;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--cyan);
+      margin-bottom: 25px;
+    }
+
+    .package ul {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .package li {
+      padding: 9px 0;
+      border-bottom: 1px solid #252832;
+    }
+
+    .package li::before {
+      content: "✓";
+      color: var(--cyan);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    /* OCCASIONS */
+    .occasions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .occasion {
+      border: 1px solid #333640;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(22,217,227,.13), rgba(255,61,141,.12)),
+        #0d0f13;
+    }
+
+    .cta h2 {
+      font-size: clamp(2.3rem, 7vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #8e929c;
+      border-top: 1px solid #24262c;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    footer .social {
+      color: var(--cyan);
+      margin: 8px 0;
+      font-weight: 800;
+    }
+
+    /* MOBILE */
+    @media (max-width: 760px) {
+      nav {
+        display: none;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 76vh;
+        padding-top: 70px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .package {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">TAP’D <span>UP</span></div>
+
+    <nav>
+      <a href="#how">How It Works</a>
+      <a href="#packages">Packages</a>
+      <a href="#contact">Book</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Draught beer • Delivered</div>
+
+      <h1>TAP’D UP</h1>
+
+      <h2>Pour your own pint!</h2>
+
+      <p>
+        Fresh draught beer at your house. We deliver the draught machine
+        and keg, set everything up and show you how it works.
+        You pour the pints — we collect it afterwards.
+      </p>
+
+      <div class="buttons">
+        <a class="btn btn-primary" href="#packages">View Packages</a>
+        <a class="btn btn-secondary" href="#contact">Check Availability</a>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="how">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>How it works</h2>
+        <p>Proper draught beer at home without the hassle.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="card">
+          <div class="number">1</div>
+          <h3>Pick your pint</h3>
+          <p>Choose your beer and the package that suits your party.</p>
+        </div>
+
+        <div class="card">
+          <div class="number">2</div>
+          <h3>We set it up</h3>
+          <p>We deliver your draught setup, connect everything and get it pouring properly.</p>
+        </div>
+
+        <div class="card">
+          <div class="number">3</div>
+          <h3>Get Tap’d Up</h3>
+          <p>Pour your own draught pints at home. We'll collect the equipment afterwards.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="package-section" id="packages">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>The Party Package</h2>
+        <p>Everything you need for draught beer at home.</p>
+      </div>
+
+      <div class="package">
+
+        <div class="package-label">Tap’d Up</div>
+
+        <h3>Party Package</h3>
+
+        <div class="price">From £250</div>
+
+        <ul>
+          <li>Draught dispenser hire</li>
+          <li>50 litre keg</li>
+          <li>Gas included</li>
+          <li>Delivery &amp; professional setup</li>
+          <li>Approximately 88 one-pint serves*</li>
+          <li>Equipment collection</li>
+        </ul>
+
+        <a class="btn btn-primary" href="#contact">Check Availability</a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Made for a good time</h2>
+      </div>
+
+      <div class="occasions">
+        <div class="occasion">🎂 Birthdays</div>
+        <div class="occasion">🔥 BBQs</div>
+        <div class="occasion">⚽ Football Nights</div>
+        <div class="occasion">🎉 House Parties</div>
+        <div class="occasion">☀️ Garden Parties</div>
+        <div class="occasion">🥂 Celebrations</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="cta" id="contact">
+
+    <div class="container">
+
+      <h2>YOUR HOUSE.<br>YOUR PINT.<br>YOUR TAP.</h2>
+
+      <p>
+        Based in Ebbw Vale and delivering locally across South Wales.
+      </p>
+
+      <a class="btn btn-primary" href="mailto:hello@tapdup.co.uk">
+        Check Availability
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  <strong>Tap’d Up</strong>
+
+  <div class="social">@get.tapdup</div>
+
+  <div>tapdup.co.uk</div>
+
+  <br>
+
+  <small>Enjoy responsibly. 18+ only.</small>
+</footer>
+
+</body>
+</html>
