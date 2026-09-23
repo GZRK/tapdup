@@ -89,14 +89,29 @@
       justify-content: center;
       text-align: center;
       padding: 90px 24px;
+      position: relative;
+      overflow: hidden;
       background:
         radial-gradient(circle at 20% 20%, rgba(22,217,227,.14), transparent 35%),
         radial-gradient(circle at 80% 70%, rgba(255,61,141,.12), transparent 35%),
         #08090b;
-    }
+    }.hero::before {
+  content: "";
+  position: absolute;
+  width: 750px;
+  height: 750px;
+  background: url("tapdup-crown.png") center / contain no-repeat;
+  opacity: 0.08;
+  right: -120px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  pointer-events: none;
+}
 
     .hero-inner {
       max-width: 1000px;
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow {
