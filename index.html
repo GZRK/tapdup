@@ -92,28 +92,19 @@
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(circle at 20% 20%, rgba(22,217,227,.14), transparent 35%),
-        radial-gradient(circle at 80% 70%, rgba(255,61,141,.12), transparent 35%),
+        background:
+      linear-gradient(rgba(8,9,11,0.08), rgba(8,9,11,0.08)),
+      url("tapdup-hero.png") center center / cover no-repeat;
         #08090b;
-    }.hero::before {
-  content: "";
-  position: absolute;
-  width: 750px;
-  height: 750px;
-  background: url("tapdup-crown.png") center / contain no-repeat;
-  opacity: 0.08;
-  right: -120px;
-  top: 50%;
-  transform: translateY(-50%) rotate(-8deg);
-  pointer-events: none;
-}
-
-    .hero-inner {
-      max-width: 1000px;
-      position: relative;
-      z-index: 1;
     }
-
+    .hero-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
     .eyebrow {
       color: var(--cyan);
       text-transform: uppercase;
@@ -124,7 +115,7 @@
     }
 
     h1 {
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(3.5rem, 6vw, 5.8rem);
       line-height: .92;
       letter-spacing: -3px;
       margin-bottom: 22px;
@@ -137,15 +128,15 @@
     }
 
     .hero p {
-      max-width: 680px;
-      margin: 0 auto 32px;
+      max-width: 600px;
+      margin: 0 0 32px;
       color: var(--muted);
       font-size: 1.15rem;
     }
 
     .buttons {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 14px;
       flex-wrap: wrap;
     }
