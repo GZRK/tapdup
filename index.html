@@ -190,11 +190,12 @@
     /* HOW IT WORKS - PROCESS */
 
 .process-steps {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
     gap: 18px;
     position: relative;
     margin-top: 45px;
+    width: 100%;
 }
 
 /* Cyan connecting line */
