@@ -18,7 +18,6 @@
       --pink: #ff3d8d;
       --dark: #08090b;
       --panel: #111318;
-      --panel2: #161920;
       --white: #ffffff;
       --muted: #b8bcc5;
       --border: #292d35;
@@ -310,6 +309,7 @@
     /* MOBILE */
 
     @media (max-width: 650px) {
+
       .nav {
         min-height: 80px;
       }
@@ -350,22 +350,30 @@
 
 <body>
 
+
 <header>
+
   <div class="nav">
 
     <a href="index.html">
+
       <img
         src="tapdup-logo.png"
         alt="Tap’d Up"
         class="nav-logo"
       >
+
     </a>
 
-    <a href="index.html#packages" class="back-link">
+    <a
+      href="index.html#packages"
+      class="back-link"
+    >
       ← Back to packages
     </a>
 
   </div>
+
 </header>
 
 
@@ -373,47 +381,66 @@
 
   <div class="container">
 
+
     <div class="step">
       Your Booking
     </div>
 
-    <h1>CHOOSE YOUR DATE</h1>
+
+    <h1>
+      CHOOSE YOUR DATE
+    </h1>
+
 
     <p class="intro">
       Tell us when you want to get Tap’d Up.
-      Choose one night or select a date range if you want to keep
-      the draught setup for longer.
+      Choose your delivery date and when you'd like us
+      to collect the draught setup.
     </p>
 
 
     <div class="booking-panel">
+
 
       <!-- SELECTED PACKAGE -->
 
       <div class="package-bar">
 
         <div>
+
           <div class="package-label">
             Selected Package
           </div>
 
-          <div class="package-name" id="packageName">
+          <div
+            class="package-name"
+            id="packageName"
+          >
             Party 50
           </div>
+
         </div>
 
-        <div class="package-price" id="packagePrice">
+
+        <div
+          class="package-price"
+          id="packagePrice"
+        >
           £250
         </div>
 
       </div>
 
 
-      <!-- DATES -->
+      <!-- DATE AREA -->
 
       <div class="date-area">
 
-        <h2>When’s the party?</h2>
+
+        <h2>
+          When’s the party?
+        </h2>
+
 
         <p class="date-help">
           Your first night is included.
@@ -423,10 +450,13 @@
 
         <div class="date-grid">
 
+
+          <!-- DELIVERY DATE -->
+
           <div class="date-field">
 
             <label for="startDate">
-              First Night
+              Delivery Date
             </label>
 
             <input
@@ -437,10 +467,12 @@
           </div>
 
 
+          <!-- COLLECTION DATE -->
+
           <div class="date-field">
 
             <label for="endDate">
-              Last Night
+              Collection Date
             </label>
 
             <input
@@ -450,14 +482,17 @@
 
           </div>
 
+
         </div>
 
+
+        <!-- ERROR -->
 
         <div
           class="date-error"
           id="dateError"
         >
-          Your last night can't be before your first night.
+          Collection must be at least the day after delivery.
         </div>
 
 
@@ -468,20 +503,51 @@
           id="dateSummary"
         >
 
-          <div class="summary-row">
-            <span>Dates</span>
-            <strong id="summaryDates">—</strong>
-          </div>
 
           <div class="summary-row">
-            <span>Package</span>
-            <strong id="summaryPackage">Party 50</strong>
+
+            <span>
+              Delivery
+            </span>
+
+            <strong id="summaryDelivery">
+              —
+            </strong>
+
           </div>
+
+
+          <div class="summary-row">
+
+            <span>
+              Collection
+            </span>
+
+            <strong id="summaryCollection">
+              —
+            </strong>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span>
+              Package
+            </span>
+
+            <strong id="summaryPackage">
+              Party 50
+            </strong>
+
+          </div>
+
 
           <div
             class="summary-row extra-night-row"
             id="extraNightRow"
           >
+
             <span id="extraNightLabel">
               Additional night
             </span>
@@ -489,12 +555,22 @@
             <strong id="extraNightPrice">
               +£80
             </strong>
+
           </div>
 
+
           <div class="summary-row total">
-            <span>Running total</span>
-            <strong id="summaryTotal">£250</strong>
+
+            <span>
+              Running total
+            </span>
+
+            <strong id="summaryTotal">
+              £250
+            </strong>
+
           </div>
+
 
         </div>
 
@@ -519,6 +595,7 @@
 
       </div>
 
+
     </div>
 
   </div>
@@ -527,8 +604,15 @@
 
 
 <footer>
-  <strong>Tap’d Up</strong><br>
+
+  <strong>
+    Tap’d Up
+  </strong>
+
+  <br>
+
   Pour Your Own Pint! • 18+ only
+
 </footer>
 
 
@@ -538,9 +622,12 @@
      PACKAGE
      ========================================================= */
 
-  const params = new URLSearchParams(window.location.search);
+  const params =
+    new URLSearchParams(window.location.search);
 
-  const requestedPackage = params.get("package");
+  const requestedPackage =
+    params.get("package");
+
 
   let packageType = "50";
   let packageName = "Party 50";
@@ -551,24 +638,32 @@
     requestedPackage === "30" ||
     requestedPackage === "party30"
   ) {
+
     packageType = "30";
     packageName = "Party 30";
     basePrice = 200;
+
   }
 
 
-  document.getElementById("packageName").textContent =
-    packageName;
+  document.getElementById(
+    "packageName"
+  ).textContent = packageName;
 
-  document.getElementById("packagePrice").textContent =
-    "£" + basePrice;
 
-  document.getElementById("summaryPackage").textContent =
-    packageName;
+  document.getElementById(
+    "packagePrice"
+  ).textContent = "£" + basePrice;
+
+
+  document.getElementById(
+    "summaryPackage"
+  ).textContent = packageName;
+
 
 
   /* =========================================================
-     DATES
+     ELEMENTS
      ========================================================= */
 
   const startDate =
@@ -580,8 +675,11 @@
   const dateSummary =
     document.getElementById("dateSummary");
 
-  const summaryDates =
-    document.getElementById("summaryDates");
+  const summaryDelivery =
+    document.getElementById("summaryDelivery");
+
+  const summaryCollection =
+    document.getElementById("summaryCollection");
 
   const extraNightRow =
     document.getElementById("extraNightRow");
@@ -602,7 +700,10 @@
     document.getElementById("continueBtn");
 
 
-  /* Don't allow dates in the past */
+
+  /* =========================================================
+     TODAY
+     ========================================================= */
 
   const today = new Date();
 
@@ -614,18 +715,22 @@
     .toISOString()
     .split("T")[0];
 
+
   startDate.min = localToday;
-  endDate.min = localToday;
+
 
 
   /* =========================================================
-     FORMAT DATE
+     DATE HELPERS
      ========================================================= */
 
   function formatDate(dateString) {
 
     const date =
-      new Date(dateString + "T12:00:00");
+      new Date(
+        dateString + "T12:00:00"
+      );
+
 
     return date.toLocaleDateString(
       "en-GB",
@@ -640,6 +745,30 @@
   }
 
 
+  function getNextDay(dateString) {
+
+    const date =
+      new Date(
+        dateString + "T12:00:00"
+      );
+
+
+    date.setDate(
+      date.getDate() + 1
+    );
+
+
+    return new Date(
+      date.getTime() -
+      date.getTimezoneOffset() * 60000
+    )
+    .toISOString()
+    .split("T")[0];
+
+  }
+
+
+
   /* =========================================================
      UPDATE BOOKING
      ========================================================= */
@@ -648,9 +777,19 @@
 
     dateError.classList.remove("active");
 
-    if (!startDate.value) {
+
+    /*
+      We need BOTH a delivery and collection date
+      before continuing.
+    */
+
+    if (
+      !startDate.value ||
+      !endDate.value
+    ) {
 
       dateSummary.classList.remove("active");
+
       continueBtn.disabled = true;
 
       return;
@@ -658,23 +797,41 @@
     }
 
 
-    /*
-      If they choose a first night but haven't selected
-      a last night yet, treat it as a one-night booking.
-    */
-
-    let finalEndDate =
-      endDate.value || startDate.value;
-
-
     const start =
-      new Date(startDate.value + "T12:00:00");
+      new Date(
+        startDate.value + "T12:00:00"
+      );
+
 
     const end =
-      new Date(finalEndDate + "T12:00:00");
+      new Date(
+        endDate.value + "T12:00:00"
+      );
 
 
-    if (end < start) {
+    const millisecondsPerDay =
+      1000 * 60 * 60 * 24;
+
+
+    const totalNights =
+      Math.round(
+        (end - start) /
+        millisecondsPerDay
+      );
+
+
+    /*
+      Collection must be at least
+      the following day.
+
+      Example:
+
+      Delivery 1st
+      Collection 2nd
+      = 1 night
+    */
+
+    if (totalNights < 1) {
 
       dateError.classList.add("active");
 
@@ -687,45 +844,49 @@
     }
 
 
-    const millisecondsPerDay =
-      1000 * 60 * 60 * 24;
+    /*
+      FIRST NIGHT IS INCLUDED.
+
+      1 night  = £0 extra
+      2 nights = £80 extra
+      3 nights = £160 extra
+    */
 
     const additionalNights =
-      Math.round(
-        (end - start) /
-        millisecondsPerDay
+      Math.max(
+        0,
+        totalNights - 1
       );
 
 
     const extraNightCost =
       additionalNights * 80;
 
+
     const total =
-      basePrice + extraNightCost;
+      basePrice +
+      extraNightCost;
 
 
-    /* DATE DISPLAY */
 
-    if (additionalNights === 0) {
+    /* DISPLAY DATES */
 
-      summaryDates.textContent =
-        formatDate(startDate.value);
-
-    } else {
-
-      summaryDates.textContent =
-        formatDate(startDate.value) +
-        " – " +
-        formatDate(finalEndDate);
-
-    }
+    summaryDelivery.textContent =
+      formatDate(startDate.value);
 
 
-    /* EXTRA NIGHT DISPLAY */
+    summaryCollection.textContent =
+      formatDate(endDate.value);
+
+
+
+    /* DISPLAY EXTRA NIGHTS */
 
     if (additionalNights > 0) {
 
-      extraNightRow.style.display = "flex";
+      extraNightRow.style.display =
+        "flex";
+
 
       extraNightLabel.textContent =
         additionalNights === 1
@@ -733,51 +894,106 @@
           : additionalNights +
             " additional nights";
 
+
       extraNightPrice.textContent =
         "+£" + extraNightCost;
 
-    } else {
+    }
 
-      extraNightRow.style.display = "none";
+    else {
+
+      extraNightRow.style.display =
+        "none";
 
     }
 
+
+
+    /* TOTAL */
 
     summaryTotal.textContent =
       "£" + total;
 
 
-    dateSummary.classList.add("active");
+    dateSummary.classList.add(
+      "active"
+    );
+
 
     continueBtn.disabled = false;
 
   }
 
 
+
   /* =========================================================
-     EVENTS
+     DELIVERY DATE CHANGE
      ========================================================= */
 
   startDate.addEventListener(
     "change",
     function () {
 
+
+      if (!startDate.value) {
+
+        endDate.value = "";
+
+        updateBooking();
+
+        return;
+
+      }
+
+
       /*
-        Last night can't be earlier than first night.
+        Earliest collection is
+        the following day.
       */
 
-      endDate.min = startDate.value;
+      const minimumCollection =
+        getNextDay(startDate.value);
+
+
+      endDate.min =
+        minimumCollection;
+
 
       /*
-        If an old end date is now invalid, clear it.
+        If no collection date has been chosen,
+        automatically suggest the following day.
+
+        So choosing 1 October initially gives:
+
+        Delivery:   1 October
+        Collection: 2 October
+
+        = one included night.
+      */
+
+      if (!endDate.value) {
+
+        endDate.value =
+          minimumCollection;
+
+      }
+
+
+      /*
+        If the existing collection date
+        is now too early, move it forward.
       */
 
       if (
-        endDate.value &&
-        endDate.value < startDate.value
+        endDate.value <
+        minimumCollection
       ) {
-        endDate.value = "";
+
+        endDate.value =
+          minimumCollection;
+
       }
+
 
       updateBooking();
 
@@ -785,40 +1001,65 @@
   );
 
 
+
+  /* =========================================================
+     COLLECTION DATE CHANGE
+     ========================================================= */
+
   endDate.addEventListener(
     "change",
     updateBooking
   );
 
 
+
   /* =========================================================
-     CONTINUE
+     CONTINUE TO PARTY BUILDER
      ========================================================= */
 
   continueBtn.addEventListener(
     "click",
     function () {
 
-      if (!startDate.value) {
+
+      if (
+        !startDate.value ||
+        !endDate.value
+      ) {
         return;
       }
 
 
-      const finalEndDate =
-        endDate.value || startDate.value;
-
-
       const start =
-        new Date(startDate.value + "T12:00:00");
+        new Date(
+          startDate.value +
+          "T12:00:00"
+        );
+
 
       const end =
-        new Date(finalEndDate + "T12:00:00");
+        new Date(
+          endDate.value +
+          "T12:00:00"
+        );
 
 
-      const additionalNights =
+      const totalNights =
         Math.round(
           (end - start) /
           (1000 * 60 * 60 * 24)
+        );
+
+
+      if (totalNights < 1) {
+        return;
+      }
+
+
+      const additionalNights =
+        Math.max(
+          0,
+          totalNights - 1
         );
 
 
@@ -826,18 +1067,43 @@
         additionalNights * 80;
 
 
+      /*
+        Pass the booking information
+        into party-builder.html
+      */
+
       const nextPage =
         "party-builder.html" +
+
         "?package=" +
-        encodeURIComponent(packageType) +
+        encodeURIComponent(
+          packageType
+        ) +
+
         "&start=" +
-        encodeURIComponent(startDate.value) +
+        encodeURIComponent(
+          startDate.value
+        ) +
+
         "&end=" +
-        encodeURIComponent(finalEndDate) +
+        encodeURIComponent(
+          endDate.value
+        ) +
+
         "&nights=" +
-        encodeURIComponent(additionalNights) +
+        encodeURIComponent(
+          totalNights
+        ) +
+
+        "&extranights=" +
+        encodeURIComponent(
+          additionalNights
+        ) +
+
         "&datecost=" +
-        encodeURIComponent(dateCost);
+        encodeURIComponent(
+          dateCost
+        );
 
 
       window.location.href =
