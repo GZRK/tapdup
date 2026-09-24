@@ -1,1 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Review Your Booking | Tap’d Up</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cyan: #16d9e3;
+      --pink: #ff3d8d;
+      --dark: #08090b;
+      --panel: #111318;
+      --panel2: #0d0f13;
+      --white: #ffffff;
+      --muted: #b8bcc5;
+      --border: #292c34;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(22,217,227,.08), transparent 28%),
+        radial-gradient(circle at 85% 85%, rgba(255,61,141,.07), transparent 28%),
+        var(--dark);
+      color: var(--white);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 1px solid #24262c;
+      background: rgba(8,9,11,.96);
+    }
+
+    .nav {
+      max-width: 1100px;
+      min-height: 90px;
+      padding: 0 24px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      height: 78px;
+      width: auto;
+      display: block;
+    }
+
+    .back-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .back-link:hover {
+      color: var(--cyan);
+    }
+
+    main {
+      padding: 55px 22px 90px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 920px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      text-align: center;
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(2.3rem, 7vw, 4rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 14px;
+    }
+
+    .intro {
+      text-align: center;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 38px;
+    }
+
+    .review-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 18px;
+    }
+
+    .review-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .edit-link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .rows {
+      display: grid;
+      gap: 0;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      padding: 11px 0;
+      border-bottom: 1px solid #252832;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .row-label {
+      color: var(--muted);
+    }
+
+    .row-value {
+      color: white;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .total-card {
+      border: 2px solid var(--cyan);
+      background:
+        linear-gradient(135deg, rgba(22,217,227,.07), rgba(255,61,141,.04)),
+        var(--panel);
+    }
+
+    .total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .total-label {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .total-price {
+      color: var(--cyan);
+      font-size: 2.2rem;
+      font-weight: 900;
+    }
+
+    .booking-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 15px 26px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-weight: 900;
+      font-size: .9rem;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #071013;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 45px 25px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+    }
+
+    .empty-state.active {
+      display: block;
+    }
+
+    .empty-state h2 {
+      margin-bottom: 10px;
+      font-size: 1.7rem;
+    }
+
+    .empty-state p {
+      color: var(--muted);
+      margin: 0 auto 24px;
+      max-width: 520px;
+    }
+
+    #reviewContent {
+      display: none;
+    }
+
+    #reviewContent.active {
+      display: block;
+    }
+
+    footer {
+      border-top: 1px solid #24262c;
+      text-align: center;
+      color: #858a94;
+      padding: 35px 20px;
+      font-size: .8rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        justify-content: center;
+        flex-direction: column;
+        padding: 12px 20px 18px;
+      }
+
+      .logo {
+        height: 70px;
+      }
+
+      main {
+        padding-top: 40px;
+      }
+
+      .review-card {
+        padding: 22px 18px;
+      }
+
+      .row {
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .row-value {
+        text-align: left;
+      }
+
+      .total-row {
+        align-items: flex-end;
+      }
+
+      .total-price {
+        font-size: 1.9rem;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        text-align: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+<header>
+  <div class="nav">
+
+    <a href="index.html">
+      <img
+        src="tapdup-logo.png"
+        alt="Tap’d Up - Pour Your Own Pint!"
+        class="logo"
+      >
+    </a>
+
+    <a
+      href="party-builder.html"
+      class="back-link"
+      id="headerBack"
+    >
+      ← Back to your party
+    </a>
+
+  </div>
+</header>
+
+
+<main>
+
+  <div class="container">
+
+    <div class="eyebrow">
+      ALMOST TAP’D UP
+    </div>
+
+    <h1>
+      REVIEW YOUR BOOKING
+    </h1>
+
+    <p class="intro">
+      Check your party, pint and delivery details before continuing.
+    </p>
+
+
+    <!-- NO BOOKING DATA -->
+
+    <div
+      class="empty-state"
+      id="emptyState"
+    >
+
+      <h2>No booking to review yet</h2>
+
+      <p>
+        Choose your Tap’d Up package and party dates first,
+        then build your party.
+      </p>
+
+      <a
+        href="index.html#packages"
+        class="btn btn-primary"
+      >
+        Choose Your Party
+      </a>
+
+    </div>
+
+
+    <!-- REVIEW CONTENT -->
+
+    <div id="reviewContent">
+
+
+      <!-- PARTY DETAILS -->
+
+      <div class="review-card">
+
+        <h2>
+          Your Party
+
+          <a
+            href="party-builder.html"
+            class="edit-link"
+            id="partyEdit"
+          >
+            Edit
+          </a>
+        </h2>
+
+        <div class="rows">
+
+          <div class="row">
+            <span class="row-label">Package</span>
+            <span class="row-value" id="reviewPackage">—</span>
+          </div>
+
+          <div class="row">
+            <span class="row-label">Delivery</span>
+            <span class="row-value" id="reviewDelivery">—</span>
+          </div>
+
+          <div class="row">
+            <span class="row-label">Collection</span>
+            <span class="row-value" id="reviewCollection">—</span>
+          </div>
+
+          <div class="row">
+            <span class="row-label">Hire duration</span>
+            <span class="row-value" id="reviewNights">—</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PINT -->
+
+      <div class="review-card">
+
+        <h2>Your Pint</h2>
+
+        <div class="rows">
+
+          <div class="row">
+            <span class="row-label">Drink</span>
+            <span class="row-value" id="reviewDrink">—</span>
+          </div>
+
+          <div class="row" id="abvRow">
+            <span class="row-label">ABV</span>
+            <span class="row-value" id="reviewABV">—</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- EXTRAS -->
+
+      <div
+        class="review-card"
+        id="extrasCard"
+      >
+
+        <h2>Extras</h2>
+
+        <div
+          class="rows"
+          id="extrasRows"
+        ></div>
+
+      </div>
+
+
+      <!-- DELIVERY DETAILS -->
+
+      <div class="review-card">
+
+        <h2>
+          Delivery Details
+
+          <a
+            href="party-builder.html"
+            class="edit-link"
+            id="detailsEdit"
+          >
+            Edit
+          </a>
+        </h2>
+
+        <div class="rows">
+
+          <div class="row">
+            <span class="row-label">Name</span>
+            <span class="row-value" id="reviewName">—</span>
+          </div>
+
+          <div class="row">
+            <span class="row-label">Mobile</span>
+            <span class="row-value" id="reviewMobile">—</span>
+          </div>
+
+          <div class="row">
+            <span class="row-label">Email</span>
+            <span class="row-value" id="reviewEmail">—</span>
+          </div>
+
+          <div class="row">
+            <span class="row-label">Delivery address</span>
+            <span class="row-value" id="reviewAddress">—</span>
+          </div>
+
+          <div
+            class="row"
+            id="guestsRow"
+          >
+            <span class="row-label">Approx. guests</span>
+            <span class="row-value" id="reviewGuests">—</span>
+          </div>
+
+          <div
+            class="row"
+            id="notesRow"
+          >
+            <span class="row-label">Access / setup notes</span>
+            <span class="row-value" id="reviewNotes">—</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TOTAL -->
+
+      <div class="review-card total-card">
+
+        <div class="total-row">
+
+          <div class="total-label">
+            Booking Total
+          </div>
+
+          <div
+            class="total-price"
+            id="reviewTotal"
+          >
+            £0
+          </div>
+
+        </div>
+
+        <p class="booking-note">
+          All bookings are subject to availability and confirmation.
+          No payment will be taken at this stage.
+        </p>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+
+      <div class="actions">
+
+        <a
+          href="party-builder.html"
+          class="btn btn-secondary"
+          id="bottomBack"
+        >
+          ← Make Changes
+        </a>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="continueButton"
+        >
+          Continue
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+  <strong>Tap’d Up</strong>
+  &nbsp;•&nbsp;
+  @get.tapdup
+  &nbsp;•&nbsp;
+  18+ only
+</footer>
+
+
+<script>
+
+  /*
+    This page reads the completed booking from sessionStorage.
+
+    The next change to party-builder.html will create this
+    booking object before sending the customer here.
+  */
+
+  const bookingJSON = sessionStorage.getItem("tapdupBooking");
+
+  const emptyState = document.getElementById("emptyState");
+  const reviewContent = document.getElementById("reviewContent");
+
+
+  /*
+    FORMAT DATE
+  */
+
+  function formatDate(dateString) {
+
+    if (!dateString) {
+      return "—";
+    }
+
+    const date = new Date(dateString + "T12:00:00");
+
+    return date.toLocaleDateString("en-GB", {
+      weekday: "short",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+  }
+
+
+  /*
+    SAFE TEXT
+  */
+
+  function valueOrDash(value) {
+
+    if (
+      value === undefined ||
+      value === null ||
+      value === ""
+    ) {
+      return "—";
+    }
+
+    return value;
+
+  }
+
+
+  /*
+    NO BOOKING SAVED YET
+  */
+
+  if (!bookingJSON) {
+
+    emptyState.classList.add("active");
+
+  } else {
+
+    let booking;
+
+    try {
+
+      booking = JSON.parse(bookingJSON);
+
+    } catch (error) {
+
+      booking = null;
+
+    }
+
+
+    if (!booking) {
+
+      emptyState.classList.add("active");
+
+    } else {
+
+      reviewContent.classList.add("active");
+
+
+      /*
+        RESTORE THE EXACT BUILDER URL
+
+        This means Edit / Make Changes can take the customer
+        back to the same package and dates.
+      */
+
+      const builderURL =
+        booking.builderURL || "party-builder.html";
+
+      document.getElementById("headerBack").href = builderURL;
+      document.getElementById("partyEdit").href = builderURL;
+      document.getElementById("detailsEdit").href = builderURL;
+      document.getElementById("bottomBack").href = builderURL;
+
+
+      /*
+        PARTY
+      */
+
+      document.getElementById("reviewPackage").textContent =
+        valueOrDash(booking.packageName);
+
+      document.getElementById("reviewDelivery").textContent =
+        formatDate(booking.deliveryDate);
+
+      document.getElementById("reviewCollection").textContent =
+        formatDate(booking.collectionDate);
+
+      document.getElementById("reviewNights").textContent =
+        booking.nights
+          ? booking.nights + (Number(booking.nights) === 1 ? " night" : " nights")
+          : "—";
+
+
+      /*
+        DRINK
+      */
+
+      document.getElementById("reviewDrink").textContent =
+        valueOrDash(booking.drink);
+
+      document.getElementById("reviewABV").textContent =
+        booking.abv
+          ? booking.abv
+          : "—";
+
+
+      /*
+        EXTRAS
+      */
+
+      const extrasCard =
+        document.getElementById("extrasCard");
+
+      const extrasRows =
+        document.getElementById("extrasRows");
+
+      const extras =
+        Array.isArray(booking.extras)
+          ? booking.extras
+          : [];
+
+
+      if (extras.length === 0) {
+
+        extrasCard.style.display = "none";
+
+      } else {
+
+        extras.forEach(function(extra) {
+
+          const row =
+            document.createElement("div");
+
+          row.className = "row";
+
+
+          const label =
+            document.createElement("span");
+
+          label.className = "row-label";
+          label.textContent =
+            valueOrDash(extra.name);
+
+
+          const value =
+            document.createElement("span");
+
+          value.className = "row-value";
+
+          if (extra.price !== undefined) {
+
+            value.textContent =
+              valueOrDash(extra.detail) +
+              "  +" +
+              "£" +
+              Number(extra.price).toFixed(0);
+
+          } else {
+
+            value.textContent =
+              valueOrDash(extra.detail);
+
+          }
+
+
+          row.appendChild(label);
+          row.appendChild(value);
+
+          extrasRows.appendChild(row);
+
+        });
+
+      }
+
+
+      /*
+        CUSTOMER / DELIVERY DETAILS
+      */
+
+      const customer =
+        booking.customer || {};
+
+
+      document.getElementById("reviewName").textContent =
+        valueOrDash(customer.name);
+
+      document.getElementById("reviewMobile").textContent =
+        valueOrDash(customer.mobile);
+
+      document.getElementById("reviewEmail").textContent =
+        valueOrDash(customer.email);
+
+
+      const addressParts = [
+        customer.address1,
+        customer.address2,
+        customer.town,
+        customer.postcode
+      ].filter(Boolean);
+
+
+      document.getElementById("reviewAddress").textContent =
+        addressParts.length
+          ? addressParts.join(", ")
+          : "—";
+
+
+      if (customer.guests) {
+
+        document.getElementById("reviewGuests").textContent =
+          customer.guests;
+
+      } else {
+
+        document.getElementById("guestsRow").style.display =
+          "none";
+
+      }
+
+
+      if (customer.notes) {
+
+        document.getElementById("reviewNotes").textContent =
+          customer.notes;
+
+      } else {
+
+        document.getElementById("notesRow").style.display =
+          "none";
+
+      }
+
+
+      /*
+        TOTAL
+      */
+
+      document.getElementById("reviewTotal").textContent =
+        "£" + Number(booking.total || 0).toFixed(0);
+
+    }
+
+  }
+
+
+  /*
+    NEXT STAGE
+
+    We will connect this to the temporary booking/payment
+    page after the builder and review page are tested.
+  */
+
+  document
+    .getElementById("continueButton")
+    .addEventListener("click", function () {
+
+      alert(
+        "Next we'll connect this to the final Tap’d Up booking stage."
+      );
+
+    });
+
+</script>
+
+
+</body>
+</html>
