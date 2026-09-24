@@ -207,16 +207,6 @@
       gap: 20px;
     }
 
-    .brand {
-      font-size: 1.7rem;
-      font-weight: 900;
-      letter-spacing: -1px;
-    }
-
-    .brand span {
-      color: var(--cyan);
-    }
-
     .nav-logo {
       height: 85px;
       width: auto;
@@ -245,7 +235,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       padding: 90px 24px;
       position: relative;
       overflow: hidden;
@@ -350,17 +339,17 @@
        ========================================================= */
 
     #how {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(rgba(8, 9, 11, 0.94), rgba(8, 9, 11, 0.94)),
-    url("tapdup-crown.png") right -40px center / 600px auto no-repeat;
-}
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(8, 9, 11, 0.94), rgba(8, 9, 11, 0.94)),
+        url("tapdup-crown.png") right -40px center / 600px auto no-repeat;
+    }
 
-#how .container {
-  position: relative;
-  z-index: 1;
-}
+    #how .container {
+      position: relative;
+      z-index: 1;
+    }
 
     .process-steps {
       display: grid !important;
@@ -639,25 +628,110 @@
 
 
     /* =========================================================
-       CTA
+       TAP'D UP IN ACTION
        ========================================================= */
 
-    .cta {
-      text-align: center;
+    .action-section {
+      background: #08090b;
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+
+    .action-section .section-title {
+      margin-bottom: 28px;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .party-shot {
+      height: 300px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #292d35;
+      background-image: url("tapdup-party.jpg");
+      background-repeat: no-repeat;
+      background-size: 300% 100%;
+      box-shadow: 0 15px 35px rgba(0,0,0,.25);
+    }
+
+    .party-shot-left {
+      background-position: left center;
+    }
+
+    .party-shot-centre {
+      background-position: center center;
+    }
+
+    .party-shot-right {
+      background-position: right center;
+    }
+
+
+    /* =========================================================
+       VIDEO SECTION
+       ========================================================= */
+
+    .video-section {
       background:
-        linear-gradient(135deg, rgba(22,217,227,.13), rgba(255,61,141,.12)),
+        radial-gradient(circle at 15% 50%, rgba(22,217,227,.07), transparent 30%),
+        radial-gradient(circle at 85% 50%, rgba(255,61,141,.07), transparent 30%),
         #0d0f13;
+      padding-top: 72px;
+      padding-bottom: 72px;
     }
 
-    .cta h2 {
-      font-size: clamp(2.3rem, 7vw, 4.5rem);
-      line-height: 1;
-      margin-bottom: 15px;
+    .video-section .section-title {
+      margin-bottom: 28px;
     }
 
-    .cta p {
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      border: 1px solid #30343d;
+      background:
+        linear-gradient(135deg, rgba(22,217,227,.08), rgba(255,61,141,.08)),
+        #101319;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .video-play {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: var(--cyan);
+      color: #071013;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      padding-left: 4px;
+      margin-bottom: 16px;
+      box-shadow: 0 0 28px rgba(22,217,227,.18);
+    }
+
+    .video-placeholder strong {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .video-placeholder span {
       color: var(--muted);
-      margin-bottom: 30px;
+      font-size: .85rem;
     }
 
 
@@ -666,20 +740,77 @@
        ========================================================= */
 
     footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #8e929c;
+      background: #07080a;
       border-top: 1px solid #24262c;
+      padding: 48px 24px 28px;
+      color: #8e929c;
     }
 
-    footer strong {
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .footer-logo {
+      width: 190px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: .88rem;
+      max-width: 300px;
+    }
+
+    .footer-heading {
       color: white;
+      font-size: .82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 13px;
     }
 
-    footer .social {
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .88rem;
+    }
+
+    .footer-links a:hover {
       color: var(--cyan);
-      margin: 8px 0;
-      font-weight: 800;
+    }
+
+    .footer-handle {
+      color: var(--cyan);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 35px auto 0;
+      padding-top: 22px;
+      border-top: 1px solid #24262c;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: #70757e;
+      font-size: .78rem;
     }
 
 
@@ -688,6 +819,7 @@
        ========================================================= */
 
     @media (max-width: 900px) {
+
       .package-grid {
         grid-template-columns: 1fr;
         max-width: 600px;
@@ -696,16 +828,42 @@
       }
 
       .package {
-        padding: 28px 22px;
+        padding: 20px 22px;
       }
 
       .upgrade-box,
       .build-party {
-        padding: 28px 22px;
+        padding: 24px 22px;
+      }
+
+      .action-grid {
+        grid-template-columns: 1fr;
+        max-width: 650px;
+        margin: auto;
+      }
+
+      .party-shot {
+        height: 360px;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+        margin: auto;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
       }
     }
 
+
     @media (max-width: 760px) {
+
       nav {
         display: none;
       }
@@ -736,6 +894,12 @@
         margin-bottom: 12px;
       }
 
+      #how {
+        background:
+          linear-gradient(rgba(8, 9, 11, 0.95), rgba(8, 9, 11, 0.95)),
+          url("tapdup-crown.png") right -160px center / 430px auto no-repeat;
+      }
+
       .upgrade-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -757,10 +921,35 @@
       .age-btn {
         width: min(320px, 90vw);
       }
+
+      .action-section,
+      .video-section {
+        padding-top: 58px;
+        padding-bottom: 58px;
+      }
+
+      .party-shot {
+        height: 300px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 7px;
+      }
     }
 
   </style>
 </head>
+
 
 <body class="age-locked">
 
@@ -848,450 +1037,632 @@
 <!-- HEADER -->
 
 <header>
+
   <div class="nav">
 
-    <div class="brand">
-      <img
-        src="tapdup-logo.png"
-        alt="Tap’d Up - Pour Your Own Pint!"
-        class="nav-logo"
-      >
-    </div>
+    <img
+      src="tapdup-logo.png"
+      alt="Tap’d Up - Pour Your Own Pint!"
+      class="nav-logo"
+    >
 
     <nav>
       <a href="#how">How It Works</a>
       <a href="#packages">Packages</a>
-      <a href="#contact">Book</a>
+      <a href="#packages">Book</a>
     </nav>
 
   </div>
+
 </header>
 
 
 <main>
 
 
-  <!-- HERO -->
+<!-- HERO -->
 
-  <section class="hero">
+<section class="hero">
 
-    <div class="hero-inner">
+  <div class="hero-inner">
 
-      <div class="eyebrow">
-        DRAUGHT BEER • DELIVERED
-      </div>
-
-      <h1>
-        BRING THE<br>
-        DRAUGHT HOME.
-      </h1>
-
-      <p>
-        Fresh draught beer, delivered to your door.
-        We bring the keg and draught machine,
-        set it up and get it pouring.
-        You pour the pints — we collect it afterwards.
-      </p>
-
-      <div class="buttons">
-
-        <a
-          class="btn btn-primary"
-          href="#packages"
-        >
-          View Packages
-        </a>
-
-        <a
-          class="btn btn-secondary"
-          href="#contact"
-        >
-          Check Availability
-        </a>
-
-      </div>
-
+    <div class="eyebrow">
+      DRAUGHT BEER • DELIVERED
     </div>
 
-  </section>
-
-
-  <!-- HOW IT WORKS -->
-
-  <section id="how">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <h2>How it works</h2>
-
-        <p>
-          Proper draught beer at home without the hassle.
-        </p>
-
-      </div>
-
-      <div class="process-steps">
-
-        <div class="process-step">
-          <div class="process-icon">
-            <img src="icon-date.png" alt="Pick your date">
-          </div>
-          <h3>PICK YOUR DATE</h3>
-          <p>Tell us when the party starts.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="process-icon">
-            <img src="icon-pint.png" alt="Choose your pint">
-          </div>
-          <h3>CHOOSE YOUR PINT</h3>
-          <p>Choose your draught beer.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="process-icon">
-            <img src="icon-book-pay.png" alt="Book and pay online">
-          </div>
-          <h3>BOOK &amp; PAY ONLINE</h3>
-          <p>Secure your Tap’d Up package.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="process-icon">
-            <img src="icon-delivery.png" alt="We deliver">
-          </div>
-          <h3>WE DELIVER</h3>
-          <p>We bring the keg and draught setup.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="process-icon">
-            <img src="icon-pour.png" alt="You pour">
-          </div>
-          <h3>YOU POUR</h3>
-          <p>Pour proper draught pints at home.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="process-icon">
-            <img src="icon-collect.png" alt="We collect">
-          </div>
-          <h3>WE COLLECT</h3>
-          <p>We collect the equipment afterwards.</p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PACKAGES -->
-
-  <section class="package-section" id="packages">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <h2>Choose Your Party</h2>
-
-        <p>
-          Proper draught beer at home.
-          Pick a package or build your own.
-        </p>
-
-      </div>
-
-
-      <div class="package-grid">
-
-
-        <!-- PARTY 30 -->
-
-        <div class="package package-card">
-
-          <div class="package-label">
-            Tap’d Up
-          </div>
-
-          <h3>Party 30</h3>
-
-          <div class="package-size">
-            30L Standard Lager*
-          </div>
-
-          <div class="package-pints">
-            Approx. 52 pints
-          </div>
-
-          <div class="price">
-            From £200
-          </div>
-
-          <ul>
-            <li>Draught dispenser hire</li>
-            <li>20 Tap’d Up reusable pint cups</li>
-            <li>Set up &amp; ready to pour</li>
-            <li>Delivery &amp; collection</li>
-          </ul>
-
-          <a
-            class="btn btn-primary"
-            href="calendar.html?package=30"
-          >
-            Check Availability
-          </a>
-
-        </div>
-
-
-        <!-- PARTY 50 -->
-
-        <div class="package package-card">
-
-          <div class="package-label">
-            Tap’d Up
-          </div>
-
-          <h3>Party 50</h3>
-
-          <div class="package-size">
-            50L Standard Lager*
-          </div>
-
-          <div class="package-pints">
-            Approx. 88 pints
-          </div>
-
-          <div class="price">
-            From £250
-          </div>
-
-          <ul>
-            <li>Draught dispenser hire</li>
-            <li>20 Tap’d Up reusable pint cups</li>
-            <li>Set up &amp; ready to pour</li>
-            <li>Delivery &amp; collection</li>
-          </ul>
-
-          <a
-            class="btn btn-primary"
-            href="calendar.html?package=50"
-          >
-            Check Availability
-          </a>
-
-        </div>
-
-
-        <!-- CROWN PACKAGE -->
-
-        <div class="package package-card crown-package">
-
-          <img
-            src="tapdup-crown.png"
-            alt="Tap’d Up Crown"
-            class="package-crown"
-          >
-
-          <div class="package-label">
-            The Premium Experience
-          </div>
-
-          <h3>Crown Package</h3>
-
-          <div class="crown-tagline">
-            Take your party to the next level.
-          </div>
-
-          <div class="price">
-            Coming Soon
-          </div>
-
-          <ul>
-            <li>Premium Tap’d Up package</li>
-            <li>Premium beer options</li>
-            <li>Enhanced draught setup</li>
-            <li>Tap’d Up reusable pint cups</li>
-            <li>Delivery, setup &amp; collection</li>
-          </ul>
-
-          <a
-            class="btn btn-primary"
-            href="#contact"
-          >
-            Enquire
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="package-note">
-
-        <strong>*Standard Lager:</strong>
-
-        Selected standard lager brands,
-        subject to availability.
-        Premium lagers available as an upgrade.
-
-      </div>
-
-
-      <!-- UPGRADES -->
-
-      <div class="upgrade-box">
-
-        <div class="package-label">
-          Make It Yours
-        </div>
-
-        <h3>
-          Upgrade Your Party
-        </h3>
-
-        <p class="upgrade-intro">
-          Start with Party 30 or Party 50,
-          then make it yours.
-        </p>
-
-        <div class="upgrade-grid">
-
-          <div class="upgrade-item">
-            <div class="upgrade-icon">
-              <img src="icon-premium-pint.png" alt="Premium Pint">
-            </div>
-            <strong>Premium Pint</strong>
-            <span>Upgrade your lager</span>
-          </div>
-
-          <div class="upgrade-item">
-            <div class="upgrade-icon">
-              <img src="icon-extra-keg.png" alt="Extra Keg">
-            </div>
-            <strong>Extra Keg</strong>
-            <span>Keep the party pouring</span>
-          </div>
-
-          <div class="upgrade-item">
-            <div class="upgrade-icon">
-              <img src="icon-extra-cups.png" alt="Extra Cups">
-            </div>
-            <strong>Extra Cups</strong>
-            <span>Add more reusable pint cups</span>
-          </div>
-
-          <div class="upgrade-item">
-            <div class="upgrade-icon">
-              <img src="icon-extra-night.png" alt="Extra Night">
-            </div>
-            <strong>Extra Night</strong>
-            <span>Keep the setup for longer</span>
-          </div>
-
-          <div class="upgrade-item">
-            <div class="upgrade-icon">
-              <img src="icon-extra-draught.png" alt="Extra Draught Setup">
-            </div>
-            <strong>Extra Draught Setup</strong>
-            <span>Add another draught option</span>
-          </div>
-
-        </div>
-
-        <p class="upgrade-coming">
-          More Tap’d Up upgrades coming soon.
-        </p>
-
-      </div>
-
-
-      <!-- DESIGN YOUR OWN -->
-
-      <div class="build-party">
-
-        <div class="package-label">
-          Something Different?
-        </div>
-
-        <h3>
-          Design Your Own Party
-        </h3>
-
-        <p>
-          Planning something bigger or want something different?
-          Build a Tap’d Up package around your party.
-        </p>
-
-        <a
-          class="btn btn-primary"
-          href="#contact"
-        >
-          Build Your Party
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CTA -->
-
-  <section class="cta" id="contact">
-
-    <div class="container">
-
-      <h2>
-        YOUR HOUSE.<br>
-        YOUR PINT.<br>
-        YOUR TAP.
-      </h2>
-
-      <p>
-        Based in Ebbw Vale and delivering locally across South Wales.
-      </p>
+    <h1>
+      BRING THE<br>
+      DRAUGHT HOME.
+    </h1>
+
+    <p>
+      Fresh draught beer, delivered to your door.
+      We bring the keg and draught machine,
+      set it up and get it pouring.
+      You pour the pints — we collect it afterwards.
+    </p>
+
+    <div class="buttons">
 
       <a
         class="btn btn-primary"
-        href="mailto:hello@tapdup.co.uk"
+        href="#packages"
+      >
+        View Packages
+      </a>
+
+      <a
+        class="btn btn-secondary"
+        href="#packages"
       >
         Check Availability
       </a>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>How it works</h2>
+
+      <p>
+        Proper draught beer at home without the hassle.
+      </p>
+
+    </div>
+
+
+    <div class="process-steps">
+
+      <div class="process-step">
+        <div class="process-icon">
+          <img src="icon-date.png" alt="Pick your date">
+        </div>
+        <h3>PICK YOUR DATE</h3>
+        <p>Tell us when the party starts.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <img src="icon-pint.png" alt="Choose your pint">
+        </div>
+        <h3>CHOOSE YOUR PINT</h3>
+        <p>Choose your draught beer.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <img src="icon-book-pay.png" alt="Book and pay online">
+        </div>
+        <h3>BOOK &amp; PAY ONLINE</h3>
+        <p>Secure your Tap’d Up package.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <img src="icon-delivery.png" alt="We deliver">
+        </div>
+        <h3>WE DELIVER</h3>
+        <p>We bring the keg and draught setup.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <img src="icon-pour.png" alt="You pour">
+        </div>
+        <h3>YOU POUR</h3>
+        <p>Pour proper draught pints at home.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <img src="icon-collect.png" alt="We collect">
+        </div>
+        <h3>WE COLLECT</h3>
+        <p>We collect the equipment afterwards.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PACKAGES -->
+
+<section class="package-section" id="packages">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>Choose Your Party</h2>
+
+      <p>
+        Proper draught beer at home.
+        Pick a package or build your own.
+      </p>
+
+    </div>
+
+
+    <div class="package-grid">
+
+
+      <!-- PARTY 30 -->
+
+      <div class="package package-card">
+
+        <div class="package-label">
+          Tap’d Up
+        </div>
+
+        <h3>Party 30</h3>
+
+        <div class="package-size">
+          30L Standard Lager*
+        </div>
+
+        <div class="package-pints">
+          Approx. 52 pints
+        </div>
+
+        <div class="price">
+          From £200
+        </div>
+
+        <ul>
+          <li>Draught dispenser hire</li>
+          <li>20 Tap’d Up reusable pint cups</li>
+          <li>Set up &amp; ready to pour</li>
+          <li>Delivery &amp; collection</li>
+        </ul>
+
+        <a
+          class="btn btn-primary"
+          href="calendar.html?package=30"
+        >
+          Check Availability
+        </a>
+
+      </div>
+
+
+      <!-- PARTY 50 -->
+
+      <div class="package package-card">
+
+        <div class="package-label">
+          Tap’d Up
+        </div>
+
+        <h3>Party 50</h3>
+
+        <div class="package-size">
+          50L Standard Lager*
+        </div>
+
+        <div class="package-pints">
+          Approx. 88 pints
+        </div>
+
+        <div class="price">
+          From £250
+        </div>
+
+        <ul>
+          <li>Draught dispenser hire</li>
+          <li>20 Tap’d Up reusable pint cups</li>
+          <li>Set up &amp; ready to pour</li>
+          <li>Delivery &amp; collection</li>
+        </ul>
+
+        <a
+          class="btn btn-primary"
+          href="calendar.html?package=50"
+        >
+          Check Availability
+        </a>
+
+      </div>
+
+
+      <!-- CROWN PACKAGE -->
+
+      <div class="package package-card crown-package">
+
+        <img
+          src="tapdup-crown.png"
+          alt="Tap’d Up Crown"
+          class="package-crown"
+        >
+
+        <div class="package-label">
+          The Premium Experience
+        </div>
+
+        <h3>Crown Package</h3>
+
+        <div class="crown-tagline">
+          Take your party to the next level.
+        </div>
+
+        <div class="price">
+          Coming Soon
+        </div>
+
+        <ul>
+          <li>Premium Tap’d Up package</li>
+          <li>Premium beer options</li>
+          <li>Enhanced draught setup</li>
+          <li>Tap’d Up reusable pint cups</li>
+          <li>Delivery, setup &amp; collection</li>
+        </ul>
+
+        <a
+          class="btn btn-primary"
+          href="#footer"
+        >
+          Enquire
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="package-note">
+
+      <strong>*Standard Lager:</strong>
+
+      Selected standard lager brands,
+      subject to availability.
+      Premium lagers available as an upgrade.
+
+    </div>
+
+
+    <!-- UPGRADES -->
+
+    <div class="upgrade-box">
+
+      <div class="package-label">
+        Make It Yours
+      </div>
+
+      <h3>
+        Upgrade Your Party
+      </h3>
+
+      <p class="upgrade-intro">
+        Start with Party 30 or Party 50,
+        then make it yours.
+      </p>
+
+
+      <div class="upgrade-grid">
+
+        <div class="upgrade-item">
+          <div class="upgrade-icon">
+            <img src="icon-premium-pint.png" alt="Premium Pint">
+          </div>
+          <strong>Premium Pint</strong>
+          <span>Upgrade your lager</span>
+        </div>
+
+        <div class="upgrade-item">
+          <div class="upgrade-icon">
+            <img src="icon-extra-keg.png" alt="Extra Keg">
+          </div>
+          <strong>Extra Keg</strong>
+          <span>Keep the party pouring</span>
+        </div>
+
+        <div class="upgrade-item">
+          <div class="upgrade-icon">
+            <img src="icon-extra-cups.png" alt="Extra Cups">
+          </div>
+          <strong>Extra Cups</strong>
+          <span>Add more reusable pint cups</span>
+        </div>
+
+        <div class="upgrade-item">
+          <div class="upgrade-icon">
+            <img src="icon-extra-night.png" alt="Extra Night">
+          </div>
+          <strong>Extra Night</strong>
+          <span>Keep the setup for longer</span>
+        </div>
+
+        <div class="upgrade-item">
+          <div class="upgrade-icon">
+            <img src="icon-extra-draught.png" alt="Extra Draught Setup">
+          </div>
+          <strong>Extra Draught Setup</strong>
+          <span>Add another draught option</span>
+        </div>
+
+      </div>
+
+      <p class="upgrade-coming">
+        More Tap’d Up upgrades coming soon.
+      </p>
+
+    </div>
+
+
+    <!-- DESIGN YOUR OWN -->
+
+    <div class="build-party">
+
+      <div class="package-label">
+        Something Different?
+      </div>
+
+      <h3>
+        Design Your Own Party
+      </h3>
+
+      <p>
+        Planning something bigger or want something different?
+        Build a Tap’d Up package around your party.
+      </p>
+
+      <a
+        class="btn btn-primary"
+        href="#footer"
+      >
+        Build Your Party
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TAP'D UP IN ACTION -->
+
+<section class="action-section" id="action">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="package-label">
+        The Tap’d Up Experience
+      </div>
+
+      <h2>
+        Tap’d Up In Action
+      </h2>
+
+      <p>
+        Proper draught. Proper pints. Your party.
+      </p>
+
+    </div>
+
+
+    <div class="action-grid">
+
+      <div
+        class="party-shot party-shot-left"
+        role="img"
+        aria-label="Tap’d Up party"
+      ></div>
+
+      <div
+        class="party-shot party-shot-centre"
+        role="img"
+        aria-label="Pouring a Tap’d Up pint"
+      ></div>
+
+      <div
+        class="party-shot party-shot-right"
+        role="img"
+        aria-label="Tap’d Up draught setup at a party"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- VIDEOS -->
+
+<section class="video-section" id="videos">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="package-label">
+        See It For Yourself
+      </div>
+
+      <h2>
+        See How It Works
+      </h2>
+
+      <p>
+        See Tap’d Up from setup to first pour.
+      </p>
+
+    </div>
+
+
+    <div class="video-grid">
+
+
+      <!-- VIDEO 1 -->
+
+      <div class="video-placeholder">
+
+        <div class="video-play">
+          ▶
+        </div>
+
+        <strong>
+          How Tap’d Up Works
+        </strong>
+
+        <span>
+          Tap’d Up video coming soon
+        </span>
+
+      </div>
+
+
+      <!-- VIDEO 2 -->
+
+      <div class="video-placeholder">
+
+        <div class="video-play">
+          ▶
+        </div>
+
+        <strong>
+          Tap’d Up At Your Party
+        </strong>
+
+        <span>
+          Tap’d Up video coming soon
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
 
 
 </main>
 
 
-<footer>
+<!-- FOOTER -->
 
-  <strong>
-    Tap’d Up
-  </strong>
+<footer id="footer">
 
-  <div class="social">
-    @get.tapdup
+  <div class="footer-inner">
+
+
+    <div class="footer-brand">
+
+      <img
+        src="tapdup-logo.png"
+        alt="Tap’d Up - Pour Your Own Pint!"
+        class="footer-logo"
+      >
+
+      <p>
+        Draught beer delivered to your party across South Wales.
+        We bring it, set it up and get it pouring.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Quick Links
+      </div>
+
+      <div class="footer-links">
+
+        <a href="#how">
+          How It Works
+        </a>
+
+        <a href="#packages">
+          Packages
+        </a>
+
+        <a href="#action">
+          Tap’d Up In Action
+        </a>
+
+        <a href="#videos">
+          Videos
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Follow Tap’d Up
+      </div>
+
+      <div class="footer-handle">
+        @get.tapdup
+      </div>
+
+      <div class="footer-links">
+
+        <span>
+          Facebook
+        </span>
+
+        <span>
+          Instagram
+        </span>
+
+        <span>
+          TikTok
+        </span>
+
+        <span>
+          YouTube
+        </span>
+
+        <span>
+          tapdup.co.uk
+        </span>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div>
-    tapdup.co.uk
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 Tap’d Up
+    </span>
+
+    <span>
+      South Wales
+    </span>
+
+    <span>
+      Enjoy responsibly. 18+ only.
+    </span>
+
   </div>
-
-  <br>
-
-  <small>
-    Enjoy responsibly. 18+ only.
-  </small>
 
 </footer>
 
