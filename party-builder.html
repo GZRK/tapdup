@@ -1,1 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Build Your Party | Tap’d Up</title>
+  <meta name="description" content="Build your Tap’d Up draught party package.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cyan: #16d9e3;
+      --pink: #ff3d8d;
+      --dark: #08090b;
+      --panel: #111318;
+      --panel2: #171a20;
+      --white: #ffffff;
+      --muted: #b8bcc5;
+      --border: #292c34;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+    header {
+      background: rgba(8, 9, 11, 0.97);
+      border-bottom: 1px solid #24262c;
+    }
+
+    .nav {
+      max-width: 1100px;
+      min-height: 82px;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      height: 70px;
+      width: auto;
+      display: block;
+    }
+
+    .back-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--cyan);
+    }
+
+    /* PAGE */
+    .builder {
+      max-width: 1100px;
+      margin: auto;
+      padding: 55px 24px 90px;
+    }
+
+    .builder-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.3rem);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .builder-heading p {
+      color: var(--muted);
+    }
+
+    .preview-notice {
+      max-width: 700px;
+      margin: 22px auto 0;
+      padding: 11px 16px;
+      border: 1px solid rgba(255, 61, 141, 0.45);
+      background: rgba(255, 61, 141, 0.08);
+      border-radius: 12px;
+      color: #f4c5d8;
+      font-size: 0.83rem;
+    }
+
+    /* BUILDER LAYOUT */
+    .builder-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .builder-main {
+      display: grid;
+      gap: 18px;
+    }
+
+    .builder-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+    }
+
+    .step-label {
+      color: var(--pink);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .builder-section h2 {
+      font-size: 1.55rem;
+      margin-bottom: 5px;
+    }
+
+    .section-help {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    /* OPTIONS */
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .option {
+      position: relative;
+    }
+
+    .option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option label {
+      height: 100%;
+      display: block;
+      background: #0d0f13;
+      border: 2px solid var(--border);
+      border-radius: 15px;
+      padding: 17px;
+      cursor: pointer;
+      transition: 0.18s;
+    }
+
+    .option label:hover {
+      border-color: #555a66;
+    }
+
+    .option input:checked + label {
+      border-color: var(--cyan);
+      background: rgba(22, 217, 227, 0.06);
+    }
+
+    .option-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .option-price {
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    .option-desc {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .premium-tag {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--pink);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* EXTRAS */
+    .extras {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .extra {
+      background: #0d0f13;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 15px;
+    }
+
+    .extra label {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      cursor: pointer;
+    }
+
+    .extra input {
+      margin-top: 4px;
+      accent-color: var(--cyan);
+      transform: scale(1.2);
+    }
+
+    .extra-copy {
+      flex: 1;
+    }
+
+    .extra-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .extra-price {
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    .extra-desc {
+      color: var(--muted);
+      font-size: 0.76rem;
+      margin-top: 3px;
+    }
+
+    /* FORM */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid #343841;
+      border-radius: 11px;
+      background: #0b0d10;
+      color: white;
+      padding: 13px;
+      font: inherit;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    /* SUMMARY */
+    .summary {
+      position: sticky;
+      top: 20px;
+      background: var(--panel);
+      border: 2px solid var(--cyan);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .summary-label {
+      color: var(--pink);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .summary h2 {
+      margin: 5px 0 18px;
+      font-size: 1.55rem;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid #292c34;
+      font-size: 0.86rem;
+    }
+
+    .summary-row span:first-child {
+      color: var(--muted);
+    }
+
+    .summary-row strong {
+      text-align: right;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .summary-total span {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .summary-total strong {
+      color: var(--cyan);
+      font-size: 2rem;
+    }
+
+    .btn {
+      width: 100%;
+      display: block;
+      border: 0;
+      border-radius: 999px;
+      background: var(--cyan);
+      color: #071013;
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .summary-note {
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.72rem;
+      margin-top: 11px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #24262c;
+      text-align: center;
+      color: #8e929c;
+      padding: 35px 20px;
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* MOBILE */
+    @media (max-width: 850px) {
+      .builder-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .builder {
+        padding: 35px 16px 60px;
+      }
+
+      .nav {
+        padding: 0 16px;
+      }
+
+      .nav-logo {
+        height: 62px;
+      }
+
+      .builder-section {
+        padding: 20px 16px;
+      }
+
+      .options,
+      .extras,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html">
+      <img src="tapdup-logo.png" alt="Tap’d Up" class="nav-logo">
+    </a>
+
+    <a href="index.html#packages" class="back-link">← Back to Packages</a>
+  </div>
+</header>
+
+
+<main class="builder">
+
+  <div class="builder-heading">
+    <div class="eyebrow">BUILD YOUR TAP’D UP PARTY</div>
+    <h1>Choose Your Pint.</h1>
+    <p>Pick your drink, add any extras and see your party price as you build it.</p>
+
+    <div class="preview-notice">
+      Demo booking preview — products, availability and prices shown are provisional and may change before launch.
+    </div>
+  </div>
+
+
+  <div class="builder-layout">
+
+    <div class="builder-main">
+
+      <!-- STEP 1 -->
+      <section class="builder-section">
+        <div class="step-label">Step 1</div>
+        <h2>Your Package</h2>
+        <p class="section-help">Choose the package that suits your party.</p>
+
+        <div class="options">
+
+          <div class="option">
+            <input type="radio" name="package" id="party30" value="30" data-price="200">
+            <label for="party30">
+              <div class="option-title">
+                <span>Party 30</span>
+                <span class="option-price">£200</span>
+              </div>
+              <div class="option-desc">
+                30L keg · approx. 52 pints · 20 reusable pint cups
+              </div>
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="radio" name="package" id="party50" value="50" data-price="250">
+            <label for="party50">
+              <div class="option-title">
+                <span>Party 50</span>
+                <span class="option-price">£250</span>
+              </div>
+              <div class="option-desc">
+                50L keg · approx. 88 pints · 20 reusable pint cups
+              </div>
+            </label>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- STEP 2 -->
+      <section class="builder-section">
+        <div class="step-label">Step 2</div>
+        <h2>Choose Your Pint</h2>
+        <p class="section-help">
+          Choose from lager, beer and cider. Standard options are included in your package.
+        </p>
+
+        <div class="options">
+
+          <div class="option">
+            <input type="radio" name="drink" id="standard-lager" value="Standard Lager" data-price="0" checked>
+            <label for="standard-lager">
+              <div class="option-title">
+                <span>Standard Lager</span>
+                <span class="option-price">Included</span>
+              </div>
+              <div class="option-desc">Selected standard draught lager.</div>
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="radio" name="drink" id="standard-cider" value="Standard Cider" data-price="0">
+            <label for="standard-cider">
+              <div class="option-title">
+                <span>Standard Cider</span>
+                <span class="option-price">Included</span>
+              </div>
+              <div class="option-desc">Selected standard draught cider.</div>
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="radio" name="drink" id="premium-lager" value="Premium Lager" data-price="25">
+            <label for="premium-lager">
+              <div class="option-title">
+                <span>Premium Lager</span>
+                <span class="option-price">+£25</span>
+              </div>
+              <div class="option-desc">Upgrade to a premium lager option.</div>
+              <span class="premium-tag">Premium Upgrade</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input type="radio" name="drink" id="premium-cider" value="Premium Cider" data-price="20">
+            <label for="premium-cider">
+              <div class="option-title">
+                <span>Premium Cider</span>
+                <span class="option-price">+£20</span>
+              </div>
+              <div class="option-desc">Upgrade to a premium cider option.</div>
+              <span class="premium-tag">Premium Upgrade</span>
+            </label>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- STEP 3 -->
+      <section class="builder-section">
+        <div class="step-label">Step 3</div>
+        <h2>Upgrade Your Party</h2>
+        <p class="section-help">Add anything else you need.</p>
+
+        <div class="extras">
+
+          <div class="extra">
+            <label>
+              <input type="checkbox" class="extra-check" data-name="Extra 20 cups" data-price="10">
+              <div class="extra-copy">
+                <div class="extra-title">
+                  <span>Extra 20 Cups</span>
+                  <span class="extra-price">+£10</span>
+                </div>
+                <div class="extra-desc">Another 20 reusable pint cups.</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="extra">
+            <label>
+              <input type="checkbox" class="extra-check" data-name="Extra Night" data-price="50">
+              <div class="extra-copy">
+                <div class="extra-title">
+                  <span>Extra Night</span>
+                  <span class="extra-price">+£50</span>
+                </div>
+                <div class="extra-desc">Keep the draught setup for another night.</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="extra">
+            <label>
+              <input type="checkbox" class="extra-check" data-name="Extra Keg" data-price="100">
+              <div class="extra-copy">
+                <div class="extra-title">
+                  <span>Extra Keg</span>
+                  <span class="extra-price">+£100</span>
+                </div>
+                <div class="extra-desc">Add another keg to your party.</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="extra">
+            <label>
+              <input type="checkbox" class="extra-check" data-name="Extra Draught Setup" data-price="50">
+              <div class="extra-copy">
+                <div class="extra-title">
+                  <span>Extra Draught Setup</span>
+                  <span class="extra-price">+£50</span>
+                </div>
+                <div class="extra-desc">Add another draught dispensing setup.</div>
+              </div>
+            </label>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- STEP 4 -->
+      <section class="builder-section">
+        <div class="step-label">Step 4</div>
+        <h2>Your Party Details</h2>
+        <p class="section-help">
+          Tell us a little about your party.
+        </p>
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Your name">
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com">
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="07...">
+          </div>
+
+          <div class="field">
+            <label for="date">Party Date</label>
+            <input type="date" id="date">
+          </div>
+
+          <div class="field">
+            <label for="postcode">Party Postcode</label>
+            <input type="text" id="postcode" placeholder="e.g. NP23">
+          </div>
+
+          <div class="field">
+            <label for="guests">Approx. Guests</label>
+            <input type="number" id="guests" min="1" placeholder="e.g. 30">
+          </div>
+
+          <div class="field full">
+            <label for="notes">Anything Else?</label>
+            <textarea id="notes" placeholder="Tell us anything else about your party..."></textarea>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+    <aside class="summary">
+      <div class="summary-label">Your Tap’d Up Party</div>
+      <h2>Order Summary</h2>
+
+      <div class="summary-row">
+        <span>Package</span>
+        <strong id="summary-package">Party 30</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Package Price</span>
+        <strong id="summary-package-price">£200</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Your Pint</span>
+        <strong id="summary-drink">Standard Lager</strong>
+      </div>
+
+      <div id="summary-extras"></div>
+
+      <div class="summary-total">
+        <span>Preview Total</span>
+        <strong id="summary-total">£200</strong>
+      </div>
+
+      <button class="btn" type="button" id="enquiry-button">
+        Send an Enquiry
+      </button>
+
+      <div class="summary-note">
+        Demo booking preview. No payment will be taken.
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+
+<footer>
+  <strong>Tap’d Up</strong><br>
+  @get.tapdup · tapdup.co.uk<br><br>
+  <small>Enjoy responsibly. 18+ only.</small>
+</footer>
+
+
+<script>
+  const packageInputs = document.querySelectorAll('input[name="package"]');
+  const drinkInputs = document.querySelectorAll('input[name="drink"]');
+  const extraInputs = document.querySelectorAll('.extra-check');
+
+  const summaryPackage = document.getElementById('summary-package');
+  const summaryPackagePrice = document.getElementById('summary-package-price');
+  const summaryDrink = document.getElementById('summary-drink');
+  const summaryExtras = document.getElementById('summary-extras');
+  const summaryTotal = document.getElementById('summary-total');
+
+  function money(value) {
+    return '£' + Number(value).toFixed(0);
+  }
+
+  function setPackageFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const chosenPackage = params.get('package');
+
+    if (chosenPackage === '50') {
+      document.getElementById('party50').checked = true;
+    } else {
+      document.getElementById('party30').checked = true;
+    }
+  }
+
+  function updateSummary() {
+    const selectedPackage =
+      document.querySelector('input[name="package"]:checked');
+
+    const selectedDrink =
+      document.querySelector('input[name="drink"]:checked');
+
+    let total = 0;
+
+    if (selectedPackage) {
+      const packagePrice = Number(selectedPackage.dataset.price);
+      total += packagePrice;
+
+      summaryPackage.textContent =
+        selectedPackage.value === '50' ? 'Party 50' : 'Party 30';
+
+      summaryPackagePrice.textContent = money(packagePrice);
+    }
+
+    if (selectedDrink) {
+      const drinkPrice = Number(selectedDrink.dataset.price);
+      total += drinkPrice;
+
+      summaryDrink.textContent =
+        selectedDrink.value +
+        (drinkPrice > 0 ? ' (+' + money(drinkPrice) + ')' : '');
+    }
+
+    summaryExtras.innerHTML = '';
+
+    extraInputs.forEach(extra => {
+      if (extra.checked) {
+        const extraPrice = Number(extra.dataset.price);
+        total += extraPrice;
+
+        const row = document.createElement('div');
+        row.className = 'summary-row';
+
+        row.innerHTML =
+          '<span>' + extra.dataset.name + '</span>' +
+          '<strong>+' + money(extraPrice) + '</strong>';
+
+        summaryExtras.appendChild(row);
+      }
+    });
+
+    summaryTotal.textContent = money(total);
+  }
+
+  packageInputs.forEach(input => {
+    input.addEventListener('change', updateSummary);
+  });
+
+  drinkInputs.forEach(input => {
+    input.addEventListener('change', updateSummary);
+  });
+
+  extraInputs.forEach(input => {
+    input.addEventListener('change', updateSummary);
+  });
+
+  document.getElementById('enquiry-button').addEventListener('click', function () {
+    alert(
+      'Tap’d Up booking preview — this is where the customer enquiry / checkout will continue once bookings go live.'
+    );
+  });
+
+  setPackageFromURL();
+  updateSummary();
+</script>
+
+</body>
+</html>
