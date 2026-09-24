@@ -25,7 +25,6 @@
       line-height: 1.5;
     }
 
-    /* BRAND COLOURS */
     :root {
       --cyan: #16d9e3;
       --pink: #ff3d8d;
@@ -35,7 +34,163 @@
       --muted: #b8bcc5;
     }
 
-    /* HEADER */
+
+    /* =========================================================
+       18+ AGE GATE
+       ========================================================= */
+
+    .age-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(22,217,227,.10), transparent 32%),
+        radial-gradient(circle at 75% 80%, rgba(255,61,141,.10), transparent 32%),
+        #08090b;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .age-gate.hidden {
+      display: none;
+    }
+
+    .age-gate-inner {
+      width: 100%;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .age-logo {
+      width: min(420px, 85vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 34px;
+    }
+
+    .age-eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+    }
+
+    .age-gate h2 {
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .age-gate p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin: 0 auto 28px;
+      max-width: 500px;
+    }
+
+    .age-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .age-btn {
+      border: none;
+      cursor: pointer;
+      min-width: 190px;
+      padding: 16px 25px;
+      border-radius: 999px;
+      font-size: .9rem;
+      font-weight: 900;
+      font-family: inherit;
+      transition: .2s;
+    }
+
+    .age-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .age-yes {
+      background: var(--cyan);
+      color: #071013;
+    }
+
+    .age-no {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .age-responsible {
+      margin-top: 30px !important;
+      margin-bottom: 0 !important;
+      color: #777c86 !important;
+      font-size: .8rem !important;
+    }
+
+
+    /* UNDER 18 SCREEN */
+
+    .underage-message {
+      display: none;
+    }
+
+    .underage-message.active {
+      display: block;
+    }
+
+    .age-question.hidden {
+      display: none;
+    }
+
+    .underage-crown {
+      width: 110px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    .underage-message h2 {
+      color: var(--cyan);
+      margin-bottom: 20px;
+    }
+
+    .underage-main {
+      color: white !important;
+      font-size: clamp(1.25rem, 4vw, 1.7rem) !important;
+      font-weight: 800;
+      max-width: 520px !important;
+      line-height: 1.4;
+      margin-bottom: 16px !important;
+    }
+
+    .underage-18 {
+      color: var(--pink) !important;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 0 !important;
+    }
+
+    body.age-locked {
+      overflow: hidden;
+    }
+
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
     header {
       position: sticky;
       top: 0;
@@ -64,11 +219,13 @@
     .brand span {
       color: var(--cyan);
     }
-.nav-logo {
-  height: 85px;
-  width: auto;
-  display: block;
+
+    .nav-logo {
+      height: 85px;
+      width: auto;
+      display: block;
     }
+
     nav a {
       color: white;
       text-decoration: none;
@@ -81,7 +238,11 @@
       color: var(--cyan);
     }
 
-    /* HERO */
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
     .hero {
       min-height: 82vh;
       display: flex;
@@ -91,19 +252,20 @@
       padding: 90px 24px;
       position: relative;
       overflow: hidden;
-     background:
-      linear-gradient(rgba(8,9,11,0.08), rgba(8,9,11,0.08)),
-      url("tapdup-hero.png") center 60% / cover no-repeat;
-       
+      background:
+        linear-gradient(rgba(8,9,11,0.08), rgba(8,9,11,0.08)),
+        url("tapdup-hero.png") center 60% / cover no-repeat;
     }
+
     .hero-inner {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  text-align: left;
-}
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      text-align: left;
+    }
+
     .eyebrow {
       color: var(--cyan);
       text-transform: uppercase;
@@ -163,7 +325,11 @@
       transform: translateY(-2px);
     }
 
-    /* GENERAL */
+
+    /* =========================================================
+       GENERAL
+       ========================================================= */
+
     section {
       padding: 90px 24px;
     }
@@ -187,368 +353,265 @@
       color: var(--muted);
     }
 
-    /* HOW IT WORKS - PROCESS */
 
-.process-steps {
-    display: grid !important;
-    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-    gap: 18px;
-    position: relative;
-    margin-top: 45px;
-    width: 100%;
-}
+    /* =========================================================
+       HOW IT WORKS
+       ========================================================= */
 
-/* Cyan connecting line */
-.process-steps::before {
-    content: "";
-    position: absolute;
-    top: 38px;
-    left: 7%;
-    right: 7%;
-    height: 3px;
-    background: var(--cyan);
-    opacity: 0.55;
-    z-index: 0;
-}
-
-.process-step {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-
-.process-icon {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 14px;
-    position: relative;
-    z-index: 1;
-}
-
-.process-icon img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    display: block;
-}
-
-.process-step h3 {
-    font-size: 1rem;
-    margin-bottom: 8px;
-    color: white;
-}
-
-/* Mobile */
-@media (max-width: 760px) {
     .process-steps {
-        grid-template-columns: 1fr;
-        gap: 28px;
+      display: grid !important;
+      grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+      gap: 18px;
+      position: relative;
+      margin-top: 45px;
+      width: 100%;
     }
 
     .process-steps::before {
-        display: none;
+      content: "";
+      position: absolute;
+      top: 38px;
+      left: 7%;
+      right: 7%;
+      height: 3px;
+      background: var(--cyan);
+      opacity: 0.55;
+      z-index: 0;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .process-icon {
-        margin-bottom: 12px;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 14px;
+      position: relative;
+      z-index: 1;
     }
-}
 
-    /* PACKAGE */
-.package-section {
-  background: #0d0f13;
-}
+    .process-icon img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      display: block;
+    }
 
-/* THREE MAIN PACKAGE CARDS */
-.package-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  align-items: stretch;
-  margin-top: 40px;
-}
+    .process-step h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: white;
+    }
 
-.package {
-  background: var(--panel);
-  border: 2px solid var(--cyan);
-  border-radius: 24px;
-  padding: 26px 26px;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  min-width: 0;
-}
 
-.package-label {
-  color: var(--pink);
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-}
+    /* =========================================================
+       PACKAGES
+       ========================================================= */
 
-.package h3 {
-  font-size: 2rem;
-  margin: 8px 0 6px;
-}
+    .package-section {
+      background: #0d0f13;
+    }
 
-.package-size {
-  color: white;
-  font-weight: 800;
-  font-size: 1.05rem;
-  margin-top: 5px;
-}
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 40px;
+    }
 
-.package-pints {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-top: 4px;
-}
+    .package {
+      background: var(--panel);
+      border: 2px solid var(--cyan);
+      border-radius: 24px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      min-width: 0;
+    }
 
-.price {
-  font-size: 1.7rem;
-  font-weight: 900;
-  color: var(--cyan);
-  margin: 18px 0;
-}
+    .package-label {
+      color: var(--pink);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
 
-.package ul {
-  list-style: none;
-  margin: 0 0 20px;
-  padding: 0;
-  }
+    .package h3 {
+      font-size: 2rem;
+      margin: 8px 0 6px;
+    }
 
-.package li {
-  padding: 9px 0;
-  border-bottom: 1px solid #252832;
-  font-size: 0.92rem;
-}
+    .package-size {
+      color: white;
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-top: 5px;
+    }
 
-.package li::before {
-  content: "✓";
-  color: var(--cyan);
-  font-weight: 900;
-  margin-right: 9px;
-}
+    .package-pints {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
 
-/* CROWN PACKAGE */
-.crown-package {
-  position: relative;
-  border-color: var(--pink);
-}
+    .price {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--cyan);
+      margin: 18px 0;
+    }
 
-.package-crown {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  margin-bottom: 12px;
-}
+    .package ul {
+      list-style: none;
+      margin: 0 0 20px;
+      padding: 0;
+    }
 
-.crown-tagline {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-top: 5px;
-}
+    .package li {
+      padding: 9px 0;
+      border-bottom: 1px solid #252832;
+      font-size: 0.92rem;
+    }
 
-/* STANDARD LAGER FOOTNOTE */
-.package-note {
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin: 22px auto 45px;
-}
+    .package li::before {
+      content: "✓";
+      color: var(--cyan);
+      font-weight: 900;
+      margin-right: 9px;
+    }
 
-.package-note strong {
-  color: white;
-}
+    .crown-package {
+      position: relative;
+      border-color: var(--pink);
+    }
 
-/* UPGRADE YOUR PARTY */
-.upgrade-box {
-  max-width: 1000px;
-  margin: 0 auto 22px;
-  padding: 30px 28px;
-  background: var(--panel);
-  border: 1px solid #252832;
-  border-radius: 22px;
-  text-align: center;
-}
+    .package-crown {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
 
-.upgrade-box h3 {
-  font-size: 1.8rem;
-  margin: 7px 0 6px;
-}
+    .crown-tagline {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
 
-.upgrade-intro {
-  color: var(--muted);
-  margin-bottom: 24px;
-}
+    .package-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin: 22px auto 45px;
+    }
 
-.upgrade-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
+    .package-note strong {
+      color: white;
+    }
 
-.upgrade-item {
-  background: #0d0f13;
-  border: 1px solid #2b2e36;
-  border-radius: 16px;
-  padding: 18px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
 
-.upgrade-icon {
-  font-size: 1.7rem;
-  margin-bottom: 8px;
-}
+    /* =========================================================
+       UPGRADES
+       ========================================================= */
 
-.upgrade-item strong {
-  color: white;
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-}
+    .upgrade-box {
+      max-width: 1000px;
+      margin: 0 auto 22px;
+      padding: 30px 28px;
+      background: var(--panel);
+      border: 1px solid #252832;
+      border-radius: 22px;
+      text-align: center;
+    }
 
-.upgrade-item span {
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.35;
-}
+    .upgrade-box h3 {
+      font-size: 1.8rem;
+      margin: 7px 0 6px;
+    }
 
-.upgrade-coming {
-  color: var(--muted);
-  margin-top: 18px;
-  font-size: 0.8rem;
-}
+    .upgrade-intro {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
 
-/* UPGRADE MOBILE */
-@media (max-width: 760px) {
-  .upgrade-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .upgrade-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
 
-  .upgrade-item:last-child {
-    grid-column: 1 / -1;
-  }
-}
-    
-    /* UPGRADE YOUR PARTY */
-.upgrade-box {
-  max-width: 1000px;
-  margin: 0 auto 22px;
-  padding: 30px 28px;
-  background: var(--panel);
-  border: 1px solid #252832;
-  border-radius: 22px;
-  text-align: center;
-}
+    .upgrade-item {
+      background: #0d0f13;
+      border: 1px solid #2b2e36;
+      border-radius: 16px;
+      padding: 18px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-.upgrade-box h3 {
-  font-size: 1.8rem;
-  margin: 7px 0 6px;
-}
+    .upgrade-icon {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+    }
 
-.upgrade-intro {
-  color: var(--muted);
-  margin-bottom: 24px;
-}
+    .upgrade-item strong {
+      color: white;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
 
-.upgrade-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
+    .upgrade-item span {
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.35;
+    }
 
-.upgrade-item {
-  background: #0d0f13;
-  border: 1px solid #2b2e36;
-  border-radius: 16px;
-  padding: 18px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+    .upgrade-coming {
+      color: var(--muted);
+      margin-top: 18px;
+      font-size: 0.8rem;
+    }
 
-.upgrade-icon {
-  font-size: 1.7rem;
-  margin-bottom: 8px;
-}
 
-.upgrade-item strong {
-  color: white;
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-}
+    /* =========================================================
+       DESIGN YOUR OWN
+       ========================================================= */
 
-.upgrade-item span {
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.35;
-}
+    .build-party {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 36px 34px;
+      border: 2px solid var(--cyan);
+      border-radius: 22px;
+      text-align: center;
+      background: #101319;
+    }
 
-.upgrade-coming {
-  color: var(--muted);
-  margin-top: 18px;
-  font-size: 0.8rem;
-}
+    .build-party h3 {
+      font-size: 2rem;
+      margin: 7px 0 10px;
+    }
 
-/* UPGRADE MOBILE */
-@media (max-width: 760px) {
-  .upgrade-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .build-party p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 22px;
+      line-height: 1.6;
+    }
 
-  .upgrade-item:last-child {
-    grid-column: 1 / -1;
-  }
-}
 
-/* DESIGN YOUR OWN */
-.build-party {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 36px 34px;
-  border: 2px solid var(--cyan);
-  border-radius: 22px;
-  text-align: center;
-  background: #101319;
-}
+    /* =========================================================
+       OCCASIONS
+       ========================================================= */
 
-.build-party h3 {
-  font-size: 2rem;
-  margin: 7px 0 10px;
-}
-
-.build-party p {
-  color: var(--muted);
-  max-width: 650px;
-  margin: 0 auto 22px;
-  line-height: 1.6;
-}
-
-/* PACKAGE MOBILE */
-@media (max-width: 900px) {
-  .package-grid {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .package {
-    padding: 28px 22px;
-  }
-
-  .upgrade-box,
-  .build-party {
-    padding: 28px 22px;
-  }
-}
-
-    /* OCCASIONS */
     .occasions {
       display: flex;
       flex-wrap: wrap;
@@ -563,7 +626,11 @@
       font-weight: 700;
     }
 
-    /* CTA */
+
+    /* =========================================================
+       CTA
+       ========================================================= */
+
     .cta {
       text-align: center;
       background:
@@ -582,7 +649,11 @@
       margin-bottom: 30px;
     }
 
-    /* FOOTER */
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -600,18 +671,37 @@
       font-weight: 800;
     }
 
-    /* MOBILE */
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+      .package-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .package {
+        padding: 28px 22px;
+      }
+
+      .upgrade-box,
+      .build-party {
+        padding: 28px 22px;
+      }
+    }
+
     @media (max-width: 760px) {
+
       nav {
         display: none;
       }
 
       .nav {
         justify-content: center;
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
       }
 
       .hero {
@@ -623,281 +713,658 @@
         letter-spacing: -3px;
       }
 
-      .package {
-        padding: 28px 22px;
+      .process-steps {
+        grid-template-columns: 1fr !important;
+        gap: 28px;
+      }
+
+      .process-steps::before {
+        display: none;
+      }
+
+      .process-icon {
+        margin-bottom: 12px;
+      }
+
+      .upgrade-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .upgrade-item:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .age-logo {
+        width: min(350px, 82vw);
+        margin-bottom: 28px;
+      }
+
+      .age-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .age-btn {
+        width: min(320px, 90vw);
       }
     }
+
   </style>
 </head>
 
-<body>
+
+<body class="age-locked">
+
+
+<!-- =========================================================
+     18+ AGE GATE
+     ========================================================= -->
+
+<div class="age-gate" id="ageGate">
+
+  <div class="age-gate-inner">
+
+    <img
+      src="tapdup-logo.png"
+      alt="Tap’d Up - Pour Your Own Pint!"
+      class="age-logo"
+    >
+
+
+    <!-- AGE QUESTION -->
+
+    <div class="age-question" id="ageQuestion">
+
+      <div class="age-eyebrow">
+        WELCOME TO TAP’D UP
+      </div>
+
+      <h2>ARE YOU 18 OR OVER?</h2>
+
+      <p>
+        You must be of legal drinking age to enter Tap’d Up.
+      </p>
+
+      <div class="age-buttons">
+
+        <button
+          type="button"
+          class="age-btn age-yes"
+          id="ageYes"
+        >
+          YES, I’M 18+
+        </button>
+
+        <button
+          type="button"
+          class="age-btn age-no"
+          id="ageNo"
+        >
+          NO, I’M UNDER 18
+        </button>
+
+      </div>
+
+      <p class="age-responsible">
+        Please enjoy responsibly.
+      </p>
+
+    </div>
+
+
+    <!-- UNDER 18 MESSAGE -->
+
+    <div class="underage-message" id="underageMessage">
+
+      <img
+        src="tapdup-crown.png"
+        alt="Tap’d Up Crown"
+        class="underage-crown"
+      >
+
+      <h2>NOT QUITE YET…</h2>
+
+      <p class="underage-main">
+        Come back when you’re old enough to get Tap’d Up.
+      </p>
+
+      <p class="underage-18">
+        18+ ONLY
+      </p>
+
+      <p class="age-responsible">
+        Please enjoy responsibly.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
 
 <header>
   <div class="nav">
+
     <div class="brand">
-  <img src="tapdup-logo.png" alt="Tap’d Up - Pour Your Own Pint!" class="nav-logo">
-</div>
+      <img
+        src="tapdup-logo.png"
+        alt="Tap’d Up - Pour Your Own Pint!"
+        class="nav-logo"
+      >
+    </div>
+
     <nav>
       <a href="#how">How It Works</a>
       <a href="#packages">Packages</a>
       <a href="#contact">Book</a>
     </nav>
+
   </div>
 </header>
 
+
 <main>
 
-  <section class="hero">
-    <div class="hero-inner">
-     <div class="eyebrow">DRAUGHT BEER • DELIVERED</div>
 
-      <h1>BRING THE<br>DRAUGHT HOME.</h1>
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-inner">
+
+      <div class="eyebrow">
+        DRAUGHT BEER • DELIVERED
+      </div>
+
+      <h1>
+        BRING THE<br>
+        DRAUGHT HOME.
+      </h1>
 
       <p>
-  Fresh draught beer, delivered to your door. We bring the keg and draught machine,
-  set it up and get it pouring. You pour the pints — we collect it afterwards.
-</p>
+        Fresh draught beer, delivered to your door.
+        We bring the keg and draught machine,
+        set it up and get it pouring.
+        You pour the pints — we collect it afterwards.
+      </p>
 
       <div class="buttons">
-        <a class="btn btn-primary" href="#packages">View Packages</a>
-        <a class="btn btn-secondary" href="#contact">Check Availability</a>
+
+        <a
+          class="btn btn-primary"
+          href="#packages"
+        >
+          View Packages
+        </a>
+
+        <a
+          class="btn btn-secondary"
+          href="#contact"
+        >
+          Check Availability
+        </a>
+
       </div>
+
     </div>
+
   </section>
 
 
+  <!-- HOW IT WORKS -->
+
   <section id="how">
+
     <div class="container">
 
       <div class="section-title">
+
         <h2>How it works</h2>
-        <p>Proper draught beer at home without the hassle.</p>
+
+        <p>
+          Proper draught beer at home without the hassle.
+        </p>
+
       </div>
+
+
       <div class="process-steps">
-     <div class="process-step">
-    <div class="process-icon">
-    <img src="icon-date.png" alt="Pick your date">
-</div>
-    <h3>PICK YOUR DATE</h3>
-    <p>Tell us when the party starts.</p>
-  </div>
 
-  <div class="process-step">
-  <div class="process-icon">
-    <img src="icon-pint.png" alt="Choose your pint">
-  </div>
-  <h3>CHOOSE YOUR PINT</h3>
-  <p>Choose your draught beer.</p>
-</div>
 
-  <div class="process-step">
-    <div class="process-icon">
-  <img src="icon-book-pay.png" alt="Book and pay online">
-  </div>
-    <h3>BOOK &amp; PAY ONLINE</h3>
-    <p>Secure your Tap’d Up package.</p>
-  </div>
+        <div class="process-step">
 
-  <div class="process-step">
-    <div class="process-icon">
-  <img src="icon-delivery.png" alt="We deliver">
-</div>
-    <h3>WE DELIVER</h3>
-    <p>We bring the keg and draught setup.</p>
-  </div>
+          <div class="process-icon">
+            <img
+              src="icon-date.png"
+              alt="Pick your date"
+            >
+          </div>
 
-  <div class="process-step">
-    <div class="process-icon">
-  <img src="icon-pour.png" alt="You pour">
-</div>
-    <h3>YOU POUR</h3>
-    <p>Pour proper draught pints at home.</p>
-  </div>
+          <h3>PICK YOUR DATE</h3>
 
-  <div class="process-step">
-    <div class="process-icon">
-  <img src="icon-collect.png" alt="We collect">
-</div>
-    <h3>WE COLLECT</h3>
-    <p>We collect the equipment afterwards.</p>
-  </div>
+          <p>
+            Tell us when the party starts.
+          </p>
 
-</div>
+        </div>
+
+
+        <div class="process-step">
+
+          <div class="process-icon">
+            <img
+              src="icon-pint.png"
+              alt="Choose your pint"
+            >
+          </div>
+
+          <h3>CHOOSE YOUR PINT</h3>
+
+          <p>
+            Choose your draught beer.
+          </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+          <div class="process-icon">
+            <img
+              src="icon-book-pay.png"
+              alt="Book and pay online"
+            >
+          </div>
+
+          <h3>BOOK &amp; PAY ONLINE</h3>
+
+          <p>
+            Secure your Tap’d Up package.
+          </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+          <div class="process-icon">
+            <img
+              src="icon-delivery.png"
+              alt="We deliver"
+            >
+          </div>
+
+          <h3>WE DELIVER</h3>
+
+          <p>
+            We bring the keg and draught setup.
+          </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+          <div class="process-icon">
+            <img
+              src="icon-pour.png"
+              alt="You pour"
+            >
+          </div>
+
+          <h3>YOU POUR</h3>
+
+          <p>
+            Pour proper draught pints at home.
+          </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+          <div class="process-icon">
+            <img
+              src="icon-collect.png"
+              alt="We collect"
+            >
+          </div>
+
+          <h3>WE COLLECT</h3>
+
+          <p>
+            We collect the equipment afterwards.
+          </p>
+
+        </div>
+
+
+      </div>
+
     </div>
+
   </section>
 
 
-<section class="package-section" id="packages">
-  <div class="container">
+  <!-- PACKAGES -->
 
-    <div class="section-title">
-      <h2>Choose Your Party</h2>
-      <p>Proper draught beer at home. Pick a package or build your own.</p>
-    </div>
+  <section
+    class="package-section"
+    id="packages"
+  >
 
-    <div class="package-grid">
-
-      <!-- PARTY 30 -->
-<div class="package package-card">
-  <div class="package-label">Tap’d Up</div>
-
-  <h3>Party 30</h3>
-
-  <div class="package-size">
-    30L Standard Lager*
-  </div>
-
-  <div class="package-pints">Approx. 52 pints</div>
-
-  <div class="price">From £200</div>
-
-  <ul>
-    <li>Draught dispenser hire</li>
-    <li>20 Tap’d Up reusable pint cups</li>
-    <li>Set up &amp; ready to pour</li>
-    <li>Delivery &amp; collection</li>
-  </ul>
-
-  <a class="btn btn-primary" href="#contact">Check Availability</a>
-</div>
+    <div class="container">
 
 
-     <!-- PARTY 50 -->
-<div class="package package-card">
-  <div class="package-label">Tap’d Up</div>
+      <div class="section-title">
 
-  <h3>Party 50</h3>
+        <h2>Choose Your Party</h2>
 
-  <div class="package-size">
-    50L Standard Lager*
-  </div>
+        <p>
+          Proper draught beer at home.
+          Pick a package or build your own.
+        </p>
 
-  <div class="package-pints">Approx. 88 pints</div>
-
-  <div class="price">From £250</div>
-
-  <ul>
-    <li>Draught dispenser hire</li>
-    <li>20 Tap’d Up reusable pint cups</li>
-    <li>Set up &amp; ready to pour</li>
-    <li>Delivery &amp; collection</li>
-  </ul>
-
-  <a class="btn btn-primary" href="#contact">Check Availability</a>
-</div>
-
-
-      <!-- CROWN PACKAGE -->
-      <div class="package package-card crown-package">
-
-        <img
-          src="tapdup-crown.png"
-          alt="Tap’d Up Crown"
-          class="package-crown"
-        >
-
-        <div class="package-label">The Premium Experience</div>
-
-        <h3>Crown Package</h3>
-
-        <div class="crown-tagline">
-          Take your party to the next level.
-        </div>
-
-        <div class="price">Coming Soon</div>
-
-        <ul>
-          <li>Premium Tap’d Up package</li>
-          <li>Premium beer options</li>
-          <li>Enhanced draught setup</li>
-          <li>Tap’d Up reusable pint cups</li>
-          <li>Delivery, setup &amp; collection</li>
-        </ul>
-
-        <a class="btn btn-primary" href="#contact">Enquire</a>
       </div>
 
+
+      <div class="package-grid">
+
+
+        <!-- PARTY 30 -->
+
+        <div class="package package-card">
+
+          <div class="package-label">
+            Tap’d Up
+          </div>
+
+          <h3>Party 30</h3>
+
+          <div class="package-size">
+            30L Standard Lager*
+          </div>
+
+          <div class="package-pints">
+            Approx. 52 pints
+          </div>
+
+          <div class="price">
+            From £200
+          </div>
+
+          <ul>
+            <li>Draught dispenser hire</li>
+            <li>20 Tap’d Up reusable pint cups</li>
+            <li>Set up &amp; ready to pour</li>
+            <li>Delivery &amp; collection</li>
+          </ul>
+
+          <a
+            class="btn btn-primary"
+            href="#contact"
+          >
+            Check Availability
+          </a>
+
+        </div>
+
+
+        <!-- PARTY 50 -->
+
+        <div class="package package-card">
+
+          <div class="package-label">
+            Tap’d Up
+          </div>
+
+          <h3>Party 50</h3>
+
+          <div class="package-size">
+            50L Standard Lager*
+          </div>
+
+          <div class="package-pints">
+            Approx. 88 pints
+          </div>
+
+          <div class="price">
+            From £250
+          </div>
+
+          <ul>
+            <li>Draught dispenser hire</li>
+            <li>20 Tap’d Up reusable pint cups</li>
+            <li>Set up &amp; ready to pour</li>
+            <li>Delivery &amp; collection</li>
+          </ul>
+
+          <a
+            class="btn btn-primary"
+            href="#contact"
+          >
+            Check Availability
+          </a>
+
+        </div>
+
+
+        <!-- CROWN PACKAGE -->
+
+        <div class="package package-card crown-package">
+
+          <img
+            src="tapdup-crown.png"
+            alt="Tap’d Up Crown"
+            class="package-crown"
+          >
+
+          <div class="package-label">
+            The Premium Experience
+          </div>
+
+          <h3>Crown Package</h3>
+
+          <div class="crown-tagline">
+            Take your party to the next level.
+          </div>
+
+          <div class="price">
+            Coming Soon
+          </div>
+
+          <ul>
+            <li>Premium Tap’d Up package</li>
+            <li>Premium beer options</li>
+            <li>Enhanced draught setup</li>
+            <li>Tap’d Up reusable pint cups</li>
+            <li>Delivery, setup &amp; collection</li>
+          </ul>
+
+          <a
+            class="btn btn-primary"
+            href="#contact"
+          >
+            Enquire
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- STANDARD LAGER NOTE -->
+
+      <div class="package-note">
+
+        <strong>*Standard Lager:</strong>
+
+        Selected standard lager brands,
+        subject to availability.
+        Premium lagers available as an upgrade.
+
+      </div>
+
+
+      <!-- UPGRADES -->
+
+      <div class="upgrade-box">
+
+        <div class="package-label">
+          Make It Yours
+        </div>
+
+        <h3>
+          Upgrade Your Party
+        </h3>
+
+        <p class="upgrade-intro">
+          Start with Party 30 or Party 50,
+          then make it yours.
+        </p>
+
+
+        <div class="upgrade-grid">
+
+
+          <div class="upgrade-item">
+
+            <div class="upgrade-icon">
+              🍺
+            </div>
+
+            <strong>
+              Premium Pint
+            </strong>
+
+            <span>
+              Upgrade your lager
+            </span>
+
+          </div>
+
+
+          <div class="upgrade-item">
+
+            <div class="upgrade-icon">
+              ＋
+            </div>
+
+            <strong>
+              Extra Keg
+            </strong>
+
+            <span>
+              Keep the party pouring
+            </span>
+
+          </div>
+
+
+          <div class="upgrade-item">
+
+            <div class="upgrade-icon">
+              🥤
+            </div>
+
+            <strong>
+              Extra Cups
+            </strong>
+
+            <span>
+              Add more reusable pint cups
+            </span>
+
+          </div>
+
+
+          <div class="upgrade-item">
+
+            <div class="upgrade-icon">
+              🌙
+            </div>
+
+            <strong>
+              Extra Night
+            </strong>
+
+            <span>
+              Keep the setup for longer
+            </span>
+
+          </div>
+
+
+          <div class="upgrade-item">
+
+            <div class="upgrade-icon">
+              🍻
+            </div>
+
+            <strong>
+              Extra Draught Setup
+            </strong>
+
+            <span>
+              Add another draught option
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+        <p class="upgrade-coming">
+          More Tap’d Up upgrades coming soon.
+        </p>
+
+
+      </div>
+
+
+      <!-- DESIGN YOUR OWN -->
+
+      <div class="build-party">
+
+        <div class="package-label">
+          Something Different?
+        </div>
+
+        <h3>
+          Design Your Own Party
+        </h3>
+
+        <p>
+          Planning something bigger or want something different?
+          Build a Tap’d Up package around your party.
+        </p>
+
+        <a
+          class="btn btn-primary"
+          href="#contact"
+        >
+          Build Your Party
+        </a>
+
+      </div>
+
+
     </div>
 
-
-    <!-- STANDARD LAGER NOTE -->
-    <div class="package-note">
-      <strong>*Standard Lager:</strong>
-      Selected standard lager brands, subject to availability.
-      Premium lagers available as an upgrade.
-    </div>
+  </section>
 
 
-    <!-- UPGRADES -->
-<div class="upgrade-box">
-
-  <div class="package-label">Make It Yours</div>
-
-  <h3>Upgrade Your Party</h3>
-
-  <p class="upgrade-intro">
-    Start with Party 30 or Party 50, then make it yours.
-  </p>
-
-  <div class="upgrade-grid">
-
-    <div class="upgrade-item">
-      <div class="upgrade-icon">🍺</div>
-      <strong>Premium Pint</strong>
-      <span>Upgrade your lager</span>
-    </div>
-
-    <div class="upgrade-item">
-      <div class="upgrade-icon">＋</div>
-      <strong>Extra Keg</strong>
-      <span>Keep the party pouring</span>
-    </div>
-
-    <div class="upgrade-item">
-      <div class="upgrade-icon">🥤</div>
-      <strong>Extra Cups</strong>
-      <span>Add more reusable pint cups</span>
-    </div>
-
-    <div class="upgrade-item">
-      <div class="upgrade-icon">🌙</div>
-      <strong>Extra Night</strong>
-      <span>Keep the setup for longer</span>
-    </div>
-
-    <div class="upgrade-item">
-      <div class="upgrade-icon">🍻</div>
-      <strong>Extra Draught Setup</strong>
-      <span>Add another draught option</span>
-    </div>
-
-  </div>
-
-  <p class="upgrade-coming">
-    More Tap’d Up upgrades coming soon.
-  </p>
-
-</div>
-
-    <!-- DESIGN YOUR OWN -->
-    <div class="build-party">
-      <div class="package-label">Something Different?</div>
-
-      <h3>Design Your Own Party</h3>
-
-      <p>
-        Planning something bigger or want something different?
-        Build a Tap’d Up package around your party.
-      </p>
-
-      <a class="btn btn-primary" href="#contact">Build Your Party</a>
-    </div>
-
-  </div>
-</section>
-
+  <!-- OCCASIONS -->
 
   <section>
+
     <div class="container">
 
       <div class="section-title">
@@ -905,29 +1372,61 @@
       </div>
 
       <div class="occasions">
-        <div class="occasion">🎂 Birthdays</div>
-        <div class="occasion">🔥 BBQs</div>
-        <div class="occasion">⚽ Football Nights</div>
-        <div class="occasion">🎉 House Parties</div>
-        <div class="occasion">☀️ Garden Parties</div>
-        <div class="occasion">🥂 Celebrations</div>
+
+        <div class="occasion">
+          🎂 Birthdays
+        </div>
+
+        <div class="occasion">
+          🔥 BBQs
+        </div>
+
+        <div class="occasion">
+          ⚽ Football Nights
+        </div>
+
+        <div class="occasion">
+          🎉 House Parties
+        </div>
+
+        <div class="occasion">
+          ☀️ Garden Parties
+        </div>
+
+        <div class="occasion">
+          🥂 Celebrations
+        </div>
+
       </div>
 
     </div>
+
   </section>
 
 
-  <section class="cta" id="contact">
+  <!-- CTA -->
+
+  <section
+    class="cta"
+    id="contact"
+  >
 
     <div class="container">
 
-      <h2>YOUR HOUSE.<br>YOUR PINT.<br>YOUR TAP.</h2>
+      <h2>
+        YOUR HOUSE.<br>
+        YOUR PINT.<br>
+        YOUR TAP.
+      </h2>
 
       <p>
         Based in Ebbw Vale and delivering locally across South Wales.
       </p>
 
-      <a class="btn btn-primary" href="mailto:hello@tapdup.co.uk">
+      <a
+        class="btn btn-primary"
+        href="mailto:hello@tapdup.co.uk"
+      >
         Check Availability
       </a>
 
@@ -935,20 +1434,91 @@
 
   </section>
 
+
 </main>
 
 
+<!-- FOOTER -->
+
 <footer>
-  <strong>Tap’d Up</strong>
 
-  <div class="social">@get.tapdup</div>
+  <strong>
+    Tap’d Up
+  </strong>
 
-  <div>tapdup.co.uk</div>
+  <div class="social">
+    @get.tapdup
+  </div>
+
+  <div>
+    tapdup.co.uk
+  </div>
 
   <br>
 
-  <small>Enjoy responsibly. 18+ only.</small>
+  <small>
+    Enjoy responsibly. 18+ only.
+  </small>
+
 </footer>
+
+
+<!-- =========================================================
+     AGE GATE SCRIPT
+     ========================================================= -->
+
+<script>
+
+  const ageGate = document.getElementById("ageGate");
+  const ageQuestion = document.getElementById("ageQuestion");
+  const underageMessage = document.getElementById("underageMessage");
+
+  const ageYes = document.getElementById("ageYes");
+  const ageNo = document.getElementById("ageNo");
+
+
+  /*
+    If the visitor has already confirmed their age
+    during this browser session, don't show the gate again.
+  */
+
+  if (sessionStorage.getItem("tapdupAgeVerified") === "yes") {
+
+    ageGate.classList.add("hidden");
+    document.body.classList.remove("age-locked");
+
+  }
+
+
+  /*
+    YES - visitor is 18+
+  */
+
+  ageYes.addEventListener("click", function () {
+
+    sessionStorage.setItem("tapdupAgeVerified", "yes");
+
+    ageGate.classList.add("hidden");
+
+    document.body.classList.remove("age-locked");
+
+  });
+
+
+  /*
+    NO - show branded under-18 message
+  */
+
+  ageNo.addEventListener("click", function () {
+
+    ageQuestion.classList.add("hidden");
+
+    underageMessage.classList.add("active");
+
+  });
+
+</script>
+
 
 </body>
 </html>
