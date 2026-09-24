@@ -50,11 +50,9 @@
         radial-gradient(circle at 25% 20%, rgba(22,217,227,.10), transparent 32%),
         radial-gradient(circle at 75% 80%, rgba(255,61,141,.10), transparent 32%),
         #08090b;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding: 20px;
       text-align: center;
     }
@@ -69,13 +67,13 @@
       margin: auto;
     }
 
-   .age-logo {
-  width: min(380px, 75vw);
-  max-height: 32vh;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 22px;
-}
+    .age-logo {
+      width: min(380px, 75vw);
+      max-height: 32vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 22px;
+    }
 
     .age-eyebrow {
       color: var(--cyan);
@@ -140,9 +138,6 @@
       color: #777c86 !important;
       font-size: .8rem !important;
     }
-
-
-    /* UNDER 18 SCREEN */
 
     .underage-message {
       display: none;
@@ -281,12 +276,6 @@
       font-size: clamp(3.5rem, 6vw, 5.8rem);
       line-height: .92;
       letter-spacing: -3px;
-      margin-bottom: 22px;
-    }
-
-    .hero h2 {
-      color: var(--pink);
-      font-size: clamp(1.4rem, 4vw, 2.3rem);
       margin-bottom: 22px;
     }
 
@@ -758,9 +747,7 @@
 <body class="age-locked">
 
 
-<!-- =========================================================
-     18+ AGE GATE
-     ========================================================= -->
+<!-- 18+ AGE GATE -->
 
 <div class="age-gate" id="ageGate">
 
@@ -771,9 +758,6 @@
       alt="Tap’d Up - Pour Your Own Pint!"
       class="age-logo"
     >
-
-
-    <!-- AGE QUESTION -->
 
     <div class="age-question" id="ageQuestion">
 
@@ -814,8 +798,6 @@
     </div>
 
 
-    <!-- UNDER 18 MESSAGE -->
-
     <div class="underage-message" id="underageMessage">
 
       <img
@@ -845,9 +827,7 @@
 </div>
 
 
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
+<!-- HEADER -->
 
 <header>
   <div class="nav">
@@ -937,114 +917,53 @@
 
       <div class="process-steps">
 
-
         <div class="process-step">
-
           <div class="process-icon">
-            <img
-              src="icon-date.png"
-              alt="Pick your date"
-            >
+            <img src="icon-date.png" alt="Pick your date">
           </div>
-
           <h3>PICK YOUR DATE</h3>
-
-          <p>
-            Tell us when the party starts.
-          </p>
-
+          <p>Tell us when the party starts.</p>
         </div>
 
-
         <div class="process-step">
-
           <div class="process-icon">
-            <img
-              src="icon-pint.png"
-              alt="Choose your pint"
-            >
+            <img src="icon-pint.png" alt="Choose your pint">
           </div>
-
           <h3>CHOOSE YOUR PINT</h3>
-
-          <p>
-            Choose your draught beer.
-          </p>
-
+          <p>Choose your draught beer.</p>
         </div>
 
-
         <div class="process-step">
-
           <div class="process-icon">
-            <img
-              src="icon-book-pay.png"
-              alt="Book and pay online"
-            >
+            <img src="icon-book-pay.png" alt="Book and pay online">
           </div>
-
           <h3>BOOK &amp; PAY ONLINE</h3>
-
-          <p>
-            Secure your Tap’d Up package.
-          </p>
-
+          <p>Secure your Tap’d Up package.</p>
         </div>
 
-
         <div class="process-step">
-
           <div class="process-icon">
-            <img
-              src="icon-delivery.png"
-              alt="We deliver"
-            >
+            <img src="icon-delivery.png" alt="We deliver">
           </div>
-
           <h3>WE DELIVER</h3>
-
-          <p>
-            We bring the keg and draught setup.
-          </p>
-
+          <p>We bring the keg and draught setup.</p>
         </div>
 
-
         <div class="process-step">
-
           <div class="process-icon">
-            <img
-              src="icon-pour.png"
-              alt="You pour"
-            >
+            <img src="icon-pour.png" alt="You pour">
           </div>
-
           <h3>YOU POUR</h3>
-
-          <p>
-            Pour proper draught pints at home.
-          </p>
-
+          <p>Pour proper draught pints at home.</p>
         </div>
-
 
         <div class="process-step">
-
           <div class="process-icon">
-            <img
-              src="icon-collect.png"
-              alt="We collect"
-            >
+            <img src="icon-collect.png" alt="We collect">
           </div>
-
           <h3>WE COLLECT</h3>
-
-          <p>
-            We collect the equipment afterwards.
-          </p>
-
+          <p>We collect the equipment afterwards.</p>
         </div>
-
 
       </div>
 
@@ -1055,13 +974,9 @@
 
   <!-- PACKAGES -->
 
-  <section
-    class="package-section"
-    id="packages"
-  >
+  <section class="package-section" id="packages">
 
     <div class="container">
-
 
       <div class="section-title">
 
@@ -1107,9 +1022,10 @@
             <li>Delivery &amp; collection</li>
           </ul>
 
+          <!-- UPDATED LINK -->
           <a
             class="btn btn-primary"
-            href="#contact"
+            href="calendar.html?package=30"
           >
             Check Availability
           </a>
@@ -1146,9 +1062,10 @@
             <li>Delivery &amp; collection</li>
           </ul>
 
+          <!-- UPDATED LINK -->
           <a
             class="btn btn-primary"
-            href="#contact"
+            href="calendar.html?package=50"
           >
             Check Availability
           </a>
@@ -1197,11 +1114,8 @@
 
         </div>
 
-
       </div>
 
-
-      <!-- STANDARD LAGER NOTE -->
 
       <div class="package-note">
 
@@ -1234,91 +1148,35 @@
 
         <div class="upgrade-grid">
 
-
           <div class="upgrade-item">
-
-            <div class="upgrade-icon">
-              🍺
-            </div>
-
-            <strong>
-              Premium Pint
-            </strong>
-
-            <span>
-              Upgrade your lager
-            </span>
-
+            <div class="upgrade-icon">🍺</div>
+            <strong>Premium Pint</strong>
+            <span>Upgrade your lager</span>
           </div>
 
-
           <div class="upgrade-item">
-
-            <div class="upgrade-icon">
-              ＋
-            </div>
-
-            <strong>
-              Extra Keg
-            </strong>
-
-            <span>
-              Keep the party pouring
-            </span>
-
+            <div class="upgrade-icon">＋</div>
+            <strong>Extra Keg</strong>
+            <span>Keep the party pouring</span>
           </div>
 
-
           <div class="upgrade-item">
-
-            <div class="upgrade-icon">
-              🥤
-            </div>
-
-            <strong>
-              Extra Cups
-            </strong>
-
-            <span>
-              Add more reusable pint cups
-            </span>
-
+            <div class="upgrade-icon">🥤</div>
+            <strong>Extra Cups</strong>
+            <span>Add more reusable pint cups</span>
           </div>
 
-
           <div class="upgrade-item">
-
-            <div class="upgrade-icon">
-              🌙
-            </div>
-
-            <strong>
-              Extra Night
-            </strong>
-
-            <span>
-              Keep the setup for longer
-            </span>
-
+            <div class="upgrade-icon">🌙</div>
+            <strong>Extra Night</strong>
+            <span>Keep the setup for longer</span>
           </div>
 
-
           <div class="upgrade-item">
-
-            <div class="upgrade-icon">
-              🍻
-            </div>
-
-            <strong>
-              Extra Draught Setup
-            </strong>
-
-            <span>
-              Add another draught option
-            </span>
-
+            <div class="upgrade-icon">🍻</div>
+            <strong>Extra Draught Setup</strong>
+            <span>Add another draught option</span>
           </div>
-
 
         </div>
 
@@ -1326,7 +1184,6 @@
         <p class="upgrade-coming">
           More Tap’d Up upgrades coming soon.
         </p>
-
 
       </div>
 
@@ -1357,7 +1214,6 @@
 
       </div>
 
-
     </div>
 
   </section>
@@ -1375,29 +1231,12 @@
 
       <div class="occasions">
 
-        <div class="occasion">
-          🎂 Birthdays
-        </div>
-
-        <div class="occasion">
-          🔥 BBQs
-        </div>
-
-        <div class="occasion">
-          ⚽ Football Nights
-        </div>
-
-        <div class="occasion">
-          🎉 House Parties
-        </div>
-
-        <div class="occasion">
-          ☀️ Garden Parties
-        </div>
-
-        <div class="occasion">
-          🥂 Celebrations
-        </div>
+        <div class="occasion">🎂 Birthdays</div>
+        <div class="occasion">🔥 BBQs</div>
+        <div class="occasion">⚽ Football Nights</div>
+        <div class="occasion">🎉 House Parties</div>
+        <div class="occasion">☀️ Garden Parties</div>
+        <div class="occasion">🥂 Celebrations</div>
 
       </div>
 
@@ -1408,10 +1247,7 @@
 
   <!-- CTA -->
 
-  <section
-    class="cta"
-    id="contact"
-  >
+  <section class="cta" id="contact">
 
     <div class="container">
 
@@ -1440,8 +1276,6 @@
 </main>
 
 
-<!-- FOOTER -->
-
 <footer>
 
   <strong>
@@ -1465,10 +1299,6 @@
 </footer>
 
 
-<!-- =========================================================
-     AGE GATE SCRIPT
-     ========================================================= -->
-
 <script>
 
   const ageGate = document.getElementById("ageGate");
@@ -1479,11 +1309,6 @@
   const ageNo = document.getElementById("ageNo");
 
 
-  /*
-    If the visitor has already confirmed their age
-    during this browser session, don't show the gate again.
-  */
-
   if (sessionStorage.getItem("tapdupAgeVerified") === "yes") {
 
     ageGate.classList.add("hidden");
@@ -1491,10 +1316,6 @@
 
   }
 
-
-  /*
-    YES - visitor is 18+
-  */
 
   ageYes.addEventListener("click", function () {
 
@@ -1506,10 +1327,6 @@
 
   });
 
-
-  /*
-    NO - show branded under-18 message
-  */
 
   ageNo.addEventListener("click", function () {
 
