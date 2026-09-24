@@ -881,14 +881,13 @@
   */
 
   document
-    .getElementById("continueButton")
-    .addEventListener("click", function () {
-
-      alert(
-        "Next we'll connect this to the final Tap’d Up booking stage."
-      );
-
-    });
+  .getElementById('continue-button')
+  .addEventListener(
+    'click',
+    function () {
+      window.location.href = 'payment.html';
+    }
+  );
 
 </script>
 
