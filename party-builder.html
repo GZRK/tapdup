@@ -889,115 +889,7 @@
 
       </section>
 
-
-     <!-- STEP 4 -->
-
-<section class="builder-section">
-
-  <div class="step-label">Step 4</div>
-
-  <h2>Delivery Details</h2>
-
-  <p class="section-help">
-    Tell us where we're bringing your Tap’d Up party.
-  </p>
-
-
-  <div class="form-grid">
-
-    <div class="field">
-      <label for="customer-name">Full Name *</label>
-      <input
-        id="customer-name"
-        type="text"
-        autocomplete="name"
-        placeholder="Your full name"
-      >
-    </div>
-
-    <div class="field">
-      <label for="customer-mobile">Mobile Number *</label>
-      <input
-        id="customer-mobile"
-        type="tel"
-        autocomplete="tel"
-        placeholder="07..."
-      >
-    </div>
-
-    <div class="field full">
-      <label for="customer-email">Email Address *</label>
-      <input
-        id="customer-email"
-        type="email"
-        autocomplete="email"
-        placeholder="you@example.com"
-      >
-    </div>
-
-    <div class="field full">
-      <label for="customer-address1">Address Line 1 *</label>
-      <input
-        id="customer-address1"
-        type="text"
-        autocomplete="address-line1"
-        placeholder="House number / name and street"
-      >
-    </div>
-
-    <div class="field full">
-      <label for="customer-address2">Address Line 2</label>
-      <input
-        id="customer-address2"
-        type="text"
-        autocomplete="address-line2"
-        placeholder="Optional"
-      >
-    </div>
-
-    <div class="field">
-      <label for="customer-town">Town / City *</label>
-      <input
-        id="customer-town"
-        type="text"
-        autocomplete="address-level2"
-        placeholder="Town or city"
-      >
-    </div>
-
-    <div class="field">
-      <label for="customer-postcode">Postcode *</label>
-      <input
-        id="customer-postcode"
-        type="text"
-        autocomplete="postal-code"
-        placeholder="e.g. NP23 6XX"
-      >
-    </div>
-
-    <div class="field">
-      <label for="customer-guests">Approx. Guests</label>
-      <input
-        id="customer-guests"
-        type="number"
-        min="1"
-        placeholder="e.g. 30"
-      >
-    </div>
-
-    <div class="field full">
-      <label for="customer-notes">Access / Setup Notes</label>
-      <textarea
-        id="customer-notes"
-        placeholder="For example: side gate access, steps, garden setup, parking information..."
-      ></textarea>
-    </div>
-
-  </div>
-
-</section> 
-
-
+  
     </div>
 
 
@@ -2545,132 +2437,6 @@
 
 
         /* ----------------------------------------------
-           CUSTOMER / DELIVERY DETAILS
-           ---------------------------------------------- */
-
-        const customerName =
-          document
-            .getElementById('customer-name')
-            .value
-            .trim();
-
-
-        const customerMobile =
-          document
-            .getElementById('customer-mobile')
-            .value
-            .trim();
-
-
-        const customerEmail =
-          document
-            .getElementById('customer-email')
-            .value
-            .trim();
-
-
-        const customerAddress1 =
-          document
-            .getElementById('customer-address1')
-            .value
-            .trim();
-
-
-        const customerAddress2 =
-          document
-            .getElementById('customer-address2')
-            .value
-            .trim();
-
-
-        const customerTown =
-          document
-            .getElementById('customer-town')
-            .value
-            .trim();
-
-
-        const customerPostcode =
-          document
-            .getElementById('customer-postcode')
-            .value
-            .trim();
-
-
-        const customerGuests =
-          document
-            .getElementById('customer-guests')
-            .value
-            .trim();
-
-
-        const customerNotes =
-          document
-            .getElementById('customer-notes')
-            .value
-            .trim();
-
-
-
-        /* ----------------------------------------------
-           REQUIRED FIELDS
-           ---------------------------------------------- */
-
-        if (
-          !customerName ||
-          !customerMobile ||
-          !customerEmail ||
-          !customerAddress1 ||
-          !customerTown ||
-          !customerPostcode
-        ) {
-
-          alert(
-            'Please complete all delivery details marked with * before continuing.'
-          );
-
-          document
-            .getElementById('customer-name')
-            .scrollIntoView({
-              behavior: 'smooth',
-              block: 'center'
-            });
-
-          return;
-
-        }
-
-
-
-        /* ----------------------------------------------
-           BASIC EMAIL CHECK
-           ---------------------------------------------- */
-
-        const emailPattern =
-          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-        if (
-          !emailPattern.test(
-            customerEmail
-          )
-        ) {
-
-          alert(
-            'Please enter a valid email address.'
-          );
-
-          document
-            .getElementById('customer-email')
-            .focus();
-
-          return;
-
-        }
-
-
-
-        /* ----------------------------------------------
            BUILD EXTRAS LIST
            ---------------------------------------------- */
 
@@ -2696,14 +2462,34 @@
         }
 
 
+        if (selectedDrink.addon > 0) {
+
+          extras.push({
+            name: 'Drink Upgrade',
+
+            detail:
+              selectedDrink.name +
+              ' · ' +
+              selectedDrink.abv +
+              ' ABV',
+
+            price:
+              selectedDrink.addon
+          });
+
+        }
+
+
         if (selectedCups > 0) {
 
           extras.push({
             name: 'Extra Tap’d Up Cups',
+
             detail:
               '+' +
               selectedCups +
               ' cups',
+
             price:
               selectedCups
           });
@@ -2715,8 +2501,10 @@
 
           extras.push({
             name: 'Extra Night Extension',
+
             detail:
               'One additional night requested',
+
             price: 80
           });
 
@@ -2755,13 +2543,14 @@
 
           extras.push({
             name: 'Extra Draught Setup',
+
             detail:
               'Additional serving point',
+
             price: 50
           });
 
         }
-
 
 
         /* ----------------------------------------------
@@ -2800,9 +2589,8 @@
         }
 
 
-
         /* ----------------------------------------------
-           SAVE COMPLETE BOOKING
+           SAVE PARTY SELECTIONS
            ---------------------------------------------- */
 
         const booking = {
@@ -2842,37 +2630,6 @@
           extras:
             extras,
 
-          customer: {
-
-            name:
-              customerName,
-
-            mobile:
-              customerMobile,
-
-            email:
-              customerEmail,
-
-            address1:
-              customerAddress1,
-
-            address2:
-              customerAddress2,
-
-            town:
-              customerTown,
-
-            postcode:
-              customerPostcode,
-
-            guests:
-              customerGuests,
-
-            notes:
-              customerNotes
-
-          },
-
           total:
             finalTotal,
 
@@ -2889,11 +2646,11 @@
 
 
         /* ----------------------------------------------
-           OPEN REVIEW PAGE
+           OPEN CUSTOMER DETAILS PAGE
            ---------------------------------------------- */
 
         window.location.href =
-          'review.html';
+          'details.html';
 
       }
     );
