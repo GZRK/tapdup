@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Payment | Tap’d Up</title>
+  <meta name="description" content="Complete your Tap’d Up party booking.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cyan: #16d9e3;
+      --pink: #ff3d8d;
+      --dark: #08090b;
+      --panel: #111318;
+      --white: #ffffff;
+      --muted: #b8bcc5;
+      --border: #292c34;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    header {
+      background: rgba(8, 9, 11, 0.97);
+      border-bottom: 1px solid #24262c;
+    }
+
+    .nav {
+      max-width: 1000px;
+      min-height: 82px;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      height: 70px;
+      width: auto;
+      display: block;
+    }
+
+    .back-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--cyan);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 24px 90px;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .heading p {
+      color: var(--muted);
+      max-width: 620px;
+      margin: auto;
+    }
+
+    .payment-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .payment-card,
+    .summary-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+    }
+
+    .payment-card {
+      border-top: 3px solid var(--pink);
+    }
+
+    .summary-card {
+      border: 2px solid var(--cyan);
+    }
+
+    .section-label {
+      color: var(--pink);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      margin-bottom: 8px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .secure-box {
+      margin-top: 24px;
+      padding: 22px;
+      border-radius: 16px;
+      background: #0b0d10;
+      border: 1px solid #343841;
+    }
+
+    .secure-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 900;
+    }
+
+    .lock {
+      color: var(--cyan);
+      font-size: 1.25rem;
+    }
+
+    .payment-placeholder {
+      margin-top: 20px;
+      padding: 25px 18px;
+      border: 2px dashed #3a3d46;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .payment-placeholder strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .payment-placeholder p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      max-width: 450px;
+      margin: auto;
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .method {
+      background: #fff;
+      color: #111;
+      border-radius: 9px;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .coming-soon {
+      margin-top: 22px;
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(255,61,141,.08);
+      border: 1px solid rgba(255,61,141,.35);
+      color: #f5c8da;
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .86rem;
+    }
+
+    .summary-row span {
+      color: var(--muted);
+    }
+
+    .summary-row strong {
+      text-align: right;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 15px;
+      margin-top: 22px;
+    }
+
+    .total span {
+      color: var(--muted);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 900;
+    }
+
+    .total strong {
+      color: var(--cyan);
+      font-size: 2rem;
+    }
+
+    .pay-button {
+      width: 100%;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 999px;
+      background: #31343b;
+      color: #777c86;
+      padding: 15px 20px;
+      font-weight: 900;
+      cursor: not-allowed;
+    }
+
+    .payment-note {
+      color: var(--muted);
+      text-align: center;
+      font-size: .72rem;
+      margin-top: 10px;
+    }
+
+    .no-booking {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px 25px;
+    }
+
+    .no-booking h2 {
+      margin-bottom: 10px;
+    }
+
+    .return-button {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--cyan);
+      color: #071013;
+      text-decoration: none;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: 900;
+    }
+
+    footer {
+      border-top: 1px solid #24262c;
+      text-align: center;
+      color: #8e929c;
+      padding: 35px 20px;
+      font-size: .85rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 760px) {
+      .payment-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      main {
+        padding: 40px 16px 60px;
+      }
+
+      .payment-card,
+      .summary-card {
+        padding: 20px 16px;
+      }
+
+      .payment-methods {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+
+    <a href="index.html">
+      <img
+        src="tapdup-logo.png"
+        alt="Tap’d Up"
+        class="nav-logo"
+      >
+    </a>
+
+    <a
+      href="review.html"
+      class="back-link"
+    >
+      ← Back to Review
+    </a>
+
+  </div>
+</header>
+
+
+<main>
+
+  <div class="heading">
+
+    <div class="eyebrow">
+      FINAL STEP
+    </div>
+
+    <h1>Secure Payment.</h1>
+
+    <p>
+      Check your total and complete your Tap’d Up booking securely.
+    </p>
+
+  </div>
+
+
+  <div id="payment-content">
+
+    <div class="payment-layout">
+
+      <section class="payment-card">
+
+        <div class="section-label">
+          PAYMENT
+        </div>
+
+        <h2>Pay Securely</h2>
+
+        <p class="muted">
+          When online payments are activated, you'll be able to
+          complete your booking securely here.
+        </p>
+
+
+        <div class="secure-box">
+
+          <div class="secure-heading">
+            <span class="lock">🔒</span>
+            Secure checkout
+          </div>
+
+          <p class="muted">
+            Your payment will be processed securely by SumUp.
+            Tap’d Up will not store your card details.
+          </p>
+
+
+          <div class="payment-placeholder">
+
+            <strong>
+              Online payments coming soon
+            </strong>
+
+            <p>
+              This is where the secure SumUp checkout will appear
+              when Tap’d Up online payments are activated.
+            </p>
+
+          </div>
+
+
+          <div class="payment-methods">
+
+            <div class="method">
+              Debit / Credit Card
+            </div>
+
+            <div class="method">
+              Apple Pay
+            </div>
+
+            <div class="method">
+              Google Pay
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="coming-soon">
+          No payment will be taken at this stage.
+          Online payment is not yet active.
+        </div>
+
+      </section>
+
+
+      <aside class="summary-card">
+
+        <div class="section-label">
+          YOUR BOOKING
+        </div>
+
+        <h2>Payment Summary</h2>
+
+
+        <div class="summary-row">
+          <span>Package</span>
+          <strong id="package">—</strong>
+        </div>
+
+
+        <div class="summary-row">
+          <span>Your Pint</span>
+          <strong id="drink">—</strong>
+        </div>
+
+
+        <div class="summary-row">
+          <span>Delivery</span>
+          <strong id="delivery">—</strong>
+        </div>
+
+
+        <div class="summary-row">
+          <span>Collection</span>
+          <strong id="collection">—</strong>
+        </div>
+
+
+        <div id="extras"></div>
+
+
+        <div class="total">
+          <span>Total to Pay</span>
+          <strong id="total">£0</strong>
+        </div>
+
+
+        <button
+          type="button"
+          class="pay-button"
+          disabled
+        >
+          PAY SECURELY
+        </button>
+
+
+        <div class="payment-note">
+          Payment will be enabled when online booking goes live.
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <strong>Tap’d Up</strong><br>
+
+  @get.tapdup · tapdup.co.uk
+
+  <br><br>
+
+  <small>
+    Enjoy responsibly. 18+ only.
+  </small>
+
+</footer>
+
+
+<script>
+
+  const booking =
+    JSON.parse(
+      sessionStorage.getItem(
+        'tapdupBooking'
+      ) || 'null'
+    );
+
+
+  function money(value) {
+    return '£' + Number(value || 0).toFixed(0);
+  }
+
+
+  function formatDate(dateString) {
+
+    if (!dateString) {
+      return '—';
+    }
+
+    const date =
+      new Date(
+        dateString + 'T12:00:00'
+      );
+
+    return date.toLocaleDateString(
+      'en-GB',
+      {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      }
+    );
+
+  }
+
+
+  function addExtraRow(extra) {
+
+    const extras =
+      document.getElementById(
+        'extras'
+      );
+
+
+    const row =
+      document.createElement(
+        'div'
+      );
+
+
+    row.className =
+      'summary-row';
+
+
+    const label =
+      extra.detail
+        ? extra.name +
+          '<br><small style="color:#8e929c;">' +
+          extra.detail +
+          '</small>'
+        : extra.name;
+
+
+    row.innerHTML = `
+      <span>${label}</span>
+      <strong>+${money(extra.price)}</strong>
+    `;
+
+
+    extras.appendChild(row);
+
+  }
+
+
+  if (!booking) {
+
+    document.getElementById(
+      'payment-content'
+    ).innerHTML = `
+
+      <div class="no-booking">
+
+        <h2>No booking found</h2>
+
+        <p class="muted">
+          Start by choosing your Tap’d Up package and party dates.
+        </p>
+
+        <a
+          href="index.html#packages"
+          class="return-button"
+        >
+          View Packages
+        </a>
+
+      </div>
+    `;
+
+  }
+
+  else {
+
+    document.getElementById(
+      'package'
+    ).textContent =
+      booking.packageName || '—';
+
+
+    document.getElementById(
+      'drink'
+    ).textContent =
+      booking.drink
+        ? booking.drink +
+          (
+            booking.abv
+              ? ' · ' + booking.abv
+              : ''
+          )
+        : '—';
+
+
+    document.getElementById(
+      'delivery'
+    ).textContent =
+      formatDate(
+        booking.deliveryDate
+      );
+
+
+    document.getElementById(
+      'collection'
+    ).textContent =
+      formatDate(
+        booking.collectionDate
+      );
+
+
+    if (
+      Array.isArray(
+        booking.extras
+      )
+    ) {
+
+      booking.extras.forEach(
+        addExtraRow
+      );
+
+    }
+
+
+    document.getElementById(
+      'total'
+    ).textContent =
+      money(
+        booking.total
+      );
+
+  }
+
+</script>
+
+</body>
+</html>
