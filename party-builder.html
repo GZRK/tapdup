@@ -890,54 +890,112 @@
       </section>
 
 
-      <!-- STEP 4 -->
+     <!-- STEP 4 -->
 
-      <section class="builder-section">
+<section class="builder-section">
 
-        <div class="step-label">Step 4</div>
+  <div class="step-label">Step 4</div>
 
-        <h2>Your Party Details</h2>
+  <h2>Delivery Details</h2>
 
-        <p class="section-help">
-          Tell us a little about your party.
-        </p>
+  <p class="section-help">
+    Tell us where we're bringing your Tap’d Up party.
+  </p>
 
 
-        <div class="form-grid">
+  <div class="form-grid">
 
-          <div class="field">
-            <label>Your Name</label>
-            <input type="text" placeholder="Your name">
-          </div>
+    <div class="field">
+      <label for="customer-name">Full Name *</label>
+      <input
+        id="customer-name"
+        type="text"
+        autocomplete="name"
+        placeholder="Your full name"
+      >
+    </div>
 
-          <div class="field">
-            <label>Email</label>
-            <input type="email" placeholder="you@example.com">
-          </div>
+    <div class="field">
+      <label for="customer-mobile">Mobile Number *</label>
+      <input
+        id="customer-mobile"
+        type="tel"
+        autocomplete="tel"
+        placeholder="07..."
+      >
+    </div>
 
-          <div class="field">
-            <label>Phone</label>
-            <input type="tel" placeholder="07...">
-          </div>
+    <div class="field full">
+      <label for="customer-email">Email Address *</label>
+      <input
+        id="customer-email"
+        type="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+      >
+    </div>
 
-          <div class="field">
-            <label>Party Postcode</label>
-            <input type="text" placeholder="e.g. NP23">
-          </div>
+    <div class="field full">
+      <label for="customer-address1">Address Line 1 *</label>
+      <input
+        id="customer-address1"
+        type="text"
+        autocomplete="address-line1"
+        placeholder="House number / name and street"
+      >
+    </div>
 
-          <div class="field">
-            <label>Approx. Guests</label>
-            <input type="number" min="1" placeholder="e.g. 30">
-          </div>
+    <div class="field full">
+      <label for="customer-address2">Address Line 2</label>
+      <input
+        id="customer-address2"
+        type="text"
+        autocomplete="address-line2"
+        placeholder="Optional"
+      >
+    </div>
 
-          <div class="field full">
-            <label>Anything Else?</label>
-            <textarea placeholder="Tell us anything else about your party..."></textarea>
-          </div>
+    <div class="field">
+      <label for="customer-town">Town / City *</label>
+      <input
+        id="customer-town"
+        type="text"
+        autocomplete="address-level2"
+        placeholder="Town or city"
+      >
+    </div>
 
-        </div>
+    <div class="field">
+      <label for="customer-postcode">Postcode *</label>
+      <input
+        id="customer-postcode"
+        type="text"
+        autocomplete="postal-code"
+        placeholder="e.g. NP23 6XX"
+      >
+    </div>
 
-      </section>
+    <div class="field">
+      <label for="customer-guests">Approx. Guests</label>
+      <input
+        id="customer-guests"
+        type="number"
+        min="1"
+        placeholder="e.g. 30"
+      >
+    </div>
+
+    <div class="field full">
+      <label for="customer-notes">Access / Setup Notes</label>
+      <textarea
+        id="customer-notes"
+        placeholder="For example: side gate access, steps, garden setup, parking information..."
+      ></textarea>
+    </div>
+
+  </div>
+
+</section> 
 
 
     </div>
@@ -2456,7 +2514,7 @@
 
 
 
-  document
+   document
     .getElementById(
       'enquiry-button'
     )
@@ -2464,13 +2522,381 @@
       'click',
       function () {
 
-        alert(
-          'Next we’ll connect this button to the booking details and review stage.'
+        /* ----------------------------------------------
+           CHECK A MAIN DRINK HAS BEEN CHOSEN
+           ---------------------------------------------- */
+
+        if (!selectedDrink) {
+
+          alert(
+            'Please choose your lager or cider before continuing.'
+          );
+
+          document
+            .getElementById('drink-list')
+            .scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+
+          return;
+
+        }
+
+
+        /* ----------------------------------------------
+           CUSTOMER / DELIVERY DETAILS
+           ---------------------------------------------- */
+
+        const customerName =
+          document
+            .getElementById('customer-name')
+            .value
+            .trim();
+
+
+        const customerMobile =
+          document
+            .getElementById('customer-mobile')
+            .value
+            .trim();
+
+
+        const customerEmail =
+          document
+            .getElementById('customer-email')
+            .value
+            .trim();
+
+
+        const customerAddress1 =
+          document
+            .getElementById('customer-address1')
+            .value
+            .trim();
+
+
+        const customerAddress2 =
+          document
+            .getElementById('customer-address2')
+            .value
+            .trim();
+
+
+        const customerTown =
+          document
+            .getElementById('customer-town')
+            .value
+            .trim();
+
+
+        const customerPostcode =
+          document
+            .getElementById('customer-postcode')
+            .value
+            .trim();
+
+
+        const customerGuests =
+          document
+            .getElementById('customer-guests')
+            .value
+            .trim();
+
+
+        const customerNotes =
+          document
+            .getElementById('customer-notes')
+            .value
+            .trim();
+
+
+
+        /* ----------------------------------------------
+           REQUIRED FIELDS
+           ---------------------------------------------- */
+
+        if (
+          !customerName ||
+          !customerMobile ||
+          !customerEmail ||
+          !customerAddress1 ||
+          !customerTown ||
+          !customerPostcode
+        ) {
+
+          alert(
+            'Please complete all delivery details marked with * before continuing.'
+          );
+
+          document
+            .getElementById('customer-name')
+            .scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+
+          return;
+
+        }
+
+
+
+        /* ----------------------------------------------
+           BASIC EMAIL CHECK
+           ---------------------------------------------- */
+
+        const emailPattern =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (
+          !emailPattern.test(
+            customerEmail
+          )
+        ) {
+
+          alert(
+            'Please enter a valid email address.'
+          );
+
+          document
+            .getElementById('customer-email')
+            .focus();
+
+          return;
+
+        }
+
+
+
+        /* ----------------------------------------------
+           BUILD EXTRAS LIST
+           ---------------------------------------------- */
+
+        const extras = [];
+
+
+        if (calendarExtraNights > 0) {
+
+          extras.push({
+            name:
+              calendarExtraNights === 1
+                ? 'Additional Night'
+                : calendarExtraNights +
+                  ' Additional Nights',
+
+            detail:
+              'Included in selected hire dates',
+
+            price:
+              calendarDateCost
+          });
+
+        }
+
+
+        if (selectedCups > 0) {
+
+          extras.push({
+            name: 'Extra Tap’d Up Cups',
+            detail:
+              '+' +
+              selectedCups +
+              ' cups',
+            price:
+              selectedCups
+          });
+
+        }
+
+
+        if (extraNight.checked) {
+
+          extras.push({
+            name: 'Extra Night Extension',
+            detail:
+              'One additional night requested',
+            price: 80
+          });
+
+        }
+
+
+        if (selectedExtraKeg) {
+
+          const extraKegPrice =
+            extraKegBase[
+              extraKegSize
+            ] +
+            selectedExtraKeg.addon;
+
+
+          extras.push({
+            name:
+              'Extra ' +
+              extraKegSize +
+              'L Keg',
+
+            detail:
+              selectedExtraKeg.name +
+              ' · ' +
+              selectedExtraKeg.abv +
+              ' ABV',
+
+            price:
+              extraKegPrice
+          });
+
+        }
+
+
+        if (extraUnit.checked) {
+
+          extras.push({
+            name: 'Extra Draught Setup',
+            detail:
+              'Additional serving point',
+            price: 50
+          });
+
+        }
+
+
+
+        /* ----------------------------------------------
+           CALCULATE FINAL TOTAL
+           ---------------------------------------------- */
+
+        let finalTotal =
+          basePrice +
+          calendarDateCost +
+          selectedDrink.addon;
+
+
+        if (selectedCups > 0) {
+          finalTotal += selectedCups;
+        }
+
+
+        if (extraNight.checked) {
+          finalTotal += 80;
+        }
+
+
+        if (selectedExtraKeg) {
+
+          finalTotal +=
+            extraKegBase[
+              extraKegSize
+            ] +
+            selectedExtraKeg.addon;
+
+        }
+
+
+        if (extraUnit.checked) {
+          finalTotal += 50;
+        }
+
+
+
+        /* ----------------------------------------------
+           SAVE COMPLETE BOOKING
+           ---------------------------------------------- */
+
+        const booking = {
+
+          packageType:
+            packageType,
+
+          packageName:
+            packageType === 50
+              ? 'Party 50'
+              : 'Party 30',
+
+          basePrice:
+            basePrice,
+
+          deliveryDate:
+            deliveryDate,
+
+          collectionDate:
+            collectionDate,
+
+          nights:
+            totalNights,
+
+          drinkType:
+            selectedDrinkType,
+
+          drink:
+            selectedDrink.name,
+
+          abv:
+            selectedDrink.abv,
+
+          drinkUpgrade:
+            selectedDrink.addon,
+
+          extras:
+            extras,
+
+          customer: {
+
+            name:
+              customerName,
+
+            mobile:
+              customerMobile,
+
+            email:
+              customerEmail,
+
+            address1:
+              customerAddress1,
+
+            address2:
+              customerAddress2,
+
+            town:
+              customerTown,
+
+            postcode:
+              customerPostcode,
+
+            guests:
+              customerGuests,
+
+            notes:
+              customerNotes
+
+          },
+
+          total:
+            finalTotal,
+
+          builderURL:
+            window.location.href
+
+        };
+
+
+        sessionStorage.setItem(
+          'tapdupBooking',
+          JSON.stringify(booking)
         );
+
+
+        /* ----------------------------------------------
+           OPEN REVIEW PAGE
+           ---------------------------------------------- */
+
+        window.location.href =
+          'review.html';
 
       }
     );
-
 
 
   /* ======================================================
