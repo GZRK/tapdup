@@ -1,1 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Choose Your Date | Tap’d Up</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cyan: #16d9e3;
+      --pink: #ff3d8d;
+      --dark: #08090b;
+      --panel: #111318;
+      --panel2: #161920;
+      --white: #ffffff;
+      --muted: #b8bcc5;
+      --border: #292d35;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(22,217,227,.08), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255,61,141,.07), transparent 30%),
+        var(--dark);
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+
+    header {
+      border-bottom: 1px solid #24262c;
+      background: rgba(8,9,11,.96);
+    }
+
+    .nav {
+      max-width: 1100px;
+      min-height: 90px;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      width: 115px;
+      height: 80px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .back-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .back-link:hover {
+      color: var(--cyan);
+    }
+
+    /* PAGE */
+
+    main {
+      padding: 55px 24px 90px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .step {
+      color: var(--pink);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 14px;
+    }
+
+    .intro {
+      color: var(--muted);
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+
+    /* BOOKING PANEL */
+
+    .booking-panel {
+      background: rgba(17,19,24,.96);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .package-bar {
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .package-label {
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+    }
+
+    .package-name {
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .package-price {
+      color: var(--cyan);
+      font-size: 1.4rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    /* DATE AREA */
+
+    .date-area {
+      padding: 32px 26px;
+    }
+
+    .date-area h2 {
+      font-size: 1.5rem;
+      margin-bottom: 7px;
+    }
+
+    .date-help {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 26px;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .date-field label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .date-field input {
+      width: 100%;
+      min-height: 58px;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid #343944;
+      background: #0c0e12;
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      color-scheme: dark;
+    }
+
+    .date-field input:focus {
+      outline: none;
+      border-color: var(--cyan);
+    }
+
+    /* DATE SUMMARY */
+
+    .date-summary {
+      display: none;
+      margin-top: 26px;
+      padding: 20px;
+      background: #0c0e12;
+      border: 1px solid #292d35;
+      border-radius: 16px;
+    }
+
+    .date-summary.active {
+      display: block;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 8px 0;
+      color: var(--muted);
+    }
+
+    .summary-row strong {
+      color: white;
+      text-align: right;
+    }
+
+    .summary-row.extra-night-row {
+      display: none;
+    }
+
+    .summary-row.total {
+      border-top: 1px solid #292d35;
+      margin-top: 10px;
+      padding-top: 18px;
+      font-size: 1.1rem;
+    }
+
+    .summary-row.total strong {
+      color: var(--cyan);
+      font-size: 1.35rem;
+    }
+
+    /* ERROR */
+
+    .date-error {
+      display: none;
+      color: #ff7cab;
+      margin-top: 16px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .date-error.active {
+      display: block;
+    }
+
+    /* BUTTON */
+
+    .continue-area {
+      padding: 0 26px 30px;
+    }
+
+    .continue-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      padding: 17px 25px;
+      background: var(--cyan);
+      color: #071013;
+      font-family: inherit;
+      font-size: .95rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .continue-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .continue-btn:disabled {
+      cursor: not-allowed;
+      opacity: .35;
+      transform: none;
+    }
+
+    .availability-note {
+      text-align: center;
+      color: #777c86;
+      font-size: .78rem;
+      margin-top: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #24262c;
+      padding: 35px 20px;
+      text-align: center;
+      color: #777c86;
+      font-size: .8rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 650px) {
+      .nav {
+        min-height: 80px;
+      }
+
+      .nav-logo {
+        width: 95px;
+        height: 70px;
+      }
+
+      main {
+        padding: 40px 16px 70px;
+      }
+
+      .package-bar {
+        padding: 20px;
+      }
+
+      .date-area {
+        padding: 26px 20px;
+      }
+
+      .continue-area {
+        padding: 0 20px 25px;
+      }
+
+      .date-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-row {
+        align-items: flex-start;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+<header>
+  <div class="nav">
+
+    <a href="index.html">
+      <img
+        src="tapdup-logo.png"
+        alt="Tap’d Up"
+        class="nav-logo"
+      >
+    </a>
+
+    <a href="index.html#packages" class="back-link">
+      ← Back to packages
+    </a>
+
+  </div>
+</header>
+
+
+<main>
+
+  <div class="container">
+
+    <div class="step">
+      Your Booking
+    </div>
+
+    <h1>CHOOSE YOUR DATE</h1>
+
+    <p class="intro">
+      Tell us when you want to get Tap’d Up.
+      Choose one night or select a date range if you want to keep
+      the draught setup for longer.
+    </p>
+
+
+    <div class="booking-panel">
+
+      <!-- SELECTED PACKAGE -->
+
+      <div class="package-bar">
+
+        <div>
+          <div class="package-label">
+            Selected Package
+          </div>
+
+          <div class="package-name" id="packageName">
+            Party 50
+          </div>
+        </div>
+
+        <div class="package-price" id="packagePrice">
+          £250
+        </div>
+
+      </div>
+
+
+      <!-- DATES -->
+
+      <div class="date-area">
+
+        <h2>When’s the party?</h2>
+
+        <p class="date-help">
+          Your first night is included.
+          Each additional night is £80.
+        </p>
+
+
+        <div class="date-grid">
+
+          <div class="date-field">
+
+            <label for="startDate">
+              First Night
+            </label>
+
+            <input
+              type="date"
+              id="startDate"
+            >
+
+          </div>
+
+
+          <div class="date-field">
+
+            <label for="endDate">
+              Last Night
+            </label>
+
+            <input
+              type="date"
+              id="endDate"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="date-error"
+          id="dateError"
+        >
+          Your last night can't be before your first night.
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div
+          class="date-summary"
+          id="dateSummary"
+        >
+
+          <div class="summary-row">
+            <span>Dates</span>
+            <strong id="summaryDates">—</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Package</span>
+            <strong id="summaryPackage">Party 50</strong>
+          </div>
+
+          <div
+            class="summary-row extra-night-row"
+            id="extraNightRow"
+          >
+            <span id="extraNightLabel">
+              Additional night
+            </span>
+
+            <strong id="extraNightPrice">
+              +£80
+            </strong>
+          </div>
+
+          <div class="summary-row total">
+            <span>Running total</span>
+            <strong id="summaryTotal">£250</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONTINUE -->
+
+      <div class="continue-area">
+
+        <button
+          class="continue-btn"
+          id="continueBtn"
+          disabled
+        >
+          CONTINUE TO CHOOSE YOUR PINT →
+        </button>
+
+        <div class="availability-note">
+          All bookings are subject to availability and confirmation.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+  <strong>Tap’d Up</strong><br>
+  Pour Your Own Pint! • 18+ only
+</footer>
+
+
+<script>
+
+  /* =========================================================
+     PACKAGE
+     ========================================================= */
+
+  const params = new URLSearchParams(window.location.search);
+
+  const requestedPackage = params.get("package");
+
+  let packageType = "50";
+  let packageName = "Party 50";
+  let basePrice = 250;
+
+
+  if (
+    requestedPackage === "30" ||
+    requestedPackage === "party30"
+  ) {
+    packageType = "30";
+    packageName = "Party 30";
+    basePrice = 200;
+  }
+
+
+  document.getElementById("packageName").textContent =
+    packageName;
+
+  document.getElementById("packagePrice").textContent =
+    "£" + basePrice;
+
+  document.getElementById("summaryPackage").textContent =
+    packageName;
+
+
+  /* =========================================================
+     DATES
+     ========================================================= */
+
+  const startDate =
+    document.getElementById("startDate");
+
+  const endDate =
+    document.getElementById("endDate");
+
+  const dateSummary =
+    document.getElementById("dateSummary");
+
+  const summaryDates =
+    document.getElementById("summaryDates");
+
+  const extraNightRow =
+    document.getElementById("extraNightRow");
+
+  const extraNightLabel =
+    document.getElementById("extraNightLabel");
+
+  const extraNightPrice =
+    document.getElementById("extraNightPrice");
+
+  const summaryTotal =
+    document.getElementById("summaryTotal");
+
+  const dateError =
+    document.getElementById("dateError");
+
+  const continueBtn =
+    document.getElementById("continueBtn");
+
+
+  /* Don't allow dates in the past */
+
+  const today = new Date();
+
+  const localToday =
+    new Date(
+      today.getTime() -
+      today.getTimezoneOffset() * 60000
+    )
+    .toISOString()
+    .split("T")[0];
+
+  startDate.min = localToday;
+  endDate.min = localToday;
+
+
+  /* =========================================================
+     FORMAT DATE
+     ========================================================= */
+
+  function formatDate(dateString) {
+
+    const date =
+      new Date(dateString + "T12:00:00");
+
+    return date.toLocaleDateString(
+      "en-GB",
+      {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     UPDATE BOOKING
+     ========================================================= */
+
+  function updateBooking() {
+
+    dateError.classList.remove("active");
+
+    if (!startDate.value) {
+
+      dateSummary.classList.remove("active");
+      continueBtn.disabled = true;
+
+      return;
+
+    }
+
+
+    /*
+      If they choose a first night but haven't selected
+      a last night yet, treat it as a one-night booking.
+    */
+
+    let finalEndDate =
+      endDate.value || startDate.value;
+
+
+    const start =
+      new Date(startDate.value + "T12:00:00");
+
+    const end =
+      new Date(finalEndDate + "T12:00:00");
+
+
+    if (end < start) {
+
+      dateError.classList.add("active");
+
+      dateSummary.classList.remove("active");
+
+      continueBtn.disabled = true;
+
+      return;
+
+    }
+
+
+    const millisecondsPerDay =
+      1000 * 60 * 60 * 24;
+
+    const additionalNights =
+      Math.round(
+        (end - start) /
+        millisecondsPerDay
+      );
+
+
+    const extraNightCost =
+      additionalNights * 80;
+
+    const total =
+      basePrice + extraNightCost;
+
+
+    /* DATE DISPLAY */
+
+    if (additionalNights === 0) {
+
+      summaryDates.textContent =
+        formatDate(startDate.value);
+
+    } else {
+
+      summaryDates.textContent =
+        formatDate(startDate.value) +
+        " – " +
+        formatDate(finalEndDate);
+
+    }
+
+
+    /* EXTRA NIGHT DISPLAY */
+
+    if (additionalNights > 0) {
+
+      extraNightRow.style.display = "flex";
+
+      extraNightLabel.textContent =
+        additionalNights === 1
+          ? "1 additional night"
+          : additionalNights +
+            " additional nights";
+
+      extraNightPrice.textContent =
+        "+£" + extraNightCost;
+
+    } else {
+
+      extraNightRow.style.display = "none";
+
+    }
+
+
+    summaryTotal.textContent =
+      "£" + total;
+
+
+    dateSummary.classList.add("active");
+
+    continueBtn.disabled = false;
+
+  }
+
+
+  /* =========================================================
+     EVENTS
+     ========================================================= */
+
+  startDate.addEventListener(
+    "change",
+    function () {
+
+      /*
+        Last night can't be earlier than first night.
+      */
+
+      endDate.min = startDate.value;
+
+      /*
+        If an old end date is now invalid, clear it.
+      */
+
+      if (
+        endDate.value &&
+        endDate.value < startDate.value
+      ) {
+        endDate.value = "";
+      }
+
+      updateBooking();
+
+    }
+  );
+
+
+  endDate.addEventListener(
+    "change",
+    updateBooking
+  );
+
+
+  /* =========================================================
+     CONTINUE
+     ========================================================= */
+
+  continueBtn.addEventListener(
+    "click",
+    function () {
+
+      if (!startDate.value) {
+        return;
+      }
+
+
+      const finalEndDate =
+        endDate.value || startDate.value;
+
+
+      const start =
+        new Date(startDate.value + "T12:00:00");
+
+      const end =
+        new Date(finalEndDate + "T12:00:00");
+
+
+      const additionalNights =
+        Math.round(
+          (end - start) /
+          (1000 * 60 * 60 * 24)
+        );
+
+
+      const dateCost =
+        additionalNights * 80;
+
+
+      const nextPage =
+        "party-builder.html" +
+        "?package=" +
+        encodeURIComponent(packageType) +
+        "&start=" +
+        encodeURIComponent(startDate.value) +
+        "&end=" +
+        encodeURIComponent(finalEndDate) +
+        "&nights=" +
+        encodeURIComponent(additionalNights) +
+        "&datecost=" +
+        encodeURIComponent(dateCost);
+
+
+      window.location.href =
+        nextPage;
+
+    }
+  );
+
+</script>
+
+
+</body>
+</html>
