@@ -24,10 +24,6 @@
       --border: #292c34;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: var(--dark);
@@ -202,7 +198,7 @@
       font-size: 0.8rem;
     }
 
-    /* LAGER / CIDER */
+    /* DRINK TYPE */
 
     .drink-type-selector {
       display: grid;
@@ -220,10 +216,6 @@
       cursor: pointer;
       font: inherit;
       font-weight: 900;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 9px;
       transition: 0.18s;
     }
 
@@ -236,10 +228,6 @@
       background: rgba(22, 217, 227, 0.06);
     }
 
-    .drink-type-icon {
-      font-size: 1.25rem;
-    }
-
     /* DRINK LIST */
 
     .drink-list {
@@ -247,7 +235,8 @@
       gap: 8px;
     }
 
-    .drink-prompt {
+    .drink-prompt,
+    .upgrade-prompt {
       width: 100%;
       border: 2px dashed #3a3d46;
       background: #0d0f13;
@@ -264,16 +253,13 @@
       text-align: left;
     }
 
-    .drink-prompt:hover {
+    .drink-prompt:hover,
+    .upgrade-prompt:hover {
       border-color: var(--cyan);
     }
 
-    .drink-prompt-arrow {
-      color: var(--cyan);
-      font-size: 1.2rem;
-    }
-
-    .drink-choice {
+    .drink-choice,
+    .upgrade-choice {
       width: 100%;
       border: 1px solid var(--border);
       background: #0d0f13;
@@ -290,9 +276,9 @@
       transition: 0.18s;
     }
 
-    .drink-choice:hover {
+    .drink-choice:hover,
+    .upgrade-choice:hover {
       border-color: var(--cyan);
-      background: rgba(22, 217, 227, 0.04);
     }
 
     .drink-info {
@@ -318,53 +304,38 @@
       white-space: nowrap;
     }
 
-    /* SELECTED DRINK */
-
-    .selected-drink-box {
+    .selected-box {
       border: 2px solid var(--cyan);
       background: rgba(22, 217, 227, 0.07);
       border-radius: 14px;
       padding: 15px;
     }
 
-    .selected-drink-main {
+    .selected-main {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 15px;
     }
 
-    .selected-drink-info {
-      display: flex;
-      align-items: baseline;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
-
-    .selected-drink-name {
+    .selected-name {
       font-weight: 900;
     }
 
-    .selected-drink-name::before {
+    .selected-name::before {
       content: "✓";
       color: var(--cyan);
-      margin-right: 9px;
+      margin-right: 8px;
     }
 
-    .selected-drink-abv {
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .selected-drink-price {
+    .selected-price {
       color: var(--cyan);
       font-weight: 900;
       white-space: nowrap;
     }
 
-    .change-drink {
-      margin-top: 11px;
+    .change-button {
+      margin-top: 10px;
       border: 0;
       background: transparent;
       color: var(--pink);
@@ -376,55 +347,91 @@
       padding: 0;
     }
 
-    /* EXTRAS */
+    /* UPGRADES */
 
-    .extras {
+    .upgrade-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
-    .extra {
+    .upgrade-card {
       background: #0d0f13;
       border: 1px solid var(--border);
       border-radius: 15px;
-      padding: 15px;
+      padding: 17px;
     }
 
-    .extra label {
+    .upgrade-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: flex-start;
+      margin-bottom: 5px;
+    }
+
+    .upgrade-heading strong {
+      font-size: 0.95rem;
+    }
+
+    .upgrade-price {
+      color: var(--cyan);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .upgrade-desc {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 13px;
+    }
+
+    .availability {
+      color: var(--pink);
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .toggle-line {
       display: flex;
       align-items: flex-start;
       gap: 11px;
       cursor: pointer;
     }
 
-    .extra input {
+    .toggle-line input {
       margin-top: 4px;
       accent-color: var(--cyan);
       transform: scale(1.2);
     }
 
-    .extra-copy {
-      flex: 1;
-    }
-
-    .extra-title {
-      display: flex;
-      justify-content: space-between;
+    .mini-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
+      margin: 12px 0;
+    }
+
+    .mini-tab {
+      border: 1px solid var(--border);
+      background: #111318;
+      color: white;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.8rem;
       font-weight: 900;
-      font-size: 0.9rem;
     }
 
-    .extra-price {
+    .mini-tab.active {
+      border-color: var(--cyan);
       color: var(--cyan);
-      white-space: nowrap;
     }
 
-    .extra-desc {
-      color: var(--muted);
-      font-size: 0.76rem;
-      margin-top: 3px;
+    .hidden {
+      display: none;
     }
 
     /* FORM */
@@ -460,11 +467,6 @@
       padding: 13px;
       font: inherit;
       outline: none;
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: var(--cyan);
     }
 
     .field textarea {
@@ -536,16 +538,12 @@
 
     .btn {
       width: 100%;
-      display: block;
       border: 0;
       border-radius: 999px;
       background: var(--cyan);
       color: #071013;
       padding: 15px 20px;
-      text-align: center;
-      text-decoration: none;
       font-weight: 900;
-      font-size: 0.9rem;
       cursor: pointer;
     }
 
@@ -583,30 +581,13 @@
         padding: 35px 16px 60px;
       }
 
-      .nav {
-        padding: 0 16px;
-      }
-
-      .nav-logo {
-        height: 62px;
-      }
-
       .builder-section {
         padding: 20px 16px;
       }
 
       .options,
-      .extras,
       .form-grid {
         grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .selected-drink-main {
-        align-items: flex-start;
       }
     }
   </style>
@@ -632,9 +613,7 @@
     <div class="eyebrow">BUILD YOUR TAP’D UP PARTY</div>
     <h1>Choose Your Pint.</h1>
 
-    <p>
-      Pick your drink, add any extras and see your party price as you build it.
-    </p>
+    <p>Pick your drink, add any extras and see your party price as you build it.</p>
 
     <div class="preview-notice">
       Demo booking preview — products, availability and prices shown are provisional and may change before launch.
@@ -650,21 +629,12 @@
 
         <div class="step-label">Step 1</div>
         <h2>Your Package</h2>
-
-        <p class="section-help">
-          Choose the package that suits your party.
-        </p>
+        <p class="section-help">Choose the package that suits your party.</p>
 
         <div class="options">
 
           <div class="option">
-            <input
-              type="radio"
-              name="package"
-              id="party30"
-              value="30"
-              data-price="200"
-            >
+            <input type="radio" name="package" id="party30" value="30" data-price="200">
 
             <label for="party30">
               <div class="option-title">
@@ -679,13 +649,7 @@
           </div>
 
           <div class="option">
-            <input
-              type="radio"
-              name="package"
-              id="party50"
-              value="50"
-              data-price="250"
-            >
+            <input type="radio" name="package" id="party50" value="50" data-price="250">
 
             <label for="party50">
               <div class="option-title">
@@ -707,29 +671,16 @@
 
         <div class="step-label">Step 2</div>
         <h2>Choose Your Pint</h2>
-
-        <p class="section-help">
-          Choose lager or cider, then pick what you'd like on tap.
-        </p>
+        <p class="section-help">Choose lager or cider, then pick what you'd like on tap.</p>
 
         <div class="drink-type-selector">
 
-          <button
-            type="button"
-            class="drink-type active"
-            data-type="lager"
-          >
-            <span class="drink-type-icon">🍺</span>
-            <span>Lager</span>
+          <button type="button" class="drink-type active" data-type="lager">
+            🍺 Lager
           </button>
 
-          <button
-            type="button"
-            class="drink-type"
-            data-type="cider"
-          >
-            <span class="drink-type-icon">🍏</span>
-            <span>Cider</span>
+          <button type="button" class="drink-type" data-type="cider">
+            🍏 Cider
           </button>
 
         </div>
@@ -745,100 +696,105 @@
         <h2>Upgrade Your Party</h2>
 
         <p class="section-help">
-          Add anything else you need.
+          Add a little more to your Tap’d Up setup.
         </p>
 
-        <div class="extras">
+        <div class="upgrade-grid">
 
-          <div class="extra">
-            <label>
-              <input
-                type="checkbox"
-                class="extra-check"
-                data-name="Extra 20 cups"
-                data-price="10"
-              >
+          <!-- EXTRA CUPS -->
+          <div class="upgrade-card">
 
-              <div class="extra-copy">
-                <div class="extra-title">
-                  <span>Extra 20 Cups</span>
-                  <span class="extra-price">+£10</span>
-                </div>
+            <div class="upgrade-heading">
+              <strong>Extra Tap’d Up Cups</strong>
+              <span class="upgrade-price">from +£20</span>
+            </div>
 
-                <div class="extra-desc">
-                  Another 20 reusable pint cups.
-                </div>
-              </div>
-            </label>
+            <div class="upgrade-desc">
+              Your package already includes 20 reusable pint cups.
+            </div>
+
+            <div id="cups-area"></div>
+
           </div>
 
-          <div class="extra">
-            <label>
-              <input
-                type="checkbox"
-                class="extra-check"
-                data-name="Extra Night"
-                data-price="50"
-              >
+          <!-- EXTRA NIGHT -->
+          <div class="upgrade-card">
 
-              <div class="extra-copy">
-                <div class="extra-title">
-                  <span>Extra Night</span>
-                  <span class="extra-price">+£50</span>
+            <label class="toggle-line">
+
+              <input type="checkbox" id="extra-night">
+
+              <div style="flex:1;">
+
+                <div class="upgrade-heading">
+                  <strong>Extra Night</strong>
+                  <span class="upgrade-price">+£80</span>
                 </div>
 
-                <div class="extra-desc">
-                  Keep the draught setup for another night.
+                <div class="upgrade-desc">
+                  Keep your Tap’d Up draught setup for another night.
                 </div>
+
+                <div class="availability">
+                  Subject to availability
+                </div>
+
               </div>
+
             </label>
+
           </div>
 
-          <div class="extra">
-            <label>
-              <input
-                type="checkbox"
-                class="extra-check"
-                data-name="Extra Keg"
-                data-price="100"
-              >
+          <!-- EXTRA KEG -->
+          <div class="upgrade-card">
 
-              <div class="extra-copy">
-                <div class="extra-title">
-                  <span>Extra Keg</span>
-                  <span class="extra-price">+£100</span>
-                </div>
+            <div class="upgrade-heading">
+              <strong>Extra Keg</strong>
+              <span class="upgrade-price">Add another pint</span>
+            </div>
 
-                <div class="extra-desc">
-                  Add another keg to your party.
-                </div>
-              </div>
-            </label>
+            <div class="upgrade-desc">
+              Add another 30L or 50L keg. Choose lager or cider independently from your main package.
+            </div>
+
+            <div class="availability" style="margin-bottom:12px;">
+              Subject to availability
+            </div>
+
+            <div id="extra-keg-area"></div>
+
           </div>
 
-          <div class="extra">
-            <label>
-              <input
-                type="checkbox"
-                class="extra-check"
-                data-name="Extra Draught Setup"
-                data-price="50"
-              >
+          <!-- EXTRA DRAUGHT UNIT -->
+          <div class="upgrade-card">
 
-              <div class="extra-copy">
-                <div class="extra-title">
-                  <span>Extra Draught Setup</span>
-                  <span class="extra-price">+£50</span>
+            <label class="toggle-line">
+
+              <input type="checkbox" id="extra-unit">
+
+              <div style="flex:1;">
+
+                <div class="upgrade-heading">
+                  <strong>Extra Draught Setup</strong>
+                  <span class="upgrade-price">+£50</span>
                 </div>
 
-                <div class="extra-desc">
-                  Add another draught dispensing setup.
+                <div class="upgrade-desc">
+                  Add a completely separate draught unit for an additional serving point.
                 </div>
+
+                <div class="availability">
+                  Subject to availability
+                </div>
+
               </div>
+
             </label>
+
           </div>
 
         </div>
+
       </section>
 
       <!-- STEP 4 -->
@@ -854,44 +810,42 @@
         <div class="form-grid">
 
           <div class="field">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" placeholder="Your name">
+            <label>Your Name</label>
+            <input type="text" placeholder="Your name">
           </div>
 
           <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="you@example.com">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com">
           </div>
 
           <div class="field">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" placeholder="07...">
+            <label>Phone</label>
+            <input type="tel" placeholder="07...">
           </div>
 
           <div class="field">
-            <label for="date">Party Date</label>
-            <input type="date" id="date">
+            <label>Party Date</label>
+            <input type="date">
           </div>
 
           <div class="field">
-            <label for="postcode">Party Postcode</label>
-            <input type="text" id="postcode" placeholder="e.g. NP23">
+            <label>Party Postcode</label>
+            <input type="text" placeholder="e.g. NP23">
           </div>
 
           <div class="field">
-            <label for="guests">Approx. Guests</label>
-            <input type="number" id="guests" min="1" placeholder="e.g. 30">
+            <label>Approx. Guests</label>
+            <input type="number" min="1" placeholder="e.g. 30">
           </div>
 
           <div class="field full">
-            <label for="notes">Anything Else?</label>
-            <textarea
-              id="notes"
-              placeholder="Tell us anything else about your party..."
-            ></textarea>
+            <label>Anything Else?</label>
+            <textarea placeholder="Tell us anything else about your party..."></textarea>
           </div>
 
         </div>
+
       </section>
 
     </div>
@@ -899,10 +853,7 @@
     <!-- SUMMARY -->
     <aside class="summary">
 
-      <div class="summary-label">
-        Your Tap’d Up Party
-      </div>
-
+      <div class="summary-label">Your Tap’d Up Party</div>
       <h2>Order Summary</h2>
 
       <div class="summary-row">
@@ -927,11 +878,7 @@
         <strong id="summary-total">£200</strong>
       </div>
 
-      <button
-        class="btn"
-        type="button"
-        id="enquiry-button"
-      >
+      <button class="btn" type="button" id="enquiry-button">
         Send an Enquiry
       </button>
 
@@ -951,42 +898,38 @@
   <small>Enjoy responsibly. 18+ only.</small>
 </footer>
 
-
 <script>
 
-  /*
-  ==========================================================
-  TAP'D UP DRINK LIST
-  addon = customer upgrade price
-  ==========================================================
-  */
+  /* ======================================================
+     DRINKS
+     ====================================================== */
 
   const drinks = {
 
     30: {
 
       lager: [
-        { name: "Brains Bayside Lager", abv: "4.3%", addon: 0 },
-        { name: "Damm Lemon", abv: "3.2%", addon: 5 },
-        { name: "Victoria Malaga", abv: "4.4%", addon: 20 },
-        { name: "Tiny Rebel 313", abv: "4.6%", addon: 30 },
-        { name: "Monte Carlo Lager", abv: "4.5%", addon: 35 },
-        { name: "1664 Blanc", abv: "5.0%", addon: 50 },
-        { name: "Sale di Mare Birra Moretti", abv: "4.8%", addon: 55 }
+        { name:"Brains Bayside Lager", abv:"4.3%", addon:0 },
+        { name:"Damm Lemon", abv:"3.2%", addon:5 },
+        { name:"Victoria Malaga", abv:"4.4%", addon:20 },
+        { name:"Tiny Rebel 313", abv:"4.6%", addon:30 },
+        { name:"Monte Carlo Lager", abv:"4.5%", addon:35 },
+        { name:"1664 Blanc", abv:"5.0%", addon:50 },
+        { name:"Sale di Mare Birra Moretti", abv:"4.8%", addon:55 }
       ],
 
       cider: [
-        { name: "Slack Alice Cider", abv: "4.6%", addon: 0 },
-        { name: "Taffy Apples", abv: "4.5%", addon: 0 },
-        { name: "Taffy Berry", abv: "3.4%", addon: 0 },
-        { name: "Taffy Haze", abv: "4.5%", addon: 0 },
-        { name: "Inch's Riversider", abv: "4.7%", addon: 5 },
-        { name: "Orchard Thieves", abv: "4.5%", addon: 5 },
-        { name: "Kopparberg Strawberry & Lime", abv: "4.0%", addon: 15 },
-        { name: "Old Mout Berries & Cherries", abv: "4.0%", addon: 20 },
-        { name: "Old Mout Flavourwave Multi", abv: "3.4%", addon: 20 },
-        { name: "Cornish Orchards Raspberry & Elderflower", abv: "4.0%", addon: 25 },
-        { name: "Rekorderlig Strawberry & Lime", abv: "3.4%", addon: 50 }
+        { name:"Slack Alice Cider", abv:"4.6%", addon:0 },
+        { name:"Taffy Apples", abv:"4.5%", addon:0 },
+        { name:"Taffy Berry", abv:"3.4%", addon:0 },
+        { name:"Taffy Haze", abv:"4.5%", addon:0 },
+        { name:"Inch's Riversider", abv:"4.7%", addon:5 },
+        { name:"Orchard Thieves", abv:"4.5%", addon:5 },
+        { name:"Kopparberg Strawberry & Lime", abv:"4.0%", addon:15 },
+        { name:"Old Mout Berries & Cherries", abv:"4.0%", addon:20 },
+        { name:"Old Mout Flavourwave Multi", abv:"3.4%", addon:20 },
+        { name:"Cornish Orchards Raspberry & Elderflower", abv:"4.0%", addon:25 },
+        { name:"Rekorderlig Strawberry & Lime", abv:"3.4%", addon:50 }
       ]
 
     },
@@ -994,43 +937,43 @@
     50: {
 
       lager: [
-        { name: "Foster's", abv: "3.4%", addon: 0 },
-        { name: "Carlsberg", abv: "3.8%", addon: 5 },
-        { name: "Coors", abv: "4.0%", addon: 10 },
-        { name: "Carling", abv: "4.0%", addon: 10 },
-        { name: "Veltins Pilsener", abv: "4.8%", addon: 15 },
-        { name: "Carlsberg Export", abv: "4.8%", addon: 25 },
-        { name: "Amstel", abv: "4.1%", addon: 25 },
-        { name: "Hawkstone Session", abv: "4.0%", addon: 30 },
-        { name: "Madri", abv: "4.6%", addon: 40 },
-        { name: "Hawkstone Premium Lager", abv: "4.8%", addon: 40 },
-        { name: "San Miguel", abv: "5.0%", addon: 40 },
-        { name: "Staropramen", abv: "5.0%", addon: 45 },
-        { name: "Sapporo", abv: "4.8%", addon: 45 },
-        { name: "Heineken", abv: "5.0%", addon: 50 },
-        { name: "Peroni", abv: "5.0%", addon: 50 },
-        { name: "Cobra", abv: "4.5%", addon: 50 },
-        { name: "Birra Moretti", abv: "4.6%", addon: 55 }
+        { name:"Foster's", abv:"3.4%", addon:0 },
+        { name:"Carlsberg", abv:"3.8%", addon:5 },
+        { name:"Coors", abv:"4.0%", addon:10 },
+        { name:"Carling", abv:"4.0%", addon:10 },
+        { name:"Veltins Pilsener", abv:"4.8%", addon:15 },
+        { name:"Carlsberg Export", abv:"4.8%", addon:25 },
+        { name:"Amstel", abv:"4.1%", addon:25 },
+        { name:"Hawkstone Session", abv:"4.0%", addon:30 },
+        { name:"Madri", abv:"4.6%", addon:40 },
+        { name:"Hawkstone Premium Lager", abv:"4.8%", addon:40 },
+        { name:"San Miguel", abv:"5.0%", addon:40 },
+        { name:"Staropramen", abv:"5.0%", addon:45 },
+        { name:"Sapporo", abv:"4.8%", addon:45 },
+        { name:"Heineken", abv:"5.0%", addon:50 },
+        { name:"Peroni", abv:"5.0%", addon:50 },
+        { name:"Cobra", abv:"4.5%", addon:50 },
+        { name:"Birra Moretti", abv:"4.6%", addon:55 }
       ],
 
       cider: [
-        { name: "Stowford Press", abv: "4.5%", addon: 0 },
-        { name: "Henry Westons Vintage", abv: "5.2%", addon: 0 },
-        { name: "Stowford Press Dark Berry", abv: "3.4%", addon: 0 },
-        { name: "Thatchers Gold", abv: "4.8%", addon: 20 },
-        { name: "Thatchers Haze", abv: "4.5%", addon: 20 },
-        { name: "Inch's Medium Apple", abv: "4.5%", addon: 25 },
-        { name: "Sharps Cold River", abv: "4.5%", addon: 30 },
-        { name: "Somersby", abv: "4.5%", addon: 30 },
-        { name: "Rekorderlig Wild Berries", abv: "3.4%", addon: 35 },
-        { name: "Henry Westons English Berry", abv: "4.0%", addon: 40 },
-        { name: "Thatchers Juicy Apple", abv: "4.0%", addon: 40 },
-        { name: "Strongbow Original", abv: "4.5%", addon: 45 },
-        { name: "Somersby Blackberry", abv: "4.0%", addon: 45 },
-        { name: "Aspall Draught", abv: "4.5%", addon: 50 },
-        { name: "Carling Black Fruits", abv: "3.4%", addon: 55 },
-        { name: "Hawkstone Cider", abv: "5.0%", addon: 55 },
-        { name: "Strongbow Dark Fruits", abv: "4.0%", addon: 65 }
+        { name:"Stowford Press", abv:"4.5%", addon:0 },
+        { name:"Henry Westons Vintage", abv:"5.2%", addon:0 },
+        { name:"Stowford Press Dark Berry", abv:"3.4%", addon:0 },
+        { name:"Thatchers Gold", abv:"4.8%", addon:20 },
+        { name:"Thatchers Haze", abv:"4.5%", addon:20 },
+        { name:"Inch's Medium Apple", abv:"4.5%", addon:25 },
+        { name:"Sharps Cold River", abv:"4.5%", addon:30 },
+        { name:"Somersby", abv:"4.5%", addon:30 },
+        { name:"Rekorderlig Wild Berries", abv:"3.4%", addon:35 },
+        { name:"Henry Westons English Berry", abv:"4.0%", addon:40 },
+        { name:"Thatchers Juicy Apple", abv:"4.0%", addon:40 },
+        { name:"Strongbow Original", abv:"4.5%", addon:45 },
+        { name:"Somersby Blackberry", abv:"4.0%", addon:45 },
+        { name:"Aspall Draught", abv:"4.5%", addon:50 },
+        { name:"Carling Black Fruits", abv:"3.4%", addon:55 },
+        { name:"Hawkstone Cider", abv:"5.0%", addon:55 },
+        { name:"Strongbow Dark Fruits", abv:"4.0%", addon:65 }
       ]
 
     }
@@ -1038,37 +981,43 @@
   };
 
 
-  const packageInputs =
-    document.querySelectorAll('input[name="package"]');
+  /* DEMO STANDALONE EXTRA-KEG BASE PRICES
+     Easy to change later once real pricing is finalised. */
 
-  const extraInputs =
-    document.querySelectorAll('.extra-check');
+  const extraKegBase = {
+    30: 100,
+    50: 140
+  };
 
-  const drinkTypeButtons =
-    document.querySelectorAll('.drink-type');
 
-  const drinkList =
-    document.getElementById('drink-list');
+  const packageInputs = document.querySelectorAll('input[name="package"]');
+  const drinkTypeButtons = document.querySelectorAll('.drink-type');
 
-  const summaryPackage =
-    document.getElementById('summary-package');
+  const drinkList = document.getElementById('drink-list');
+  const cupsArea = document.getElementById('cups-area');
+  const extraKegArea = document.getElementById('extra-keg-area');
 
-  const summaryPackagePrice =
-    document.getElementById('summary-package-price');
+  const extraNight = document.getElementById('extra-night');
+  const extraUnit = document.getElementById('extra-unit');
 
-  const summaryDrink =
-    document.getElementById('summary-drink');
-
-  const summaryExtras =
-    document.getElementById('summary-extras');
-
-  const summaryTotal =
-    document.getElementById('summary-total');
+  const summaryPackage = document.getElementById('summary-package');
+  const summaryPackagePrice = document.getElementById('summary-package-price');
+  const summaryDrink = document.getElementById('summary-drink');
+  const summaryExtras = document.getElementById('summary-extras');
+  const summaryTotal = document.getElementById('summary-total');
 
 
   let selectedDrinkType = 'lager';
   let selectedDrink = null;
   let drinkListOpen = false;
+
+  let selectedCups = 0;
+  let cupsOpen = false;
+
+  let extraKegOpen = false;
+  let extraKegSize = null;
+  let extraKegType = 'lager';
+  let selectedExtraKeg = null;
 
 
   function money(value) {
@@ -1077,21 +1026,15 @@
 
 
   function getSelectedPackage() {
-    return document.querySelector(
-      'input[name="package"]:checked'
-    );
+    return document.querySelector('input[name="package"]:checked');
   }
 
 
   function setPackageFromURL() {
 
-    const params =
-      new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
 
-    const chosenPackage =
-      params.get('package');
-
-    if (chosenPackage === '50') {
+    if (params.get('package') === '50') {
       document.getElementById('party50').checked = true;
     } else {
       document.getElementById('party30').checked = true;
@@ -1100,181 +1043,107 @@
   }
 
 
-  /*
-  ==========================================================
-  DRINK DISPLAY
-  ==========================================================
-  */
+  /* ======================================================
+     MAIN DRINK
+     ====================================================== */
 
   function renderDrinkArea() {
 
-    const selectedPackage =
-      getSelectedPackage();
+    const selectedPackage = getSelectedPackage();
 
-    if (!selectedPackage) {
-      return;
-    }
+    if (!selectedPackage) return;
 
-    const packageSize =
-      Number(selectedPackage.value);
-
-    const availableDrinks =
-      drinks[packageSize][selectedDrinkType];
+    const size = Number(selectedPackage.value);
+    const availableDrinks = drinks[size][selectedDrinkType];
 
     drinkList.innerHTML = '';
 
 
-    /*
-    SELECTED DRINK - COLLAPSED
-    */
-
     if (selectedDrink && !drinkListOpen) {
 
-      const selectedBox =
-        document.createElement('div');
-
-      selectedBox.className =
-        'selected-drink-box';
+      const box = document.createElement('div');
+      box.className = 'selected-box';
 
       const priceText =
         selectedDrink.addon === 0
           ? 'INCLUDED'
           : '+' + money(selectedDrink.addon);
 
-      selectedBox.innerHTML =
+      box.innerHTML = `
+        <div class="selected-main">
+          <div>
+            <span class="selected-name">${selectedDrink.name}</span>
+            <span class="drink-abv">${selectedDrink.abv} ABV</span>
+          </div>
 
-        '<div class="selected-drink-main">' +
+          <span class="selected-price">${priceText}</span>
+        </div>
 
-          '<div class="selected-drink-info">' +
+        <button type="button" class="change-button">
+          Change ${selectedDrinkType}
+        </button>
+      `;
 
-            '<span class="selected-drink-name">' +
-              selectedDrink.name +
-            '</span>' +
+      box.querySelector('.change-button').onclick = function () {
+        drinkListOpen = true;
+        renderDrinkArea();
+      };
 
-            '<span class="selected-drink-abv">' +
-              selectedDrink.abv + ' ABV' +
-            '</span>' +
-
-          '</div>' +
-
-          '<span class="selected-drink-price">' +
-            priceText +
-          '</span>' +
-
-        '</div>' +
-
-        '<button type="button" class="change-drink">' +
-          'Change ' + selectedDrinkType +
-        '</button>';
-
-
-      selectedBox
-        .querySelector('.change-drink')
-        .addEventListener('click', function () {
-
-          drinkListOpen = true;
-          renderDrinkArea();
-
-        });
-
-
-      drinkList.appendChild(selectedBox);
-
+      drinkList.appendChild(box);
       return;
     }
 
-
-    /*
-    NOTHING CHOSEN YET
-    */
 
     if (!selectedDrink && !drinkListOpen) {
 
-      const prompt =
-        document.createElement('button');
+      const prompt = document.createElement('button');
 
-      prompt.type =
-        'button';
+      prompt.type = 'button';
+      prompt.className = 'drink-prompt';
 
-      prompt.className =
-        'drink-prompt';
+      prompt.innerHTML = `
+        <span>Choose your ${selectedDrinkType}</span>
+        <span style="color:var(--cyan);">›</span>
+      `;
 
-      prompt.innerHTML =
-
-        '<span>Choose your ' +
-          selectedDrinkType +
-        '</span>' +
-
-        '<span class="drink-prompt-arrow">›</span>';
-
-
-      prompt.addEventListener('click', function () {
-
+      prompt.onclick = function () {
         drinkListOpen = true;
         renderDrinkArea();
-
-      });
-
+      };
 
       drinkList.appendChild(prompt);
-
       return;
     }
 
 
-    /*
-    OPEN DRINK LIST
-    */
-
     availableDrinks.forEach(drink => {
 
-      const button =
-        document.createElement('button');
+      const button = document.createElement('button');
 
-      button.type =
-        'button';
-
-      button.className =
-        'drink-choice';
+      button.type = 'button';
+      button.className = 'drink-choice';
 
       const priceText =
         drink.addon === 0
           ? 'INCLUDED'
           : '+' + money(drink.addon);
 
+      button.innerHTML = `
+        <div class="drink-info">
+          <span class="drink-name">${drink.name}</span>
+          <span class="drink-abv">${drink.abv} ABV</span>
+        </div>
 
-      button.innerHTML =
+        <span class="drink-upgrade">${priceText}</span>
+      `;
 
-        '<div class="drink-info">' +
-
-          '<span class="drink-name">' +
-            drink.name +
-          '</span>' +
-
-          '<span class="drink-abv">' +
-            drink.abv + ' ABV' +
-          '</span>' +
-
-        '</div>' +
-
-        '<span class="drink-upgrade">' +
-          priceText +
-        '</span>';
-
-
-      button.addEventListener('click', function () {
-
-        selectedDrink =
-          drink;
-
-        drinkListOpen =
-          false;
+      button.onclick = function () {
+        selectedDrink = drink;
+        drinkListOpen = false;
 
         renderDrinkArea();
         updateSummary();
-
-      });
-
+      };
 
       drinkList.appendChild(button);
 
@@ -1283,16 +1152,354 @@
   }
 
 
-  /*
-  ==========================================================
-  SUMMARY
-  ==========================================================
-  */
+  /* ======================================================
+     EXTRA CUPS
+     ====================================================== */
+
+  function renderCups() {
+
+    cupsArea.innerHTML = '';
+
+
+    if (selectedCups > 0 && !cupsOpen) {
+
+      const box = document.createElement('div');
+      box.className = 'selected-box';
+
+      box.innerHTML = `
+        <div class="selected-main">
+          <span class="selected-name">+${selectedCups} cups</span>
+          <span class="selected-price">+${money(selectedCups)}</span>
+        </div>
+
+        <button type="button" class="change-button">
+          Change quantity
+        </button>
+
+        <button type="button" class="change-button remove-cups" style="margin-left:15px;">
+          Remove
+        </button>
+      `;
+
+      box.querySelector('.change-button').onclick = function () {
+        cupsOpen = true;
+        renderCups();
+      };
+
+      box.querySelector('.remove-cups').onclick = function () {
+        selectedCups = 0;
+        cupsOpen = false;
+        renderCups();
+        updateSummary();
+      };
+
+      cupsArea.appendChild(box);
+      return;
+    }
+
+
+    if (!cupsOpen) {
+
+      const prompt = document.createElement('button');
+
+      prompt.type = 'button';
+      prompt.className = 'upgrade-prompt';
+
+      prompt.innerHTML = `
+        <span>+ Add extra cups</span>
+        <span style="color:var(--cyan);">›</span>
+      `;
+
+      prompt.onclick = function () {
+        cupsOpen = true;
+        renderCups();
+      };
+
+      cupsArea.appendChild(prompt);
+      return;
+    }
+
+
+    [20, 40, 60, 80, 100].forEach(amount => {
+
+      const button = document.createElement('button');
+
+      button.type = 'button';
+      button.className = 'upgrade-choice';
+
+      button.innerHTML = `
+        <span>+${amount} Tap’d Up cups</span>
+        <strong class="drink-upgrade">+${money(amount)}</strong>
+      `;
+
+      button.onclick = function () {
+        selectedCups = amount;
+        cupsOpen = false;
+
+        renderCups();
+        updateSummary();
+      };
+
+      cupsArea.appendChild(button);
+
+    });
+
+  }
+
+
+  /* ======================================================
+     EXTRA KEG
+     ====================================================== */
+
+  function renderExtraKeg() {
+
+    extraKegArea.innerHTML = '';
+
+
+    if (selectedExtraKeg && !extraKegOpen) {
+
+      const price =
+        extraKegBase[extraKegSize] + selectedExtraKeg.addon;
+
+      const box = document.createElement('div');
+      box.className = 'selected-box';
+
+      box.innerHTML = `
+        <div class="selected-main">
+
+          <div>
+            <span class="selected-name">
+              ${extraKegSize}L ${selectedExtraKeg.name}
+            </span>
+
+            <span class="drink-abv">
+              ${selectedExtraKeg.abv} ABV
+            </span>
+          </div>
+
+          <span class="selected-price">
+            +${money(price)}
+          </span>
+
+        </div>
+
+        <button type="button" class="change-button change-extra-keg">
+          Change keg
+        </button>
+
+        <button type="button" class="change-button remove-extra-keg" style="margin-left:15px;">
+          Remove
+        </button>
+      `;
+
+      box.querySelector('.change-extra-keg').onclick = function () {
+        extraKegOpen = true;
+        renderExtraKeg();
+      };
+
+      box.querySelector('.remove-extra-keg').onclick = function () {
+        selectedExtraKeg = null;
+        extraKegSize = null;
+        extraKegType = 'lager';
+        extraKegOpen = false;
+
+        renderExtraKeg();
+        updateSummary();
+      };
+
+      extraKegArea.appendChild(box);
+      return;
+    }
+
+
+    if (!extraKegOpen) {
+
+      const prompt = document.createElement('button');
+
+      prompt.type = 'button';
+      prompt.className = 'upgrade-prompt';
+
+      prompt.innerHTML = `
+        <span>+ Add another keg</span>
+        <span style="color:var(--cyan);">›</span>
+      `;
+
+      prompt.onclick = function () {
+        extraKegOpen = true;
+        renderExtraKeg();
+      };
+
+      extraKegArea.appendChild(prompt);
+      return;
+    }
+
+
+    /* CHOOSE SIZE */
+
+    if (!extraKegSize) {
+
+      const heading = document.createElement('div');
+
+      heading.innerHTML = `
+        <strong>Choose keg size</strong>
+      `;
+
+      extraKegArea.appendChild(heading);
+
+      const tabs = document.createElement('div');
+      tabs.className = 'mini-tabs';
+
+      [30, 50].forEach(size => {
+
+        const button = document.createElement('button');
+
+        button.type = 'button';
+        button.className = 'mini-tab';
+        button.textContent = size + 'L';
+
+        button.onclick = function () {
+          extraKegSize = size;
+          extraKegType = 'lager';
+          selectedExtraKeg = null;
+
+          renderExtraKeg();
+        };
+
+        tabs.appendChild(button);
+
+      });
+
+      extraKegArea.appendChild(tabs);
+      return;
+    }
+
+
+    /* LAGER / CIDER */
+
+    const sizeHeading = document.createElement('div');
+
+    sizeHeading.innerHTML = `
+      <div style="display:flex;justify-content:space-between;gap:15px;align-items:center;">
+        <strong>${extraKegSize}L Extra Keg</strong>
+
+        <button type="button" class="change-button" id="change-keg-size">
+          Change size
+        </button>
+      </div>
+    `;
+
+    extraKegArea.appendChild(sizeHeading);
+
+    sizeHeading.querySelector('#change-keg-size').onclick = function () {
+      extraKegSize = null;
+      selectedExtraKeg = null;
+
+      renderExtraKeg();
+    };
+
+
+    const typeTabs = document.createElement('div');
+    typeTabs.className = 'mini-tabs';
+
+
+    ['lager', 'cider'].forEach(type => {
+
+      const button = document.createElement('button');
+
+      button.type = 'button';
+
+      button.className =
+        'mini-tab' +
+        (extraKegType === type ? ' active' : '');
+
+      button.textContent =
+        type === 'lager'
+          ? '🍺 Lager'
+          : '🍏 Cider';
+
+      button.onclick = function () {
+        extraKegType = type;
+        selectedExtraKeg = null;
+
+        renderExtraKeg();
+      };
+
+      typeTabs.appendChild(button);
+
+    });
+
+
+    extraKegArea.appendChild(typeTabs);
+
+
+    drinks[extraKegSize][extraKegType].forEach(drink => {
+
+      const button = document.createElement('button');
+
+      button.type = 'button';
+      button.className = 'drink-choice';
+
+      const fullPrice =
+        extraKegBase[extraKegSize] + drink.addon;
+
+      button.innerHTML = `
+        <div class="drink-info">
+
+          <span class="drink-name">
+            ${drink.name}
+          </span>
+
+          <span class="drink-abv">
+            ${drink.abv} ABV
+          </span>
+
+        </div>
+
+        <span class="drink-upgrade">
+          ${money(fullPrice)}
+        </span>
+      `;
+
+      button.onclick = function () {
+
+        selectedExtraKeg = drink;
+        extraKegOpen = false;
+
+        renderExtraKeg();
+        updateSummary();
+
+      };
+
+      extraKegArea.appendChild(button);
+
+    });
+
+  }
+
+
+  /* ======================================================
+     SUMMARY
+     ====================================================== */
+
+  function addSummaryRow(label, value) {
+
+    const row = document.createElement('div');
+
+    row.className = 'summary-row';
+
+    row.innerHTML = `
+      <span>${label}</span>
+      <strong>${value}</strong>
+    `;
+
+    summaryExtras.appendChild(row);
+
+  }
+
 
   function updateSummary() {
 
-    const selectedPackage =
-      getSelectedPackage();
+    const selectedPackage = getSelectedPackage();
 
     let total = 0;
 
@@ -1317,15 +1524,12 @@
 
     if (selectedDrink) {
 
-      total +=
-        selectedDrink.addon;
+      total += selectedDrink.addon;
 
       summaryDrink.textContent =
-
         selectedDrink.name +
         ' · ' +
         selectedDrink.abv +
-
         (
           selectedDrink.addon > 0
             ? ' (+' + money(selectedDrink.addon) + ')'
@@ -1334,8 +1538,7 @@
 
     } else {
 
-      summaryDrink.textContent =
-        'Choose your pint';
+      summaryDrink.textContent = 'Choose your pint';
 
     }
 
@@ -1343,37 +1546,67 @@
     summaryExtras.innerHTML = '';
 
 
-    extraInputs.forEach(extra => {
+    /* CUPS */
 
-      if (extra.checked) {
+    if (selectedCups > 0) {
 
-        const extraPrice =
-          Number(extra.dataset.price);
+      total += selectedCups;
 
-        total +=
-          extraPrice;
+      addSummaryRow(
+        '+' + selectedCups + ' Cups',
+        '+' + money(selectedCups)
+      );
 
-        const row =
-          document.createElement('div');
+    }
 
-        row.className =
-          'summary-row';
 
-        row.innerHTML =
+    /* EXTRA NIGHT */
 
-          '<span>' +
-            extra.dataset.name +
-          '</span>' +
+    if (extraNight.checked) {
 
-          '<strong>+' +
-            money(extraPrice) +
-          '</strong>';
+      total += 80;
 
-        summaryExtras.appendChild(row);
+      addSummaryRow(
+        'Extra Night',
+        '+£80'
+      );
 
-      }
+    }
 
-    });
+
+    /* EXTRA KEG */
+
+    if (selectedExtraKeg) {
+
+      const kegPrice =
+        extraKegBase[extraKegSize] +
+        selectedExtraKeg.addon;
+
+      total += kegPrice;
+
+      addSummaryRow(
+        'Extra ' +
+        extraKegSize +
+        'L ' +
+        selectedExtraKeg.name,
+        '+' + money(kegPrice)
+      );
+
+    }
+
+
+    /* EXTRA UNIT */
+
+    if (extraUnit.checked) {
+
+      total += 50;
+
+      addSummaryRow(
+        'Extra Draught Setup',
+        '+£50'
+      );
+
+    }
 
 
     summaryTotal.textContent =
@@ -1382,19 +1615,16 @@
   }
 
 
-  /*
-  PACKAGE CHANGE
-  */
+  /* ======================================================
+     EVENTS
+     ====================================================== */
 
   packageInputs.forEach(input => {
 
     input.addEventListener('change', function () {
 
-      selectedDrink =
-        null;
-
-      drinkListOpen =
-        false;
+      selectedDrink = null;
+      drinkListOpen = false;
 
       renderDrinkArea();
       updateSummary();
@@ -1404,29 +1634,17 @@
   });
 
 
-  /*
-  LAGER / CIDER CHANGE
-  */
-
   drinkTypeButtons.forEach(button => {
 
     button.addEventListener('click', function () {
 
-      const newType =
-        button.dataset.type;
+      const newType = button.dataset.type;
 
-      if (newType === selectedDrinkType) {
-        return;
-      }
+      if (newType === selectedDrinkType) return;
 
-      selectedDrinkType =
-        newType;
-
-      selectedDrink =
-        null;
-
-      drinkListOpen =
-        false;
+      selectedDrinkType = newType;
+      selectedDrink = null;
+      drinkListOpen = false;
 
       drinkTypeButtons.forEach(item => {
         item.classList.remove('active');
@@ -1442,23 +1660,9 @@
   });
 
 
-  /*
-  EXTRAS
-  */
+  extraNight.addEventListener('change', updateSummary);
+  extraUnit.addEventListener('change', updateSummary);
 
-  extraInputs.forEach(input => {
-
-    input.addEventListener(
-      'change',
-      updateSummary
-    );
-
-  });
-
-
-  /*
-  DEMO ENQUIRY
-  */
 
   document
     .getElementById('enquiry-button')
@@ -1471,12 +1675,14 @@
     });
 
 
-  /*
-  START
-  */
+  /* ======================================================
+     START
+     ====================================================== */
 
   setPackageFromURL();
   renderDrinkArea();
+  renderCups();
+  renderExtraKeg();
   updateSummary();
 
 </script>
