@@ -152,7 +152,7 @@
       margin-bottom: 20px;
     }
 
-    /* OPTIONS */
+    /* PACKAGE OPTIONS */
     .options {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -207,14 +207,99 @@
       font-size: 0.8rem;
     }
 
-    .premium-tag {
-      display: inline-block;
-      margin-top: 8px;
-      color: var(--pink);
-      font-size: 0.68rem;
+    /* DRINK TYPE */
+    .drink-type-selector {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .drink-type {
+      border: 2px solid var(--border);
+      background: #0d0f13;
+      color: white;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      font: inherit;
       font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      transition: 0.18s;
+    }
+
+    .drink-type:hover {
+      border-color: #555a66;
+    }
+
+    .drink-type.active {
+      border-color: var(--cyan);
+      background: rgba(22, 217, 227, 0.06);
+    }
+
+    .drink-type-icon {
+      font-size: 1.25rem;
+    }
+
+    /* DRINK LIST */
+    .drink-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .drink-choice {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #0d0f13;
+      color: white;
+      border-radius: 12px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+      transition: 0.18s;
+    }
+
+    .drink-choice:hover {
+      border-color: #555a66;
+    }
+
+    .drink-choice.selected {
+      border-color: var(--cyan);
+      background: rgba(22, 217, 227, 0.07);
+    }
+
+    .drink-name {
+      font-weight: 800;
+    }
+
+    .drink-upgrade {
+      color: var(--cyan);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .drink-choice.selected .drink-name::before {
+      content: "✓";
+      color: var(--cyan);
+      margin-right: 9px;
+      font-weight: 900;
+    }
+
+    .drink-message {
+      padding: 16px;
+      border: 1px dashed #3a3d46;
+      border-radius: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.85rem;
     }
 
     /* EXTRAS */
@@ -394,7 +479,6 @@
       margin-top: 11px;
     }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid #24262c;
       text-align: center;
@@ -407,7 +491,6 @@
       color: white;
     }
 
-    /* MOBILE */
     @media (max-width: 850px) {
       .builder-layout {
         grid-template-columns: 1fr;
@@ -460,7 +543,6 @@
   </div>
 </header>
 
-
 <main class="builder">
 
   <div class="builder-heading">
@@ -472,7 +554,6 @@
       Demo booking preview — products, availability and prices shown are provisional and may change before launch.
     </div>
   </div>
-
 
   <div class="builder-layout">
 
@@ -515,66 +596,28 @@
         </div>
       </section>
 
-
       <!-- STEP 2 -->
       <section class="builder-section">
         <div class="step-label">Step 2</div>
         <h2>Choose Your Pint</h2>
         <p class="section-help">
-          Choose from lager, beer and cider. Standard options are included in your package.
+          Choose lager or cider, then pick what you'd like on tap.
         </p>
 
-        <div class="options">
+        <div class="drink-type-selector">
+          <button type="button" class="drink-type active" data-type="lager">
+            <span class="drink-type-icon">🍺</span>
+            <span>Lager</span>
+          </button>
 
-          <div class="option">
-            <input type="radio" name="drink" id="standard-lager" value="Standard Lager" data-price="0" checked>
-            <label for="standard-lager">
-              <div class="option-title">
-                <span>Standard Lager</span>
-                <span class="option-price">Included</span>
-              </div>
-              <div class="option-desc">Selected standard draught lager.</div>
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="radio" name="drink" id="standard-cider" value="Standard Cider" data-price="0">
-            <label for="standard-cider">
-              <div class="option-title">
-                <span>Standard Cider</span>
-                <span class="option-price">Included</span>
-              </div>
-              <div class="option-desc">Selected standard draught cider.</div>
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="radio" name="drink" id="premium-lager" value="Premium Lager" data-price="25">
-            <label for="premium-lager">
-              <div class="option-title">
-                <span>Premium Lager</span>
-                <span class="option-price">+£25</span>
-              </div>
-              <div class="option-desc">Upgrade to a premium lager option.</div>
-              <span class="premium-tag">Premium Upgrade</span>
-            </label>
-          </div>
-
-          <div class="option">
-            <input type="radio" name="drink" id="premium-cider" value="Premium Cider" data-price="20">
-            <label for="premium-cider">
-              <div class="option-title">
-                <span>Premium Cider</span>
-                <span class="option-price">+£20</span>
-              </div>
-              <div class="option-desc">Upgrade to a premium cider option.</div>
-              <span class="premium-tag">Premium Upgrade</span>
-            </label>
-          </div>
-
+          <button type="button" class="drink-type" data-type="cider">
+            <span class="drink-type-icon">🍏</span>
+            <span>Cider</span>
+          </button>
         </div>
-      </section>
 
+        <div class="drink-list" id="drink-list"></div>
+      </section>
 
       <!-- STEP 3 -->
       <section class="builder-section">
@@ -639,14 +682,11 @@
         </div>
       </section>
 
-
       <!-- STEP 4 -->
       <section class="builder-section">
         <div class="step-label">Step 4</div>
         <h2>Your Party Details</h2>
-        <p class="section-help">
-          Tell us a little about your party.
-        </p>
+        <p class="section-help">Tell us a little about your party.</p>
 
         <div class="form-grid">
 
@@ -690,7 +730,6 @@
 
     </div>
 
-
     <!-- SUMMARY -->
     <aside class="summary">
       <div class="summary-label">Your Tap’d Up Party</div>
@@ -708,7 +747,7 @@
 
       <div class="summary-row">
         <span>Your Pint</span>
-        <strong id="summary-drink">Standard Lager</strong>
+        <strong id="summary-drink">Choose your pint</strong>
       </div>
 
       <div id="summary-extras"></div>
@@ -730,109 +769,396 @@
   </div>
 </main>
 
-
 <footer>
   <strong>Tap’d Up</strong><br>
   @get.tapdup · tapdup.co.uk<br><br>
   <small>Enjoy responsibly. 18+ only.</small>
 </footer>
 
-
 <script>
-  const packageInputs = document.querySelectorAll('input[name="package"]');
-  const drinkInputs = document.querySelectorAll('input[name="drink"]');
-  const extraInputs = document.querySelectorAll('.extra-check');
 
-  const summaryPackage = document.getElementById('summary-package');
-  const summaryPackagePrice = document.getElementById('summary-package-price');
-  const summaryDrink = document.getElementById('summary-drink');
-  const summaryExtras = document.getElementById('summary-extras');
-  const summaryTotal = document.getElementById('summary-total');
+  /*
+    ==========================================================
+    TAP'D UP DRINK LIST
+    Change customer upgrade prices here later if required.
+    ==========================================================
+  */
+
+  const drinks = {
+
+    30: {
+
+      lager: [
+        { name: "Brains Bayside Lager", addon: 0 }
+      ],
+
+      cider: [
+        { name: "Slack Alice Cider", addon: 0 },
+        { name: "Taffy Apples", addon: 0 },
+        { name: "Taffy Berry", addon: 0 },
+        { name: "Taffy Haze", addon: 0 },
+        { name: "Inch's Riversider", addon: 5 },
+        { name: "Orchard Thieves", addon: 5 },
+        { name: "Kopparberg Strawberry & Lime", addon: 15 },
+        { name: "Old Mout Berries & Cherries", addon: 20 },
+        { name: "Old Mout Flavourwave Multi", addon: 20 },
+        { name: "Cornish Orchards Raspberry & Elderflower", addon: 25 },
+        { name: "Rekorderlig Strawberry & Lime", addon: 50 }
+      ]
+
+    },
+
+    50: {
+
+      lager: [
+        { name: "Foster's", addon: 0 },
+        { name: "Carlsberg", addon: 5 },
+        { name: "Coors", addon: 10 },
+        { name: "Carling", addon: 10 },
+        { name: "Veltins Pilsener", addon: 15 },
+        { name: "Carlsberg Export", addon: 25 },
+        { name: "Amstel", addon: 25 },
+        { name: "Hawkstone Session", addon: 30 },
+        { name: "Madri", addon: 40 },
+        { name: "Hawkstone Premium Lager", addon: 40 },
+        { name: "San Miguel", addon: 40 },
+        { name: "Staropramen", addon: 45 },
+        { name: "Sapporo", addon: 45 },
+        { name: "Heineken", addon: 50 },
+        { name: "Peroni", addon: 50 },
+        { name: "Cobra", addon: 50 },
+        { name: "Birra Moretti", addon: 55 }
+      ],
+
+      cider: [
+        { name: "Stowford Press", addon: 0 },
+        { name: "Henry Westons Vintage", addon: 0 },
+        { name: "Stowford Press Dark Berry", addon: 0 },
+        { name: "Thatchers Gold", addon: 20 },
+        { name: "Thatchers Haze", addon: 20 },
+        { name: "Inch's Medium Apple", addon: 25 },
+        { name: "Sharps Cold River", addon: 30 },
+        { name: "Somersby", addon: 30 },
+        { name: "Rekorderlig Wild Berries", addon: 35 },
+        { name: "Henry Westons English Berry", addon: 40 },
+        { name: "Thatchers Juicy Apple", addon: 40 },
+        { name: "Strongbow Original", addon: 45 },
+        { name: "Somersby Blackberry", addon: 45 },
+        { name: "Aspall Draught", addon: 50 },
+        { name: "Carling Black Fruits", addon: 55 },
+        { name: "Hawkstone Cider", addon: 55 },
+        { name: "Strongbow Dark Fruits", addon: 65 }
+      ]
+
+    }
+
+  };
+
+
+  const packageInputs =
+    document.querySelectorAll('input[name="package"]');
+
+  const extraInputs =
+    document.querySelectorAll('.extra-check');
+
+  const drinkTypeButtons =
+    document.querySelectorAll('.drink-type');
+
+  const drinkList =
+    document.getElementById('drink-list');
+
+  const summaryPackage =
+    document.getElementById('summary-package');
+
+  const summaryPackagePrice =
+    document.getElementById('summary-package-price');
+
+  const summaryDrink =
+    document.getElementById('summary-drink');
+
+  const summaryExtras =
+    document.getElementById('summary-extras');
+
+  const summaryTotal =
+    document.getElementById('summary-total');
+
+
+  let selectedDrinkType = 'lager';
+  let selectedDrink = null;
+
 
   function money(value) {
     return '£' + Number(value).toFixed(0);
   }
 
+
+  function getSelectedPackage() {
+    return document.querySelector(
+      'input[name="package"]:checked'
+    );
+  }
+
+
   function setPackageFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    const chosenPackage = params.get('package');
+
+    const params =
+      new URLSearchParams(window.location.search);
+
+    const chosenPackage =
+      params.get('package');
 
     if (chosenPackage === '50') {
       document.getElementById('party50').checked = true;
     } else {
       document.getElementById('party30').checked = true;
     }
+
   }
 
-  function updateSummary() {
-    const selectedPackage =
-      document.querySelector('input[name="package"]:checked');
 
-    const selectedDrink =
-      document.querySelector('input[name="drink"]:checked');
+  function renderDrinks() {
+
+    const selectedPackage =
+      getSelectedPackage();
+
+    if (!selectedPackage) {
+      return;
+    }
+
+    const packageSize =
+      Number(selectedPackage.value);
+
+    const availableDrinks =
+      drinks[packageSize][selectedDrinkType];
+
+    drinkList.innerHTML = '';
+
+    selectedDrink = null;
+
+    if (!availableDrinks || availableDrinks.length === 0) {
+
+      drinkList.innerHTML =
+        '<div class="drink-message">' +
+        'More ' + packageSize + 'L ' +
+        selectedDrinkType +
+        ' options are being added.' +
+        '</div>';
+
+      updateSummary();
+      return;
+    }
+
+    availableDrinks.forEach((drink, index) => {
+
+      const button =
+        document.createElement('button');
+
+      button.type = 'button';
+      button.className = 'drink-choice';
+
+      const priceText =
+        drink.addon === 0
+          ? 'INCLUDED'
+          : '+' + money(drink.addon);
+
+      button.innerHTML =
+        '<span class="drink-name">' +
+        drink.name +
+        '</span>' +
+        '<span class="drink-upgrade">' +
+        priceText +
+        '</span>';
+
+      button.addEventListener('click', function () {
+
+        document
+          .querySelectorAll('.drink-choice')
+          .forEach(item => {
+            item.classList.remove('selected');
+          });
+
+        button.classList.add('selected');
+
+        selectedDrink = drink;
+
+        updateSummary();
+
+      });
+
+      drinkList.appendChild(button);
+
+      /*
+        Automatically select the first drink.
+      */
+      if (index === 0) {
+        button.classList.add('selected');
+        selectedDrink = drink;
+      }
+
+    });
+
+    updateSummary();
+
+  }
+
+
+  function updateSummary() {
+
+    const selectedPackage =
+      getSelectedPackage();
 
     let total = 0;
 
     if (selectedPackage) {
-      const packagePrice = Number(selectedPackage.dataset.price);
+
+      const packagePrice =
+        Number(selectedPackage.dataset.price);
+
       total += packagePrice;
 
       summaryPackage.textContent =
-        selectedPackage.value === '50' ? 'Party 50' : 'Party 30';
+        selectedPackage.value === '50'
+          ? 'Party 50'
+          : 'Party 30';
 
-      summaryPackagePrice.textContent = money(packagePrice);
+      summaryPackagePrice.textContent =
+        money(packagePrice);
+
     }
+
 
     if (selectedDrink) {
-      const drinkPrice = Number(selectedDrink.dataset.price);
-      total += drinkPrice;
+
+      total += selectedDrink.addon;
 
       summaryDrink.textContent =
-        selectedDrink.value +
-        (drinkPrice > 0 ? ' (+' + money(drinkPrice) + ')' : '');
+        selectedDrink.name +
+        (
+          selectedDrink.addon > 0
+            ? ' (+' + money(selectedDrink.addon) + ')'
+            : ' (Included)'
+        );
+
+    } else {
+
+      summaryDrink.textContent =
+        'Choose your pint';
+
     }
+
 
     summaryExtras.innerHTML = '';
 
+
     extraInputs.forEach(extra => {
+
       if (extra.checked) {
-        const extraPrice = Number(extra.dataset.price);
+
+        const extraPrice =
+          Number(extra.dataset.price);
+
         total += extraPrice;
 
-        const row = document.createElement('div');
-        row.className = 'summary-row';
+        const row =
+          document.createElement('div');
+
+        row.className =
+          'summary-row';
 
         row.innerHTML =
-          '<span>' + extra.dataset.name + '</span>' +
-          '<strong>+' + money(extraPrice) + '</strong>';
+          '<span>' +
+          extra.dataset.name +
+          '</span>' +
+          '<strong>+' +
+          money(extraPrice) +
+          '</strong>';
 
         summaryExtras.appendChild(row);
+
       }
+
     });
 
-    summaryTotal.textContent = money(total);
+
+    summaryTotal.textContent =
+      money(total);
+
   }
 
+
+  /*
+    PACKAGE CHANGE
+  */
+
   packageInputs.forEach(input => {
-    input.addEventListener('change', updateSummary);
+
+    input.addEventListener('change', function () {
+      renderDrinks();
+    });
+
   });
 
-  drinkInputs.forEach(input => {
-    input.addEventListener('change', updateSummary);
+
+  /*
+    LAGER / CIDER SWITCH
+  */
+
+  drinkTypeButtons.forEach(button => {
+
+    button.addEventListener('click', function () {
+
+      selectedDrinkType =
+        button.dataset.type;
+
+      drinkTypeButtons.forEach(item => {
+        item.classList.remove('active');
+      });
+
+      button.classList.add('active');
+
+      renderDrinks();
+
+    });
+
   });
+
+
+  /*
+    EXTRAS
+  */
 
   extraInputs.forEach(input => {
-    input.addEventListener('change', updateSummary);
+
+    input.addEventListener(
+      'change',
+      updateSummary
+    );
+
   });
 
-  document.getElementById('enquiry-button').addEventListener('click', function () {
-    alert(
-      'Tap’d Up booking preview — this is where the customer enquiry / checkout will continue once bookings go live.'
-    );
-  });
+
+  /*
+    DEMO ENQUIRY
+  */
+
+  document
+    .getElementById('enquiry-button')
+    .addEventListener('click', function () {
+
+      alert(
+        'Tap’d Up booking preview — this is where the customer enquiry / checkout will continue once bookings go live.'
+      );
+
+    });
+
+
+  /*
+    START BUILDER
+  */
 
   setPackageFromURL();
-  updateSummary();
+  renderDrinks();
+
 </script>
 
 </body>
