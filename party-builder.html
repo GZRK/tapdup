@@ -220,6 +220,10 @@
       font: inherit;
       font-weight: 900;
       transition: 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
     }
 
     .drink-type:hover {
@@ -229,6 +233,31 @@
     .drink-type.active {
       border-color: var(--cyan);
       background: rgba(22, 217, 227, 0.06);
+    }
+
+    .drink-type-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+      flex: 0 0 24px;
+    }
+
+    .drink-type-icon svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .drink-type[data-type="cider"] .drink-type-icon {
+      color: var(--pink);
     }
 
     /* DRINK LIST */
@@ -433,46 +462,6 @@
       color: var(--cyan);
     }
 
-    /* FORM */
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label {
-      font-size: 0.8rem;
-      font-weight: 800;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      border: 1px solid #343841;
-      border-radius: 11px;
-      background: #0b0d10;
-      color: white;
-      padding: 13px;
-      font: inherit;
-      outline: none;
-    }
-
-    .field textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
     /* SUMMARY */
 
     .summary {
@@ -553,16 +542,286 @@
       margin-top: 11px;
     }
 
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
     footer {
+      position: relative;
+      overflow: hidden;
+      background: #07080a;
       border-top: 1px solid #24262c;
-      text-align: center;
+      padding: 40px 24px 25px;
       color: #8e929c;
-      padding: 35px 20px;
-      font-size: 0.85rem;
     }
 
-    footer strong {
+    footer::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 330px;
+      right: -10px;
+      bottom: -45px;
+      background: url("tapdup-crown.png") center / contain no-repeat;
+      opacity: 0.07;
+      transform: rotate(-9deg);
+      transform-origin: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .footer-inner,
+    .footer-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.05fr .9fr 1.05fr 1.35fr;
+      gap: 38px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      width: 150px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .footer-heading {
       color: white;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .86rem;
+      transition: .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-handle {
+      color: var(--cyan);
+      font-weight: 900;
+      margin-bottom: 12px;
+      font-size: .88rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tap-icon {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border: 2px solid var(--cyan);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle, #0a0c0f 57%, transparent 59%),
+        repeating-conic-gradient(
+          from 5deg,
+          var(--cyan) 0deg 12deg,
+          #0a0c0f 12deg 15deg
+        );
+      color: white;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      box-shadow:
+        0 0 0 1px rgba(22,217,227,.18),
+        0 0 12px rgba(22,217,227,.08);
+    }
+
+    .tap-icon:hover {
+      transform: translateY(-2px) scale(1.04);
+      border-color: var(--pink);
+      box-shadow:
+        0 0 0 1px rgba(255,61,141,.25),
+        0 0 16px rgba(255,61,141,.16);
+    }
+
+    .tap-icon svg {
+      width: 17px;
+      height: 17px;
+      display: block;
+      fill: currentColor;
+      stroke: currentColor;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tap-icon.facebook svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(-1px, -1px);
+    }
+
+    .tap-icon.instagram svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(0, 0);
+    }
+
+    .tap-icon.tiktok svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(1px, 0);
+    }
+
+    .tap-icon.youtube svg {
+      width: 19px;
+      height: 19px;
+      transform: translate(0, 0);
+    }
+
+    .contact-row.email .tap-icon svg {
+      width: 16px;
+      height: 16px;
+      transform: translate(0, 0);
+    }
+
+    .contact-row.phone .tap-icon svg {
+      width: 16px;
+      height: 16px;
+      transform: translate(-1px, 0);
+    }
+
+    .contact-row.website .tap-icon svg {
+      width: 17px;
+      height: 17px;
+      transform: translate(0, 0);
+    }
+
+    .tap-icon.instagram {
+      color: var(--pink);
+    }
+
+    .tap-icon.facebook,
+    .tap-icon.youtube {
+      color: var(--cyan);
+    }
+
+    .tap-icon.tiktok {
+      color: white;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .contact-row .tap-icon {
+      width: 34px;
+      height: 34px;
+      flex-basis: 34px;
+    }
+
+    .contact-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .contact-label {
+      color: #7f858f;
+      font-size: .62rem;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .contact-value {
+      color: var(--muted);
+      font-size: .82rem;
+      overflow-wrap: anywhere;
+      transition: color .2s;
+    }
+
+    .contact-row:hover .contact-value {
+      color: var(--cyan);
+    }
+
+    .contact-row.phone .tap-icon {
+      color: var(--pink);
+    }
+
+    .contact-row.email .tap-icon,
+    .contact-row.website .tap-icon {
+      color: var(--cyan);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 28px auto 0;
+      padding-top: 19px;
+      border-top: 1px solid #24262c;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: #70757e;
+      font-size: .76rem;
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 34px;
+      }
+
+      footer::before {
+        width: 390px;
+        height: 270px;
+        right: -70px;
+        bottom: -35px;
+      }
     }
 
     @media (max-width: 850px) {
@@ -584,16 +843,38 @@
         padding: 20px 16px;
       }
 
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
       .booking-confirmation {
         grid-template-columns: 1fr;
       }
 
       .selected-package-box {
         align-items: flex-start;
+      }
+
+      .drink-type {
+        padding: 13px 10px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-logo {
+        width: 135px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      footer::before {
+        width: 310px;
+        height: 215px;
+        right: -90px;
+        bottom: -25px;
+        opacity: .055;
       }
     }
   </style>
@@ -630,8 +911,6 @@
       Pick your drink, add any extras and see your party price as you build it.
     </p>
 
-
-    <!-- BOOKING DATES -->
 
     <div class="booking-confirmation">
 
@@ -672,37 +951,25 @@
           Your selected Tap’d Up package.
         </p>
 
-
         <div class="selected-package-box">
 
           <div>
 
-            <div
-              class="selected-package-name"
-              id="selected-package-name"
-            >
+            <div class="selected-package-name" id="selected-package-name">
               Party 30
             </div>
 
-            <div
-              class="selected-package-desc"
-              id="selected-package-desc"
-            >
+            <div class="selected-package-desc" id="selected-package-desc">
               30L keg · approx. 52 pints · 20 reusable pint cups
             </div>
 
           </div>
 
-
-          <div
-            class="selected-package-price"
-            id="selected-package-price"
-          >
+          <div class="selected-package-price" id="selected-package-price">
             £200
           </div>
 
         </div>
-
 
         <a
           href="calendar.html?package=30"
@@ -727,7 +994,6 @@
           Choose lager or cider, then pick what you'd like on tap.
         </p>
 
-
         <div class="drink-type-selector">
 
           <button
@@ -735,7 +1001,15 @@
             class="drink-type active"
             data-type="lager"
           >
-            🍺 Lager
+            <span class="drink-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6 5h10v15H6z"/>
+                <path d="M16 8h2.2a2.8 2.8 0 0 1 0 5.6H16"/>
+                <path d="M8.5 8v8M11 8v8M13.5 8v8"/>
+                <path d="M7 5c.4-1.5 1.5-2 2.5-1.2.7-1.3 2.4-1.3 3.1 0 1-.8 2.2-.3 2.4 1.2"/>
+              </svg>
+            </span>
+            <span>Lager</span>
           </button>
 
           <button
@@ -743,16 +1017,19 @@
             class="drink-type"
             data-type="cider"
           >
-            🍏 Cider
+            <span class="drink-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 7c-4-2.2-7 .4-7 4.3C5 16.2 8.3 20 12 20s7-3.8 7-8.7C19 7.4 16 4.8 12 7z"/>
+                <path d="M12 7c-.2-2.2.8-3.7 2.7-4.5"/>
+                <path d="M13.5 4.2c1.5-.8 3-.6 4.1.3-1.2 1.3-2.8 1.6-4.1-.3z"/>
+              </svg>
+            </span>
+            <span>Cider</span>
           </button>
 
         </div>
 
-
-        <div
-          class="drink-list"
-          id="drink-list"
-        ></div>
+        <div class="drink-list" id="drink-list"></div>
 
       </section>
 
@@ -769,11 +1046,7 @@
           Add a little more to your Tap’d Up setup.
         </p>
 
-
         <div class="upgrade-grid">
-
-
-          <!-- EXTRA CUPS -->
 
           <div class="upgrade-card">
 
@@ -791,16 +1064,11 @@
           </div>
 
 
-          <!-- EXTRA NIGHT -->
-
           <div class="upgrade-card">
 
             <label class="toggle-line">
 
-              <input
-                type="checkbox"
-                id="extra-night"
-              >
+              <input type="checkbox" id="extra-night">
 
               <div style="flex:1;">
 
@@ -825,8 +1093,6 @@
           </div>
 
 
-          <!-- EXTRA KEG -->
-
           <div class="upgrade-card">
 
             <div class="upgrade-heading">
@@ -839,10 +1105,7 @@
               Choose lager or cider independently from your main package.
             </div>
 
-            <div
-              class="availability"
-              style="margin-bottom:12px;"
-            >
+            <div class="availability" style="margin-bottom:12px;">
               Subject to availability
             </div>
 
@@ -851,16 +1114,11 @@
           </div>
 
 
-          <!-- EXTRA DRAUGHT UNIT -->
-
           <div class="upgrade-card">
 
             <label class="toggle-line">
 
-              <input
-                type="checkbox"
-                id="extra-unit"
-              >
+              <input type="checkbox" id="extra-unit">
 
               <div style="flex:1;">
 
@@ -884,12 +1142,10 @@
 
           </div>
 
-
         </div>
 
       </section>
 
-  
     </div>
 
 
@@ -903,30 +1159,25 @@
 
       <h2>Order Summary</h2>
 
-
       <div class="summary-row">
         <span>Package</span>
         <strong id="summary-package">Party 30</strong>
       </div>
-
 
       <div class="summary-row">
         <span>Package Price</span>
         <strong id="summary-package-price">£200</strong>
       </div>
 
-
       <div class="summary-row">
         <span>Delivery</span>
         <strong id="summary-delivery">—</strong>
       </div>
 
-
       <div class="summary-row">
         <span>Collection</span>
         <strong id="summary-collection">—</strong>
       </div>
-
 
       <div
         class="summary-row"
@@ -942,21 +1193,17 @@
         </strong>
       </div>
 
-
       <div class="summary-row">
         <span>Your Pint</span>
         <strong id="summary-drink">Choose your pint</strong>
       </div>
 
-
       <div id="summary-extras"></div>
-
 
       <div class="summary-total">
         <span>Running Total</span>
         <strong id="summary-total">£200</strong>
       </div>
-
 
       <button
         class="btn"
@@ -965,7 +1212,6 @@
       >
         Continue
       </button>
-
 
       <div class="summary-note">
         All bookings are subject to availability and confirmation.
@@ -978,17 +1224,220 @@
 </main>
 
 
-<footer>
+<!-- FOOTER -->
 
-  <strong>Tap’d Up</strong><br>
+<footer id="footer">
 
-  @get.tapdup · tapdup.co.uk
+  <div class="footer-inner">
 
-  <br><br>
+    <div class="footer-brand">
 
-  <small>
-    Enjoy responsibly. 18+ only.
-  </small>
+      <img
+        src="tapdup-logo.png"
+        alt="Tap’d Up - Pour Your Own Pint!"
+        class="footer-logo"
+      >
+
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Quick Links
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html#how">How It Works</a>
+        <a href="index.html#packages">Packages</a>
+        <a href="index.html#action">Tap’d Up In Action</a>
+        <a href="index.html#videos">Videos</a>
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Follow Tap’d Up
+      </div>
+
+      <div class="footer-handle">
+        @get.tapdup
+      </div>
+
+      <div class="footer-socials">
+
+        <!-- FACEBOOK -->
+        <a
+          href="https://www.facebook.com/get.tapdup/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on Facebook"
+          class="tap-icon facebook"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M13.5 22v-9h3l.5-3.5h-3.5V7.25c0-1 .28-1.75 1.78-1.75H17V2.38C16.7 2.34 15.66 2.25 14.43 2.25c-2.57 0-4.33 1.57-4.33 4.45v2.8H7.2V13h2.9v9h3.4z"/>
+          </svg>
+        </a>
+
+
+        <!-- INSTAGRAM -->
+        <a
+          href="https://www.instagram.com/get.tapdup/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on Instagram"
+          class="tap-icon instagram"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
+          </svg>
+        </a>
+
+
+        <!-- TIKTOK -->
+        <a
+          href="https://www.tiktok.com/@get.tapdup"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on TikTok"
+          class="tap-icon tiktok"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M15.5 3c.35 2.1 1.55 3.45 3.5 3.9v3.1a8.2 8.2 0 0 1-3.45-1v6.15A5.85 5.85 0 1 1 10.5 9.35v3.15a2.75 2.75 0 1 0 1.9 2.65V3h3.1z"/>
+          </svg>
+        </a>
+
+
+        <!-- YOUTUBE -->
+        <a
+          href="https://www.youtube.com/@get.tapdup"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on YouTube"
+          class="tap-icon youtube"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C19 4.8 12 4.8 12 4.8s-7 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.5.4 8.5.4 8.5.4s7 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zm-13.2 3.4V8.6L15.8 12l-6 3.4z"/>
+          </svg>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Contact
+      </div>
+
+      <div class="contact-list">
+
+
+        <!-- EMAIL -->
+
+        <a
+          href="mailto:hello@tapdup.co.uk"
+          class="contact-row email"
+        >
+
+          <span class="tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 6h18v12H3V6zm0 1 9 7 9-7"
+              />
+            </svg>
+          </span>
+
+          <span class="contact-copy">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">hello@tapdup.co.uk</span>
+          </span>
+
+        </a>
+
+
+        <!-- PHONE -->
+
+        <a
+          href="tel:+447962717784"
+          class="contact-row phone"
+        >
+
+          <span class="tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.7 3.5 9.3 7l-1.8 2.1c1.4 2.8 3.6 5 6.4 6.4l2.1-1.8 3.5 2.6c.4.3.6.8.4 1.3-.5 1.5-1.9 2.5-3.5 2.4C9.8 19.6 4.4 14.2 4 7.6 3.9 6 4.9 4.6 6.4 4.1c.1-.1.2-.1.3-.1z"
+              />
+            </svg>
+          </span>
+
+          <span class="contact-copy">
+            <span class="contact-label">Call Us</span>
+            <span class="contact-value">07962 717784</span>
+          </span>
+
+        </a>
+
+
+        <!-- WEBSITE -->
+
+        <a
+          href="https://www.tapdup.co.uk"
+          class="contact-row website"
+        >
+
+          <span class="tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+                fill="none"
+                stroke-width="2"
+              />
+              <path
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                d="M3.5 12h17M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21M12 3C9.5 5.5 8.2 8.5 8.2 12s1.3 6.5 3.8 9"
+              />
+            </svg>
+          </span>
+
+          <span class="contact-copy">
+            <span class="contact-label">Website</span>
+            <span class="contact-value">www.tapdup.co.uk</span>
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>© 2026 Tap’d Up</span>
+    <span>South Wales</span>
+    <span>Enjoy responsibly. 18+ only.</span>
+
+  </div>
 
 </footer>
 
@@ -1002,20 +1451,16 @@
   const params =
     new URLSearchParams(window.location.search);
 
-
   const packageType =
     params.get('package') === '50'
       ? 50
       : 30;
 
-
   const deliveryDate =
     params.get('start') || '';
 
-
   const collectionDate =
     params.get('end') || '';
-
 
   const totalNights =
     Math.max(
@@ -1023,20 +1468,17 @@
       Number(params.get('nights')) || 1
     );
 
-
   const calendarExtraNights =
     Math.max(
       0,
       Number(params.get('extranights')) || 0
     );
 
-
   const calendarDateCost =
     Math.max(
       0,
       Number(params.get('datecost')) || 0
     );
-
 
   const basePrice =
     packageType === 50
@@ -1055,12 +1497,10 @@
       return 'Not selected';
     }
 
-
     const date =
       new Date(
         dateString + 'T12:00:00'
       );
-
 
     return date.toLocaleDateString(
       'en-GB',
@@ -1073,7 +1513,6 @@
     );
 
   }
-
 
 
   /* ======================================================
@@ -1095,29 +1534,24 @@
       'selected-package-price'
     );
 
-
   selectedPackageName.textContent =
     packageType === 50
       ? 'Party 50'
       : 'Party 30';
-
 
   selectedPackageDesc.textContent =
     packageType === 50
       ? '50L keg · approx. 88 pints · 20 reusable pint cups'
       : '30L keg · approx. 52 pints · 20 reusable pint cups';
 
-
   selectedPackagePrice.textContent =
     money(basePrice);
-
 
   document.getElementById(
     'change-dates'
   ).href =
     'calendar.html?package=' +
     packageType;
-
 
 
   /* ======================================================
@@ -1129,12 +1563,10 @@
   ).textContent =
     formatDate(deliveryDate);
 
-
   document.getElementById(
     'top-collection'
   ).textContent =
     formatDate(collectionDate);
-
 
   document.getElementById(
     'top-hire'
@@ -1143,18 +1575,15 @@
       ? '1 night'
       : totalNights + ' nights';
 
-
   document.getElementById(
     'summary-delivery'
   ).textContent =
     formatDate(deliveryDate);
 
-
   document.getElementById(
     'summary-collection'
   ).textContent =
     formatDate(collectionDate);
-
 
 
   /* ======================================================
@@ -1190,7 +1619,6 @@
       ]
 
     },
-
 
     50: {
 
@@ -1239,13 +1667,10 @@
   };
 
 
-  /* DEMO STANDALONE EXTRA-KEG BASE PRICES */
-
   const extraKegBase = {
     30: 100,
     50: 140
   };
-
 
 
   /* ======================================================
@@ -1257,66 +1682,55 @@
       '.drink-type'
     );
 
-
   const drinkList =
     document.getElementById(
       'drink-list'
     );
-
 
   const cupsArea =
     document.getElementById(
       'cups-area'
     );
 
-
   const extraKegArea =
     document.getElementById(
       'extra-keg-area'
     );
-
 
   const extraNight =
     document.getElementById(
       'extra-night'
     );
 
-
   const extraUnit =
     document.getElementById(
       'extra-unit'
     );
-
 
   const summaryPackage =
     document.getElementById(
       'summary-package'
     );
 
-
   const summaryPackagePrice =
     document.getElementById(
       'summary-package-price'
     );
-
 
   const summaryDrink =
     document.getElementById(
       'summary-drink'
     );
 
-
   const summaryExtras =
     document.getElementById(
       'summary-extras'
     );
 
-
   const summaryTotal =
     document.getElementById(
       'summary-total'
     );
-
 
   let selectedDrinkType = 'lager';
 
@@ -1324,11 +1738,9 @@
 
   let drinkListOpen = false;
 
-
   let selectedCups = 0;
 
   let cupsOpen = false;
-
 
   let extraKegOpen = false;
 
@@ -1337,7 +1749,6 @@
   let extraKegType = 'lager';
 
   let selectedExtraKeg = null;
-
 
 
   /* ======================================================
@@ -1349,9 +1760,7 @@
     const availableDrinks =
       drinks[packageType][selectedDrinkType];
 
-
     drinkList.innerHTML = '';
-
 
     if (
       selectedDrink &&
@@ -1361,16 +1770,13 @@
       const box =
         document.createElement('div');
 
-
       box.className =
         'selected-box';
-
 
       const priceText =
         selectedDrink.addon === 0
           ? 'INCLUDED'
           : '+' + money(selectedDrink.addon);
-
 
       box.innerHTML = `
         <div class="selected-main">
@@ -1399,7 +1805,6 @@
         </button>
       `;
 
-
       box
         .querySelector(
           '.change-button'
@@ -1412,7 +1817,6 @@
           renderDrinkArea();
 
         };
-
 
       drinkList.appendChild(box);
 
@@ -1429,12 +1833,10 @@
       const prompt =
         document.createElement('button');
 
-
       prompt.type = 'button';
 
       prompt.className =
         'drink-prompt';
-
 
       prompt.innerHTML = `
         <span>
@@ -1446,7 +1848,6 @@
         </span>
       `;
 
-
       prompt.onclick =
         function () {
 
@@ -1455,7 +1856,6 @@
           renderDrinkArea();
 
         };
-
 
       drinkList.appendChild(prompt);
 
@@ -1470,18 +1870,15 @@
         const button =
           document.createElement('button');
 
-
         button.type = 'button';
 
         button.className =
           'drink-choice';
 
-
         const priceText =
           drink.addon === 0
             ? 'INCLUDED'
             : '+' + money(drink.addon);
-
 
         button.innerHTML = `
           <div class="drink-info">
@@ -1501,7 +1898,6 @@
           </span>
         `;
 
-
         button.onclick =
           function () {
 
@@ -1515,14 +1911,12 @@
 
           };
 
-
         drinkList.appendChild(button);
 
       }
     );
 
   }
-
 
 
   /* ======================================================
@@ -1533,7 +1927,6 @@
 
     cupsArea.innerHTML = '';
 
-
     if (
       selectedCups > 0 &&
       !cupsOpen
@@ -1542,10 +1935,8 @@
       const box =
         document.createElement('div');
 
-
       box.className =
         'selected-box';
-
 
       box.innerHTML = `
         <div class="selected-main">
@@ -1576,7 +1967,6 @@
         </button>
       `;
 
-
       box
         .querySelector(
           '.change-cups'
@@ -1589,7 +1979,6 @@
           renderCups();
 
         };
-
 
       box
         .querySelector(
@@ -1608,7 +1997,6 @@
 
         };
 
-
       cupsArea.appendChild(box);
 
       return;
@@ -1621,12 +2009,10 @@
       const prompt =
         document.createElement('button');
 
-
       prompt.type = 'button';
 
       prompt.className =
         'upgrade-prompt';
-
 
       prompt.innerHTML = `
         <span>
@@ -1638,7 +2024,6 @@
         </span>
       `;
 
-
       prompt.onclick =
         function () {
 
@@ -1647,7 +2032,6 @@
           renderCups();
 
         };
-
 
       cupsArea.appendChild(prompt);
 
@@ -1662,12 +2046,10 @@
         const button =
           document.createElement('button');
 
-
         button.type = 'button';
 
         button.className =
           'upgrade-choice';
-
 
         button.innerHTML = `
           <span>
@@ -1678,7 +2060,6 @@
             +${money(amount)}
           </strong>
         `;
-
 
         button.onclick =
           function () {
@@ -1693,14 +2074,12 @@
 
           };
 
-
         cupsArea.appendChild(button);
 
       }
     );
 
   }
-
 
 
   /* ======================================================
@@ -1711,7 +2090,6 @@
 
     extraKegArea.innerHTML = '';
 
-
     if (
       selectedExtraKeg &&
       !extraKegOpen
@@ -1721,14 +2099,11 @@
         extraKegBase[extraKegSize] +
         selectedExtraKeg.addon;
 
-
       const box =
         document.createElement('div');
 
-
       box.className =
         'selected-box';
-
 
       box.innerHTML = `
         <div class="selected-main">
@@ -1768,7 +2143,6 @@
         </button>
       `;
 
-
       box
         .querySelector(
           '.change-extra-keg'
@@ -1781,7 +2155,6 @@
           renderExtraKeg();
 
         };
-
 
       box
         .querySelector(
@@ -1804,7 +2177,6 @@
 
         };
 
-
       extraKegArea.appendChild(box);
 
       return;
@@ -1817,12 +2189,10 @@
       const prompt =
         document.createElement('button');
 
-
       prompt.type = 'button';
 
       prompt.className =
         'upgrade-prompt';
-
 
       prompt.innerHTML = `
         <span>
@@ -1834,7 +2204,6 @@
         </span>
       `;
 
-
       prompt.onclick =
         function () {
 
@@ -1843,7 +2212,6 @@
           renderExtraKeg();
 
         };
-
 
       extraKegArea.appendChild(prompt);
 
@@ -1859,33 +2227,27 @@
       const heading =
         document.createElement('div');
 
-
       heading.innerHTML = `
         <strong>
           Choose keg size
         </strong>
       `;
 
-
       extraKegArea.appendChild(
         heading
       );
 
-
       const tabs =
         document.createElement('div');
 
-
       tabs.className =
         'mini-tabs';
-
 
       [30,50].forEach(
         size => {
 
           const button =
             document.createElement('button');
-
 
           button.type = 'button';
 
@@ -1894,7 +2256,6 @@
 
           button.textContent =
             size + 'L';
-
 
           button.onclick =
             function () {
@@ -1909,12 +2270,10 @@
 
             };
 
-
           tabs.appendChild(button);
 
         }
       );
-
 
       extraKegArea.appendChild(
         tabs
@@ -1929,7 +2288,6 @@
 
     const sizeHeading =
       document.createElement('div');
-
 
     sizeHeading.innerHTML = `
       <div style="
@@ -1954,11 +2312,9 @@
       </div>
     `;
 
-
     extraKegArea.appendChild(
       sizeHeading
     );
-
 
     sizeHeading
       .querySelector(
@@ -1979,10 +2335,8 @@
     const typeTabs =
       document.createElement('div');
 
-
     typeTabs.className =
       'mini-tabs';
-
 
     ['lager','cider'].forEach(
       type => {
@@ -1990,9 +2344,7 @@
         const button =
           document.createElement('button');
 
-
         button.type = 'button';
-
 
         button.className =
           'mini-tab' +
@@ -2002,12 +2354,10 @@
               : ''
           );
 
-
         button.textContent =
           type === 'lager'
-            ? '🍺 Lager'
-            : '🍏 Cider';
-
+            ? 'Lager'
+            : 'Cider';
 
         button.onclick =
           function () {
@@ -2020,14 +2370,12 @@
 
           };
 
-
         typeTabs.appendChild(
           button
         );
 
       }
     );
-
 
     extraKegArea.appendChild(
       typeTabs
@@ -2043,21 +2391,17 @@
               'button'
             );
 
-
           button.type =
             'button';
 
-
           button.className =
             'drink-choice';
-
 
           const fullPrice =
             extraKegBase[
               extraKegSize
             ] +
             drink.addon;
-
 
           button.innerHTML = `
             <div class="drink-info">
@@ -2077,7 +2421,6 @@
             </span>
           `;
 
-
           button.onclick =
             function () {
 
@@ -2093,7 +2436,6 @@
 
             };
 
-
           extraKegArea.appendChild(
             button
           );
@@ -2102,7 +2444,6 @@
       );
 
   }
-
 
 
   /* ======================================================
@@ -2119,16 +2460,13 @@
         'div'
       );
 
-
     row.className =
       'summary-row';
-
 
     row.innerHTML = `
       <span>${label}</span>
       <strong>${value}</strong>
     `;
-
 
     summaryExtras.appendChild(
       row
@@ -2137,23 +2475,19 @@
   }
 
 
-
   function updateSummary() {
 
     let total =
       basePrice +
       calendarDateCost;
 
-
     summaryPackage.textContent =
       packageType === 50
         ? 'Party 50'
         : 'Party 30';
 
-
     summaryPackagePrice.textContent =
       money(basePrice);
-
 
 
     /* CALENDAR EXTRA NIGHTS */
@@ -2163,12 +2497,10 @@
         'calendar-night-row'
       );
 
-
     if (calendarExtraNights > 0) {
 
       calendarNightRow.style.display =
         'flex';
-
 
       document.getElementById(
         'calendar-night-label'
@@ -2177,7 +2509,6 @@
           ? '1 Additional Night'
           : calendarExtraNights +
             ' Additional Nights';
-
 
       document.getElementById(
         'calendar-night-price'
@@ -2197,14 +2528,12 @@
     }
 
 
-
     /* MAIN DRINK */
 
     if (selectedDrink) {
 
       total +=
         selectedDrink.addon;
-
 
       summaryDrink.textContent =
         selectedDrink.name +
@@ -2230,9 +2559,7 @@
     }
 
 
-
     summaryExtras.innerHTML = '';
-
 
 
     /* CUPS */
@@ -2241,7 +2568,6 @@
 
       total +=
         selectedCups;
-
 
       addSummaryRow(
         '+' +
@@ -2257,13 +2583,11 @@
     }
 
 
-
     /* OPTIONAL EXTRA NIGHT */
 
     if (extraNight.checked) {
 
       total += 80;
-
 
       addSummaryRow(
         'Extra Night Extension',
@@ -2271,7 +2595,6 @@
       );
 
     }
-
 
 
     /* EXTRA KEG */
@@ -2284,10 +2607,8 @@
         ] +
         selectedExtraKeg.addon;
 
-
       total +=
         kegPrice;
-
 
       addSummaryRow(
 
@@ -2306,13 +2627,11 @@
     }
 
 
-
     /* EXTRA UNIT */
 
     if (extraUnit.checked) {
 
       total += 50;
-
 
       addSummaryRow(
         'Extra Draught Setup',
@@ -2322,12 +2641,10 @@
     }
 
 
-
     summaryTotal.textContent =
       money(total);
 
   }
-
 
 
   /* ======================================================
@@ -2344,7 +2661,6 @@
           const newType =
             button.dataset.type;
 
-
           if (
             newType ===
             selectedDrinkType
@@ -2352,18 +2668,14 @@
             return;
           }
 
-
           selectedDrinkType =
             newType;
-
 
           selectedDrink =
             null;
 
-
           drinkListOpen =
             false;
-
 
           drinkTypeButtons
             .forEach(
@@ -2376,11 +2688,9 @@
               }
             );
 
-
           button.classList.add(
             'active'
           );
-
 
           renderDrinkArea();
 
@@ -2405,18 +2715,13 @@
   );
 
 
-
-   document
+  document
     .getElementById(
       'enquiry-button'
     )
     .addEventListener(
       'click',
       function () {
-
-        /* ----------------------------------------------
-           CHECK A MAIN DRINK HAS BEEN CHOSEN
-           ---------------------------------------------- */
 
         if (!selectedDrink) {
 
@@ -2435,10 +2740,6 @@
 
         }
 
-
-        /* ----------------------------------------------
-           BUILD EXTRAS LIST
-           ---------------------------------------------- */
 
         const extras = [];
 
@@ -2519,7 +2820,6 @@
             ] +
             selectedExtraKeg.addon;
 
-
           extras.push({
             name:
               'Extra ' +
@@ -2553,10 +2853,6 @@
         }
 
 
-        /* ----------------------------------------------
-           CALCULATE FINAL TOTAL
-           ---------------------------------------------- */
-
         let finalTotal =
           basePrice +
           calendarDateCost +
@@ -2588,10 +2884,6 @@
           finalTotal += 50;
         }
 
-
-        /* ----------------------------------------------
-           SAVE PARTY SELECTIONS
-           ---------------------------------------------- */
 
         const booking = {
 
@@ -2644,10 +2936,6 @@
           JSON.stringify(booking)
         );
 
-
-        /* ----------------------------------------------
-           OPEN CUSTOMER DETAILS PAGE
-           ---------------------------------------------- */
 
         window.location.href =
           'details.html';
