@@ -499,7 +499,7 @@
       color: var(--pink);
       font-family: "Bowlby One SC", "Arial Black", sans-serif;
       text-transform: uppercase;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 400;
       letter-spacing: 0.8px;
     }
@@ -712,7 +712,6 @@
     .tap-icon.instagram svg {
       width: 18px;
       height: 18px;
-      transform: translate(0, 0);
     }
 
     .tap-icon.tiktok svg {
@@ -724,13 +723,11 @@
     .tap-icon.youtube svg {
       width: 19px;
       height: 19px;
-      transform: translate(0, 0);
     }
 
     .contact-row.email .tap-icon svg {
       width: 16px;
       height: 16px;
-      transform: translate(0, 0);
     }
 
     .contact-row.phone .tap-icon svg {
@@ -742,7 +739,6 @@
     .contact-row.website .tap-icon svg {
       width: 17px;
       height: 17px;
-      transform: translate(0, 0);
     }
 
     .tap-icon.instagram {
@@ -876,6 +872,14 @@
 
       .drink-type {
         padding: 13px 10px;
+      }
+
+      .summary-logo {
+        width: 64px;
+      }
+
+      .summary-head {
+        padding-right: 72px;
       }
 
       .footer-inner {
@@ -1086,7 +1090,8 @@
 
           </div>
 
-<div class="upgrade-card">
+
+          <div class="upgrade-card">
 
             <div class="upgrade-heading">
               <strong>Extra Keg</strong>
@@ -1106,7 +1111,7 @@
 
           </div>
 
-</div>
+        </div>
 
       </section>
 
@@ -1197,8 +1202,6 @@
   </div>
 
 </main>
-
-
 <!-- FOOTER -->
 
 <footer id="footer">
@@ -1671,7 +1674,8 @@
     document.getElementById(
       'extra-keg-area'
     );
-const summaryPackage =
+
+  const summaryPackage =
     document.getElementById(
       'summary-package'
     );
@@ -2044,9 +2048,7 @@ const summaryPackage =
     );
 
   }
-
-
-  /* ======================================================
+    /* ======================================================
      EXTRA KEG
      ====================================================== */
 
@@ -2545,7 +2547,9 @@ const summaryPackage =
       );
 
     }
-/* EXTRA KEG */
+
+
+    /* EXTRA KEG */
 
     if (selectedExtraKeg) {
 
@@ -2573,7 +2577,9 @@ const summaryPackage =
       );
 
     }
-summaryTotal.textContent =
+
+
+    summaryTotal.textContent =
       money(total);
 
   }
@@ -2633,7 +2639,9 @@ summaryTotal.textContent =
 
     }
   );
-document
+
+
+  document
     .getElementById(
       'enquiry-button'
     )
@@ -2662,6 +2670,8 @@ document
         const extras = [];
 
 
+        /* CALENDAR-SELECTED EXTRA NIGHTS */
+
         if (calendarExtraNights > 0) {
 
           extras.push({
@@ -2681,6 +2691,8 @@ document
         }
 
 
+        /* DRINK UPGRADE */
+
         if (selectedDrink.addon > 0) {
 
           extras.push({
@@ -2699,6 +2711,8 @@ document
         }
 
 
+        /* EXTRA CUPS */
+
         if (selectedCups > 0) {
 
           extras.push({
@@ -2714,10 +2728,9 @@ document
           });
 
         }
-);
 
-        }
 
+        /* EXTRA KEG */
 
         if (selectedExtraKeg) {
 
@@ -2744,10 +2757,9 @@ document
           });
 
         }
-);
 
-        }
 
+        /* FINAL TOTAL */
 
         let finalTotal =
           basePrice +
@@ -2756,9 +2768,14 @@ document
 
 
         if (selectedCups > 0) {
-          finalTotal += selectedCups;
+
+          finalTotal +=
+            selectedCups;
+
         }
-if (selectedExtraKeg) {
+
+
+        if (selectedExtraKeg) {
 
           finalTotal +=
             extraKegBase[
@@ -2767,7 +2784,11 @@ if (selectedExtraKeg) {
             selectedExtraKeg.addon;
 
         }
-const booking = {
+
+
+        /* SAVE BOOKING */
+
+        const booking = {
 
           packageType:
             packageType,
