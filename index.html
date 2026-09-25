@@ -35,6 +35,7 @@
     }
 
 
+
     /* =========================================================
        18+ AGE GATE
        ========================================================= */
@@ -184,6 +185,7 @@
     }
 
 
+
     /* =========================================================
        HEADER
        ========================================================= */
@@ -224,6 +226,7 @@
     nav a:hover {
       color: var(--cyan);
     }
+
 
 
     /* =========================================================
@@ -306,6 +309,7 @@
     }
 
 
+
     /* =========================================================
        GENERAL
        ========================================================= */
@@ -332,6 +336,7 @@
     .section-title p {
       color: var(--muted);
     }
+
 
 
     /* =========================================================
@@ -398,6 +403,7 @@
       margin-bottom: 8px;
       color: white;
     }
+
 
 
     /* =========================================================
@@ -525,6 +531,7 @@
     }
 
 
+
     /* =========================================================
        UPGRADES
        ========================================================= */
@@ -599,6 +606,7 @@
     }
 
 
+
     /* =========================================================
        DESIGN YOUR OWN
        ========================================================= */
@@ -625,6 +633,7 @@
       line-height: 1.45;
       font-size: 0.9rem;
     }
+
 
 
     /* =========================================================
@@ -669,6 +678,7 @@
     .party-shot-right {
       background-image: url("tapdup-party-3.jpg");
     }
+
 
 
     /* =========================================================
@@ -735,39 +745,40 @@
     }
 
 
+
     /* =========================================================
        FOOTER
        ========================================================= */
 
-  footer {
-  position: relative;
-  overflow: hidden;
-  background: #07080a;
-  border-top: 1px solid #24262c;
-  padding: 40px 24px 25px;
-  color: #8e929c;
-}
+    footer {
+      position: relative;
+      overflow: hidden;
+      background: #07080a;
+      border-top: 1px solid #24262c;
+      padding: 40px 24px 25px;
+      color: #8e929c;
+    }
 
-footer::before {
-  content: "";
-  position: absolute;
-  width: 480px;
-  height: 330px;
-  right: -10px;
-  bottom: -45px;
-  background: url("tapdup-crown.png") center / contain no-repeat;
-  opacity: 0.07;
-  transform: rotate(-9deg);
-  transform-origin: center;
-  pointer-events: none;
-  z-index: 0;
-}
+    footer::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 330px;
+      right: -10px;
+      bottom: -45px;
+      background: url("tapdup-crown.png") center / contain no-repeat;
+      opacity: 0.07;
+      transform: rotate(-9deg);
+      transform-origin: center;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-.footer-inner,
-.footer-bottom {
-  position: relative;
-  z-index: 1;
-}
+    .footer-inner,
+    .footer-bottom {
+      position: relative;
+      z-index: 1;
+    }
 
     .footer-inner {
       max-width: 1100px;
@@ -830,7 +841,6 @@ footer::before {
       flex-wrap: wrap;
     }
 
-    /* Matching Tap'd Up icon treatment */
     .tap-icon {
       width: 36px;
       height: 36px;
@@ -842,25 +852,17 @@ footer::before {
       justify-content: center;
       background:
         radial-gradient(circle, #0a0c0f 57%, transparent 59%),
-        repeating-conic-gradient(
-          from 5deg,
-          var(--cyan) 0deg 12deg,
-          #0a0c0f 12deg 15deg
-        );
+        repeating-conic-gradient(from 5deg, var(--cyan) 0deg 12deg, #0a0c0f 12deg 15deg);
       color: white;
       text-decoration: none;
       transition: transform .2s, box-shadow .2s, border-color .2s;
-      box-shadow:
-        0 0 0 1px rgba(22,217,227,.18),
-        0 0 12px rgba(22,217,227,.08);
+      box-shadow: 0 0 0 1px rgba(22,217,227,.18), 0 0 12px rgba(22,217,227,.08);
     }
 
     .tap-icon:hover {
       transform: translateY(-2px) scale(1.04);
       border-color: var(--pink);
-      box-shadow:
-        0 0 0 1px rgba(255,61,141,.25),
-        0 0 16px rgba(255,61,141,.16);
+      box-shadow: 0 0 0 1px rgba(255,61,141,.25), 0 0 16px rgba(255,61,141,.16);
     }
 
     .tap-icon svg {
@@ -872,56 +874,49 @@ footer::before {
       position: relative;
       z-index: 1;
     }
-     /* Fine-tune footer icons so they look optically centred */
 
-/* Facebook */
-.tap-icon.facebook svg {
-  width: 18px;
-  height: 18px;
-  transform: translate(-1px, -1px);
-}
+    .tap-icon.facebook svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(-1px, -1px);
+    }
 
-/* Instagram */
-.tap-icon.instagram svg {
-  width: 18px;
-  height: 18px;
-  transform: translate(0, 0);
-}
+    .tap-icon.instagram svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(0, 0);
+    }
 
-/* TikTok */
-.tap-icon.tiktok svg {
-  width: 18px;
-  height: 18px;
-  transform: translate(1px, 0);
-}
+    .tap-icon.tiktok svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(1px, 0);
+    }
 
-/* YouTube */
-.tap-icon.youtube svg {
-  width: 19px;
-  height: 19px;
-  transform: translate(0, 0);
-}
+    .tap-icon.youtube svg {
+      width: 19px;
+      height: 19px;
+      transform: translate(0, 0);
+    }
 
-/* Email */
-.contact-row.email .tap-icon svg {
-  width: 16px;
-  height: 16px;
-  transform: translate(0, 0);
-}
+    .contact-row.email .tap-icon svg {
+      width: 16px;
+      height: 16px;
+      transform: translate(0, 0);
+    }
 
-/* Phone */
-.contact-row.phone .tap-icon svg {
-  width: 16px;
-  height: 16px;
-  transform: translate(-1px, 0);
-}
+    .contact-row.phone .tap-icon svg {
+      width: 16px;
+      height: 16px;
+      transform: translate(-1px, 0);
+    }
 
-/* Website */
-.contact-row.website .tap-icon svg {
-  width: 17px;
-  height: 17px;
-  transform: translate(0, 0);
-} 
+    .contact-row.website .tap-icon svg {
+      width: 17px;
+      height: 17px;
+      transform: translate(0, 0);
+    }
+
     .tap-icon.instagram {
       color: var(--pink);
     }
@@ -955,8 +950,6 @@ footer::before {
       height: 34px;
       flex-basis: 34px;
     }
-
- 
 
     .contact-copy {
       min-width: 0;
@@ -1008,6 +1001,7 @@ footer::before {
     }
 
 
+
     /* =========================================================
        MOBILE
        ========================================================= */
@@ -1055,7 +1049,6 @@ footer::before {
         grid-column: auto;
       }
     }
-
 
     @media (max-width: 760px) {
 
@@ -1149,7 +1142,6 @@ footer::before {
         gap: 7px;
       }
     }
-
   </style>
 </head>
 
@@ -1228,6 +1220,7 @@ footer::before {
 </div>
 
 
+
 <!-- HEADER -->
 
 <header>
@@ -1243,12 +1236,14 @@ footer::before {
     <nav>
       <a href="#how">How It Works</a>
       <a href="#packages">Packages</a>
-      <a href="#packages">Book</a>
+      <a href="#action">Gallery</a>
+      <a href="#packages">Book Now</a>
     </nav>
 
   </div>
 
 </header>
+
 
 
 <main>
@@ -1283,7 +1278,7 @@ footer::before {
       </a>
 
       <a class="btn btn-secondary" href="#packages">
-        Check Availability
+        Book Now
       </a>
 
     </div>
@@ -1291,6 +1286,7 @@ footer::before {
   </div>
 
 </section>
+
 
 
 <!-- HOW IT WORKS -->
@@ -1367,6 +1363,7 @@ footer::before {
 </section>
 
 
+
 <!-- PACKAGES -->
 
 <section class="package-section" id="packages">
@@ -1416,7 +1413,7 @@ footer::before {
         </ul>
 
         <a class="btn btn-primary" href="calendar.html?package=30">
-          Check Availability
+          Book Now
         </a>
 
       </div>
@@ -1450,7 +1447,7 @@ footer::before {
         </ul>
 
         <a class="btn btn-primary" href="calendar.html?package=50">
-          Check Availability
+          Book Now
         </a>
 
       </div>
@@ -1488,7 +1485,7 @@ footer::before {
           <li>Delivery, setup &amp; collection</li>
         </ul>
 
-        <a class="btn btn-primary" href="#footer">
+        <a class="btn btn-primary" href="crown-package.html">
           Enquire
         </a>
 
@@ -1590,7 +1587,7 @@ footer::before {
         Build a Tap’d Up package around your party.
       </p>
 
-      <a class="btn btn-primary" href="#footer">
+      <a class="btn btn-primary" href="design-your-party.html">
         Build Your Party
       </a>
 
@@ -1599,6 +1596,7 @@ footer::before {
   </div>
 
 </section>
+
 
 
 <!-- TAP'D UP IN ACTION -->
@@ -1647,6 +1645,7 @@ footer::before {
   </div>
 
 </section>
+
 
 
 <!-- VIDEOS -->
@@ -1711,27 +1710,20 @@ footer::before {
 </main>
 
 
+
 <!-- FOOTER -->
 
 <footer id="footer">
 
   <div class="footer-inner">
 
-
-    <!-- LOGO -->
-
     <div class="footer-brand">
-
       <img
         src="tapdup-logo.png"
         alt="Tap’d Up - Pour Your Own Pint!"
         class="footer-logo"
       >
-
     </div>
-
-
-    <!-- QUICK LINKS -->
 
     <div>
 
@@ -1740,18 +1732,13 @@ footer::before {
       </div>
 
       <div class="footer-links">
-
         <a href="#how">How It Works</a>
         <a href="#packages">Packages</a>
         <a href="#action">Tap’d Up In Action</a>
         <a href="#videos">Videos</a>
-
       </div>
 
     </div>
-
-
-    <!-- SOCIALS -->
 
     <div>
 
@@ -1765,7 +1752,6 @@ footer::before {
 
       <div class="footer-socials">
 
-        <!-- FACEBOOK -->
         <a
           href="https://www.facebook.com/get.tapdup/"
           target="_blank"
@@ -1778,8 +1764,6 @@ footer::before {
           </svg>
         </a>
 
-
-        <!-- INSTAGRAM -->
         <a
           href="https://www.instagram.com/get.tapdup/"
           target="_blank"
@@ -1792,8 +1776,6 @@ footer::before {
           </svg>
         </a>
 
-
-        <!-- TIKTOK -->
         <a
           href="https://www.tiktok.com/@get.tapdup"
           target="_blank"
@@ -1806,8 +1788,6 @@ footer::before {
           </svg>
         </a>
 
-
-        <!-- YOUTUBE -->
         <a
           href="https://www.youtube.com/@get.tapdup"
           target="_blank"
@@ -1824,9 +1804,6 @@ footer::before {
 
     </div>
 
-
-    <!-- CONTACT -->
-
     <div>
 
       <div class="footer-heading">
@@ -1835,13 +1812,7 @@ footer::before {
 
       <div class="contact-list">
 
-
-        <!-- EMAIL -->
-
-        <a
-          href="mailto:hello@tapdup.co.uk"
-          class="contact-row email"
-        >
+        <a href="mailto:hello@tapdup.co.uk" class="contact-row email">
 
           <span class="tap-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -1862,13 +1833,7 @@ footer::before {
 
         </a>
 
-
-        <!-- PHONE -->
-
-        <a
-          href="tel:+447962717784"
-          class="contact-row phone"
-        >
+        <a href="tel:+447962717784" class="contact-row phone">
 
           <span class="tap-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -1889,13 +1854,7 @@ footer::before {
 
         </a>
 
-
-        <!-- WEBSITE -->
-
-        <a
-          href="https://www.tapdup.co.uk"
-          class="contact-row website"
-        >
+        <a href="https://www.tapdup.co.uk" class="contact-row website">
 
           <span class="tap-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -1938,6 +1897,7 @@ footer::before {
   </div>
 
 </footer>
+
 
 
 <script>
