@@ -542,6 +542,17 @@
       margin-bottom: 5px;
     }
 
+    .package-crown-right {
+      position: absolute;
+      top: 15px;
+      right: 17px;
+      width: 82px;
+      height: 82px;
+      object-fit: contain;
+      margin: 0;
+      pointer-events: none;
+    }
+
     .crown-tagline {
       color: var(--muted);
       font-size: 0.82rem;
@@ -1141,6 +1152,11 @@
         width: 78px;
       }
 
+      .package-crown-right {
+        width: 78px;
+        height: 78px;
+      }
+
       .footer-inner {
         grid-template-columns: 1fr;
         gap: 28px;
@@ -1491,17 +1507,21 @@
         <img
           src="tapdup-crown.png"
           alt="Tap’d Up Crown"
-          class="package-crown"
+          class="package-crown package-crown-right"
         >
 
-        <div class="package-label">
-          The Premium Experience
-        </div>
+        <div class="package-standard">
 
-        <h3>Crown Package</h3>
+          <div class="package-label">
+            The Premium Experience
+          </div>
 
-        <div class="crown-tagline">
-          Take your party to the next level.
+          <h3>Crown Package</h3>
+
+          <div class="crown-tagline">
+            Take your party to the next level.
+          </div>
+
         </div>
 
         <div class="price">
