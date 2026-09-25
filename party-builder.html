@@ -1063,37 +1063,7 @@
 
           </div>
 
-
-          <div class="upgrade-card">
-
-            <label class="toggle-line">
-
-              <input type="checkbox" id="extra-night">
-
-              <div style="flex:1;">
-
-                <div class="upgrade-heading">
-                  <strong>Extra Night</strong>
-                  <span class="upgrade-price">+£80</span>
-                </div>
-
-                <div class="upgrade-desc">
-                  Want to keep it longer?
-                  Request one additional night beyond your current collection date.
-                </div>
-
-                <div class="availability">
-                  Subject to availability
-                </div>
-
-              </div>
-
-            </label>
-
-          </div>
-
-
-          <div class="upgrade-card">
+<div class="upgrade-card">
 
             <div class="upgrade-heading">
               <strong>Extra Keg</strong>
@@ -1113,36 +1083,7 @@
 
           </div>
 
-
-          <div class="upgrade-card">
-
-            <label class="toggle-line">
-
-              <input type="checkbox" id="extra-unit">
-
-              <div style="flex:1;">
-
-                <div class="upgrade-heading">
-                  <strong>Extra Draught Setup</strong>
-                  <span class="upgrade-price">+£50</span>
-                </div>
-
-                <div class="upgrade-desc">
-                  Add a completely separate draught unit
-                  for an additional serving point.
-                </div>
-
-                <div class="availability">
-                  Subject to availability
-                </div>
-
-              </div>
-
-            </label>
-
-          </div>
-
-        </div>
+</div>
 
       </section>
 
@@ -1696,18 +1637,7 @@
     document.getElementById(
       'extra-keg-area'
     );
-
-  const extraNight =
-    document.getElementById(
-      'extra-night'
-    );
-
-  const extraUnit =
-    document.getElementById(
-      'extra-unit'
-    );
-
-  const summaryPackage =
+const summaryPackage =
     document.getElementById(
       'summary-package'
     );
@@ -2581,23 +2511,7 @@
       );
 
     }
-
-
-    /* OPTIONAL EXTRA NIGHT */
-
-    if (extraNight.checked) {
-
-      total += 80;
-
-      addSummaryRow(
-        'Extra Night Extension',
-        '+£80'
-      );
-
-    }
-
-
-    /* EXTRA KEG */
+/* EXTRA KEG */
 
     if (selectedExtraKeg) {
 
@@ -2625,23 +2539,7 @@
       );
 
     }
-
-
-    /* EXTRA UNIT */
-
-    if (extraUnit.checked) {
-
-      total += 50;
-
-      addSummaryRow(
-        'Extra Draught Setup',
-        '+£50'
-      );
-
-    }
-
-
-    summaryTotal.textContent =
+summaryTotal.textContent =
       money(total);
 
   }
@@ -2701,21 +2599,7 @@
 
     }
   );
-
-
-  extraNight.addEventListener(
-    'change',
-    updateSummary
-  );
-
-
-  extraUnit.addEventListener(
-    'change',
-    updateSummary
-  );
-
-
-  document
+document
     .getElementById(
       'enquiry-button'
     )
@@ -2796,23 +2680,7 @@
           });
 
         }
-
-
-        if (extraNight.checked) {
-
-          extras.push({
-            name: 'Extra Night Extension',
-
-            detail:
-              'One additional night requested',
-
-            price: 80
-          });
-
-        }
-
-
-        if (selectedExtraKeg) {
+if (selectedExtraKeg) {
 
           const extraKegPrice =
             extraKegBase[
@@ -2837,23 +2705,7 @@
           });
 
         }
-
-
-        if (extraUnit.checked) {
-
-          extras.push({
-            name: 'Extra Draught Setup',
-
-            detail:
-              'Additional serving point',
-
-            price: 50
-          });
-
-        }
-
-
-        let finalTotal =
+let finalTotal =
           basePrice +
           calendarDateCost +
           selectedDrink.addon;
@@ -2862,14 +2714,7 @@
         if (selectedCups > 0) {
           finalTotal += selectedCups;
         }
-
-
-        if (extraNight.checked) {
-          finalTotal += 80;
-        }
-
-
-        if (selectedExtraKeg) {
+if (selectedExtraKeg) {
 
           finalTotal +=
             extraKegBase[
@@ -2878,14 +2723,7 @@
             selectedExtraKeg.addon;
 
         }
-
-
-        if (extraUnit.checked) {
-          finalTotal += 50;
-        }
-
-
-        const booking = {
+const booking = {
 
           packageType:
             packageType,
