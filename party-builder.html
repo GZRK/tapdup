@@ -7,6 +7,10 @@
   <title>Build Your Party | Tap’d Up</title>
   <meta name="description" content="Build your Tap’d Up draught party package.">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -143,11 +147,12 @@
 
     .step-label {
       color: var(--pink);
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 2px;
+      font-family: "Bowlby One SC", "Arial Black", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .builder-section h2 {
@@ -418,11 +423,11 @@
     }
 
     .availability {
-      color: var(--pink);
-      font-size: 0.7rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
     }
 
     .toggle-line {
@@ -473,12 +478,30 @@
       padding: 24px;
     }
 
+    .summary-head {
+      position: relative;
+      padding-right: 82px;
+      min-height: 66px;
+    }
+
+    .summary-logo {
+      position: absolute;
+      top: -6px;
+      right: 0;
+      width: 72px;
+      height: auto;
+      display: block;
+      opacity: .62;
+      pointer-events: none;
+    }
+
     .summary-label {
       color: var(--pink);
+      font-family: "Bowlby One SC", "Arial Black", sans-serif;
       text-transform: uppercase;
-      font-size: 0.7rem;
-      font-weight: 900;
-      letter-spacing: 2px;
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0.8px;
     }
 
     .summary h2 {
@@ -1094,11 +1117,22 @@
 
     <aside class="summary">
 
-      <div class="summary-label">
-        Your Tap’d Up Party
-      </div>
+      <div class="summary-head">
 
-      <h2>Order Summary</h2>
+        <div class="summary-label">
+          Your Tap’d Up Party
+        </div>
+
+        <h2>Order Summary</h2>
+
+        <img
+          src="tapdup-logo.png"
+          alt=""
+          class="summary-logo"
+          aria-hidden="true"
+        >
+
+      </div>
 
       <div class="summary-row">
         <span>Package</span>
@@ -2680,7 +2714,12 @@ document
           });
 
         }
-if (selectedExtraKeg) {
+);
+
+        }
+
+
+        if (selectedExtraKeg) {
 
           const extraKegPrice =
             extraKegBase[
@@ -2705,7 +2744,12 @@ if (selectedExtraKeg) {
           });
 
         }
-let finalTotal =
+);
+
+        }
+
+
+        let finalTotal =
           basePrice +
           calendarDateCost +
           selectedDrink.addon;
