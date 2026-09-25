@@ -7,6 +7,11 @@
   <title>Tap’d Up | Pour Your Own Pint!</title>
   <meta name="description" content="Tap’d Up brings fresh draught beer to your party. Keg, draught machine, delivery, setup and collection. Pour your own pint!">
 
+  <!-- Tap'd Up display font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -33,8 +38,6 @@
       --white: #ffffff;
       --muted: #b8bcc5;
     }
-
-
 
     /* =========================================================
        18+ AGE GATE
@@ -184,8 +187,6 @@
       overflow: hidden;
     }
 
-
-
     /* =========================================================
        HEADER
        ========================================================= */
@@ -227,7 +228,28 @@
       color: var(--cyan);
     }
 
+    /* =========================================================
+       BRANDED DISPLAY LINES
+       ========================================================= */
 
+    .eyebrow,
+    .package-label,
+    .brand-line {
+      font-family: "Anton", Impact, sans-serif;
+      text-transform: uppercase;
+      font-weight: 400;
+      letter-spacing: 1.8px;
+    }
+
+    .brand-line {
+      color: var(--cyan);
+      font-size: .95rem;
+      margin-bottom: 8px;
+    }
+
+    .brand-line.pink {
+      color: var(--pink);
+    }
 
     /* =========================================================
        HERO
@@ -257,10 +279,7 @@
 
     .eyebrow {
       color: var(--cyan);
-      text-transform: uppercase;
-      font-size: .85rem;
-      font-weight: 900;
-      letter-spacing: 3px;
+      font-size: 1rem;
       margin-bottom: 18px;
     }
 
@@ -308,8 +327,6 @@
       transform: translateY(-2px);
     }
 
-
-
     /* =========================================================
        GENERAL
        ========================================================= */
@@ -336,8 +353,6 @@
     .section-title p {
       color: var(--muted);
     }
-
-
 
     /* =========================================================
        HOW IT WORKS
@@ -404,8 +419,6 @@
       color: white;
     }
 
-
-
     /* =========================================================
        PACKAGES
        ========================================================= */
@@ -429,6 +442,7 @@
     }
 
     .package {
+      position: relative;
       background: var(--panel);
       border: 2px solid var(--cyan);
       border-radius: 20px;
@@ -441,10 +455,23 @@
 
     .package-label {
       color: var(--pink);
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: 0.72rem;
+      font-size: .84rem;
+      line-height: 1.2;
+    }
+
+    .package-mini-logo {
+      position: absolute;
+      top: 15px;
+      right: 17px;
+      width: 72px;
+      height: auto;
+      display: block;
+      opacity: .42;
+      pointer-events: none;
+    }
+
+    .package-standard {
+      padding-right: 92px;
     }
 
     .package h3 {
@@ -530,8 +557,6 @@
       color: white;
     }
 
-
-
     /* =========================================================
        UPGRADES
        ========================================================= */
@@ -605,8 +630,6 @@
       font-size: 0.75rem;
     }
 
-
-
     /* =========================================================
        DESIGN YOUR OWN
        ========================================================= */
@@ -633,8 +656,6 @@
       line-height: 1.45;
       font-size: 0.9rem;
     }
-
-
 
     /* =========================================================
        TAP'D UP IN ACTION
@@ -678,8 +699,6 @@
     .party-shot-right {
       background-image: url("tapdup-party-3.jpg");
     }
-
-
 
     /* =========================================================
        VIDEO SECTION
@@ -743,8 +762,6 @@
       color: var(--muted);
       font-size: .85rem;
     }
-
-
 
     /* =========================================================
        FOOTER
@@ -884,7 +901,6 @@
     .tap-icon.instagram svg {
       width: 18px;
       height: 18px;
-      transform: translate(0, 0);
     }
 
     .tap-icon.tiktok svg {
@@ -896,13 +912,11 @@
     .tap-icon.youtube svg {
       width: 19px;
       height: 19px;
-      transform: translate(0, 0);
     }
 
     .contact-row.email .tap-icon svg {
       width: 16px;
       height: 16px;
-      transform: translate(0, 0);
     }
 
     .contact-row.phone .tap-icon svg {
@@ -914,7 +928,6 @@
     .contact-row.website .tap-icon svg {
       width: 17px;
       height: 17px;
-      transform: translate(0, 0);
     }
 
     .tap-icon.instagram {
@@ -999,8 +1012,6 @@
       color: #70757e;
       font-size: .76rem;
     }
-
-
 
     /* =========================================================
        MOBILE
@@ -1124,6 +1135,10 @@
         height: 300px;
       }
 
+      .package-mini-logo {
+        width: 68px;
+      }
+
       .footer-inner {
         grid-template-columns: 1fr;
         gap: 28px;
@@ -1146,7 +1161,6 @@
 </head>
 
 <body class="age-locked">
-
 
 <!-- 18+ AGE GATE -->
 
@@ -1190,7 +1204,6 @@
 
     </div>
 
-
     <div class="underage-message" id="underageMessage">
 
       <img
@@ -1219,8 +1232,6 @@
 
 </div>
 
-
-
 <!-- HEADER -->
 
 <header>
@@ -1244,10 +1255,7 @@
 
 </header>
 
-
-
 <main>
-
 
 <!-- HERO -->
 
@@ -1256,7 +1264,7 @@
   <div class="hero-inner">
 
     <div class="eyebrow">
-      DRAUGHT BEER • DELIVERED
+      DRAUGHT BEER. DELIVERED.
     </div>
 
     <h1>
@@ -1287,8 +1295,6 @@
 
 </section>
 
-
-
 <!-- HOW IT WORKS -->
 
 <section id="how">
@@ -1297,6 +1303,10 @@
 
     <div class="section-title">
 
+      <div class="brand-line">
+        GETTING TAP’D UP…
+      </div>
+
       <h2>How it works</h2>
 
       <p>
@@ -1304,7 +1314,6 @@
       </p>
 
     </div>
-
 
     <div class="process-steps">
 
@@ -1362,8 +1371,6 @@
 
 </section>
 
-
-
 <!-- PACKAGES -->
 
 <section class="package-section" id="packages">
@@ -1371,6 +1378,10 @@
   <div class="container">
 
     <div class="section-title">
+
+      <div class="brand-line pink">
+        GOT A PARTY? GET TAP’D UP!
+      </div>
 
       <h2>Choose Your Party</h2>
 
@@ -1381,24 +1392,33 @@
 
     </div>
 
-
     <div class="package-grid">
-
 
       <!-- PARTY 30 -->
 
       <div class="package package-card">
 
-        <div class="package-label">Tap’d Up</div>
+        <img
+          src="tapdup-logo.png"
+          alt=""
+          class="package-mini-logo"
+          aria-hidden="true"
+        >
 
-        <h3>Party 30</h3>
+        <div class="package-standard">
 
-        <div class="package-size">
-          30L Standard Lager*
-        </div>
+          <div class="package-label">Tap’d Up</div>
 
-        <div class="package-pints">
-          Approx. 52 pints
+          <h3>Party 30</h3>
+
+          <div class="package-size">
+            30L Standard Lager*
+          </div>
+
+          <div class="package-pints">
+            Approx. 52 pints
+          </div>
+
         </div>
 
         <div class="price">
@@ -1418,21 +1438,31 @@
 
       </div>
 
-
       <!-- PARTY 50 -->
 
       <div class="package package-card">
 
-        <div class="package-label">Tap’d Up</div>
+        <img
+          src="tapdup-logo.png"
+          alt=""
+          class="package-mini-logo"
+          aria-hidden="true"
+        >
 
-        <h3>Party 50</h3>
+        <div class="package-standard">
 
-        <div class="package-size">
-          50L Standard Lager*
-        </div>
+          <div class="package-label">Tap’d Up</div>
 
-        <div class="package-pints">
-          Approx. 88 pints
+          <h3>Party 50</h3>
+
+          <div class="package-size">
+            50L Standard Lager*
+          </div>
+
+          <div class="package-pints">
+            Approx. 88 pints
+          </div>
+
         </div>
 
         <div class="price">
@@ -1451,7 +1481,6 @@
         </a>
 
       </div>
-
 
       <!-- CROWN PACKAGE -->
 
@@ -1493,7 +1522,6 @@
 
     </div>
 
-
     <div class="package-note">
 
       <strong>*Standard Lager:</strong>
@@ -1504,13 +1532,12 @@
 
     </div>
 
-
     <!-- UPGRADES -->
 
     <div class="upgrade-box">
 
       <div class="package-label">
-        Make It Yours
+        MAKE IT YOURS
       </div>
 
       <h3>Upgrade Your Party</h3>
@@ -1519,7 +1546,6 @@
         Start with Party 30 or Party 50,
         then make it yours.
       </p>
-
 
       <div class="upgrade-grid">
 
@@ -1571,13 +1597,12 @@
 
     </div>
 
-
     <!-- DESIGN YOUR OWN -->
 
     <div class="build-party">
 
       <div class="package-label">
-        Something Different?
+        YOUR PARTY. YOUR WAY.
       </div>
 
       <h3>Design Your Own Party</h3>
@@ -1597,8 +1622,6 @@
 
 </section>
 
-
-
 <!-- TAP'D UP IN ACTION -->
 
 <section class="action-section" id="action">
@@ -1608,7 +1631,7 @@
     <div class="section-title">
 
       <div class="package-label">
-        The Tap’d Up Experience
+        WHO’S GETTING TAP’D UP?
       </div>
 
       <h2>Tap’d Up In Action</h2>
@@ -1618,7 +1641,6 @@
       </p>
 
     </div>
-
 
     <div class="action-grid">
 
@@ -1646,8 +1668,6 @@
 
 </section>
 
-
-
 <!-- VIDEOS -->
 
 <section class="video-section" id="videos">
@@ -1657,7 +1677,7 @@
     <div class="section-title">
 
       <div class="package-label">
-        See It For Yourself
+        SEE TAP’D UP IN ACTION
       </div>
 
       <h2>See How It Works</h2>
@@ -1667,7 +1687,6 @@
       </p>
 
     </div>
-
 
     <div class="video-grid">
 
@@ -1684,7 +1703,6 @@
         </span>
 
       </div>
-
 
       <div class="video-placeholder">
 
@@ -1706,10 +1724,7 @@
 
 </section>
 
-
 </main>
-
-
 
 <!-- FOOTER -->
 
@@ -1887,7 +1902,6 @@
 
   </div>
 
-
   <div class="footer-bottom">
 
     <span>© 2026 Tap’d Up</span>
@@ -1898,8 +1912,6 @@
 
 </footer>
 
-
-
 <script>
 
   const ageGate = document.getElementById("ageGate");
@@ -1909,14 +1921,12 @@
   const ageYes = document.getElementById("ageYes");
   const ageNo = document.getElementById("ageNo");
 
-
   if (sessionStorage.getItem("tapdupAgeVerified") === "yes") {
 
     ageGate.classList.add("hidden");
     document.body.classList.remove("age-locked");
 
   }
-
 
   ageYes.addEventListener("click", function () {
 
@@ -1928,7 +1938,6 @@
 
   });
 
-
   ageNo.addEventListener("click", function () {
 
     ageQuestion.classList.add("hidden");
@@ -1938,7 +1947,6 @@
   });
 
 </script>
-
 
 </body>
 </html>
