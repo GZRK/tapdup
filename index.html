@@ -849,7 +849,56 @@
       position: relative;
       z-index: 1;
     }
+     /* Fine-tune footer icons so they look optically centred */
 
+/* Facebook */
+.tap-icon.facebook svg {
+  width: 18px;
+  height: 18px;
+  transform: translate(-1px, -1px);
+}
+
+/* Instagram */
+.tap-icon.instagram svg {
+  width: 18px;
+  height: 18px;
+  transform: translate(0, 0);
+}
+
+/* TikTok */
+.tap-icon.tiktok svg {
+  width: 17px;
+  height: 17px;
+  transform: translate(-1px, 1px);
+}
+
+/* YouTube */
+.tap-icon.youtube svg {
+  width: 19px;
+  height: 19px;
+  transform: translate(0, 0);
+}
+
+/* Email */
+.contact-row.email .tap-icon svg {
+  width: 16px;
+  height: 16px;
+  transform: translate(0, 0);
+}
+
+/* Phone */
+.contact-row.phone .tap-icon svg {
+  width: 16px;
+  height: 16px;
+  transform: translate(-1px, 0);
+}
+
+/* Website */
+.contact-row.website .tap-icon svg {
+  width: 17px;
+  height: 17px;
+  transform: translate(0, 0);
+} 
     .tap-icon.instagram {
       color: var(--pink);
     }
@@ -884,10 +933,7 @@
       flex-basis: 34px;
     }
 
-    .contact-row .tap-icon svg {
-      width: 15px;
-      height: 15px;
-    }
+ 
 
     .contact-copy {
       min-width: 0;
