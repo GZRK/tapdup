@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Review Your Booking | Tap’d Up</title>
+  <meta name="description" content="Review your Tap’d Up party booking before continuing.">
 
   <style>
     * {
@@ -129,6 +130,10 @@
       letter-spacing: 1px;
     }
 
+    .edit-link:hover {
+      color: var(--pink);
+    }
+
     .rows {
       display: grid;
       gap: 0;
@@ -154,6 +159,7 @@
       color: white;
       font-weight: 800;
       text-align: right;
+      overflow-wrap: anywhere;
     }
 
     .total-card {
@@ -258,16 +264,286 @@
       display: block;
     }
 
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
     footer {
+      position: relative;
+      overflow: hidden;
+      background: #07080a;
       border-top: 1px solid #24262c;
-      text-align: center;
-      color: #858a94;
-      padding: 35px 20px;
-      font-size: .8rem;
+      padding: 40px 24px 25px;
+      color: #8e929c;
     }
 
-    footer strong {
+    footer::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 330px;
+      right: -10px;
+      bottom: -45px;
+      background: url("tapdup-crown.png") center / contain no-repeat;
+      opacity: 0.07;
+      transform: rotate(-9deg);
+      transform-origin: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .footer-inner,
+    .footer-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.05fr .9fr 1.05fr 1.35fr;
+      gap: 38px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      width: 150px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .footer-heading {
       color: white;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .86rem;
+      transition: .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-handle {
+      color: var(--cyan);
+      font-weight: 900;
+      margin-bottom: 12px;
+      font-size: .88rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tap-icon {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border: 2px solid var(--cyan);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle, #0a0c0f 57%, transparent 59%),
+        repeating-conic-gradient(
+          from 5deg,
+          var(--cyan) 0deg 12deg,
+          #0a0c0f 12deg 15deg
+        );
+      color: white;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      box-shadow:
+        0 0 0 1px rgba(22,217,227,.18),
+        0 0 12px rgba(22,217,227,.08);
+    }
+
+    .tap-icon:hover {
+      transform: translateY(-2px) scale(1.04);
+      border-color: var(--pink);
+      box-shadow:
+        0 0 0 1px rgba(255,61,141,.25),
+        0 0 16px rgba(255,61,141,.16);
+    }
+
+    .tap-icon svg {
+      width: 17px;
+      height: 17px;
+      display: block;
+      fill: currentColor;
+      stroke: currentColor;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tap-icon.facebook svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(-1px, -1px);
+    }
+
+    .tap-icon.instagram svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(0, 0);
+    }
+
+    .tap-icon.tiktok svg {
+      width: 18px;
+      height: 18px;
+      transform: translate(1px, 0);
+    }
+
+    .tap-icon.youtube svg {
+      width: 19px;
+      height: 19px;
+      transform: translate(0, 0);
+    }
+
+    .contact-row.email .tap-icon svg {
+      width: 16px;
+      height: 16px;
+      transform: translate(0, 0);
+    }
+
+    .contact-row.phone .tap-icon svg {
+      width: 16px;
+      height: 16px;
+      transform: translate(-1px, 0);
+    }
+
+    .contact-row.website .tap-icon svg {
+      width: 17px;
+      height: 17px;
+      transform: translate(0, 0);
+    }
+
+    .tap-icon.instagram {
+      color: var(--pink);
+    }
+
+    .tap-icon.facebook,
+    .tap-icon.youtube {
+      color: var(--cyan);
+    }
+
+    .tap-icon.tiktok {
+      color: white;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .contact-row .tap-icon {
+      width: 34px;
+      height: 34px;
+      flex-basis: 34px;
+    }
+
+    .contact-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .contact-label {
+      color: #7f858f;
+      font-size: .62rem;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .contact-value {
+      color: var(--muted);
+      font-size: .82rem;
+      overflow-wrap: anywhere;
+      transition: color .2s;
+    }
+
+    .contact-row:hover .contact-value {
+      color: var(--cyan);
+    }
+
+    .contact-row.phone .tap-icon {
+      color: var(--pink);
+    }
+
+    .contact-row.email .tap-icon,
+    .contact-row.website .tap-icon {
+      color: var(--cyan);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 28px auto 0;
+      padding-top: 19px;
+      border-top: 1px solid #24262c;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: #70757e;
+      font-size: .76rem;
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 34px;
+      }
+
+      footer::before {
+        width: 390px;
+        height: 270px;
+        right: -70px;
+        bottom: -35px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -282,7 +558,7 @@
       }
 
       main {
-        padding-top: 40px;
+        padding: 40px 16px 65px;
       }
 
       .review-card {
@@ -313,6 +589,28 @@
       .btn {
         text-align: center;
         width: 100%;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-logo {
+        width: 135px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      footer::before {
+        width: 310px;
+        height: 215px;
+        right: -90px;
+        bottom: -25px;
+        opacity: .055;
       }
     }
   </style>
@@ -481,7 +779,7 @@
           Delivery Details
 
           <a
-            href="party-builder.html"
+            href="details.html"
             class="edit-link"
             id="detailsEdit"
           >
@@ -511,18 +809,12 @@
             <span class="row-value" id="reviewAddress">—</span>
           </div>
 
-          <div
-            class="row"
-            id="guestsRow"
-          >
+          <div class="row" id="guestsRow">
             <span class="row-label">Approx. guests</span>
             <span class="row-value" id="reviewGuests">—</span>
           </div>
 
-          <div
-            class="row"
-            id="notesRow"
-          >
+          <div class="row" id="notesRow">
             <span class="row-label">Access / setup notes</span>
             <span class="row-value" id="reviewNotes">—</span>
           </div>
@@ -581,7 +873,6 @@
 
       </div>
 
-
     </div>
 
   </div>
@@ -589,33 +880,221 @@
 </main>
 
 
-<footer>
-  <strong>Tap’d Up</strong>
-  &nbsp;•&nbsp;
-  @get.tapdup
-  &nbsp;•&nbsp;
-  18+ only
+<!-- FOOTER -->
+
+<footer id="footer">
+
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+      <img
+        src="tapdup-logo.png"
+        alt="Tap’d Up - Pour Your Own Pint!"
+        class="footer-logo"
+      >
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Quick Links
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html#how">How It Works</a>
+        <a href="index.html#packages">Packages</a>
+        <a href="index.html#action">Tap’d Up In Action</a>
+        <a href="index.html#videos">Videos</a>
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Follow Tap’d Up
+      </div>
+
+      <div class="footer-handle">
+        @get.tapdup
+      </div>
+
+      <div class="footer-socials">
+
+        <a
+          href="https://www.facebook.com/get.tapdup/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on Facebook"
+          class="tap-icon facebook"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M13.5 22v-9h3l.5-3.5h-3.5V7.25c0-1 .28-1.75 1.78-1.75H17V2.38C16.7 2.34 15.66 2.25 14.43 2.25c-2.57 0-4.33 1.57-4.33 4.45v2.8H7.2V13h2.9v9h3.4z"/>
+          </svg>
+        </a>
+
+        <a
+          href="https://www.instagram.com/get.tapdup/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on Instagram"
+          class="tap-icon instagram"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
+          </svg>
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@get.tapdup"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on TikTok"
+          class="tap-icon tiktok"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M15.5 3c.35 2.1 1.55 3.45 3.5 3.9v3.1a8.2 8.2 0 0 1-3.45-1v6.15A5.85 5.85 0 1 1 10.5 9.35v3.15a2.75 2.75 0 1 0 1.9 2.65V3h3.1z"/>
+          </svg>
+        </a>
+
+        <a
+          href="https://www.youtube.com/@get.tapdup"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tap’d Up on YouTube"
+          class="tap-icon youtube"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke="none" d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C19 4.8 12 4.8 12 4.8s-7 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.5.4 8.5.4 8.5.4s7 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zm-13.2 3.4V8.6L15.8 12l-6 3.4z"/>
+          </svg>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="footer-heading">
+        Contact
+      </div>
+
+      <div class="contact-list">
+
+        <a
+          href="mailto:hello@tapdup.co.uk"
+          class="contact-row email"
+        >
+
+          <span class="tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 6h18v12H3V6zm0 1 9 7 9-7"
+              />
+            </svg>
+          </span>
+
+          <span class="contact-copy">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">hello@tapdup.co.uk</span>
+          </span>
+
+        </a>
+
+
+        <a
+          href="tel:+447962717784"
+          class="contact-row phone"
+        >
+
+          <span class="tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.7 3.5 9.3 7l-1.8 2.1c1.4 2.8 3.6 5 6.4 6.4l2.1-1.8 3.5 2.6c.4.3.6.8.4 1.3-.5 1.5-1.9 2.5-3.5 2.4C9.8 19.6 4.4 14.2 4 7.6 3.9 6 4.9 4.6 6.4 4.1c.1-.1.2-.1.3-.1z"
+              />
+            </svg>
+          </span>
+
+          <span class="contact-copy">
+            <span class="contact-label">Call Us</span>
+            <span class="contact-value">07962 717784</span>
+          </span>
+
+        </a>
+
+
+        <a
+          href="https://www.tapdup.co.uk"
+          class="contact-row website"
+        >
+
+          <span class="tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+                fill="none"
+                stroke-width="2"
+              />
+              <path
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                d="M3.5 12h17M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21M12 3C9.5 5.5 8.2 8.5 8.2 12s1.3 6.5 3.8 9"
+              />
+            </svg>
+          </span>
+
+          <span class="contact-copy">
+            <span class="contact-label">Website</span>
+            <span class="contact-value">www.tapdup.co.uk</span>
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+    <span>© 2026 Tap’d Up</span>
+    <span>South Wales</span>
+    <span>Enjoy responsibly. 18+ only.</span>
+  </div>
+
 </footer>
 
 
 <script>
 
-  /*
-    This page reads the completed booking from sessionStorage.
+  const bookingJSON =
+    sessionStorage.getItem("tapdupBooking");
 
-    The next change to party-builder.html will create this
-    booking object before sending the customer here.
-  */
+  const emptyState =
+    document.getElementById("emptyState");
 
-  const bookingJSON = sessionStorage.getItem("tapdupBooking");
-
-  const emptyState = document.getElementById("emptyState");
-  const reviewContent = document.getElementById("reviewContent");
+  const reviewContent =
+    document.getElementById("reviewContent");
 
 
-  /*
-    FORMAT DATE
-  */
+  /* ======================================================
+     FORMAT DATE
+     ====================================================== */
 
   function formatDate(dateString) {
 
@@ -623,21 +1102,25 @@
       return "—";
     }
 
-    const date = new Date(dateString + "T12:00:00");
+    const date =
+      new Date(dateString + "T12:00:00");
 
-    return date.toLocaleDateString("en-GB", {
-      weekday: "short",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
+    return date.toLocaleDateString(
+      "en-GB",
+      {
+        weekday: "short",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }
+    );
 
   }
 
 
-  /*
-    SAFE TEXT
-  */
+  /* ======================================================
+     SAFE TEXT
+     ====================================================== */
 
   function valueOrDash(value) {
 
@@ -654,9 +1137,9 @@
   }
 
 
-  /*
-    NO BOOKING SAVED YET
-  */
+  /* ======================================================
+     BOOKING
+     ====================================================== */
 
   if (!bookingJSON) {
 
@@ -668,7 +1151,8 @@
 
     try {
 
-      booking = JSON.parse(bookingJSON);
+      booking =
+        JSON.parse(bookingJSON);
 
     } catch (error) {
 
@@ -686,139 +1170,240 @@
       reviewContent.classList.add("active");
 
 
-      /*
-        RESTORE THE EXACT BUILDER URL
-
-        This means Edit / Make Changes can take the customer
-        back to the same package and dates.
-      */
+      /* BUILDER RETURN URL */
 
       const builderURL =
-        booking.builderURL || "party-builder.html";
+        booking.builderURL ||
+        "party-builder.html";
 
-      document.getElementById("headerBack").href = builderURL;
-      document.getElementById("partyEdit").href = builderURL;
-      document.getElementById("detailsEdit").href = builderURL;
-      document.getElementById("bottomBack").href = builderURL;
+
+      document.getElementById(
+        "headerBack"
+      ).href =
+        builderURL;
+
+
+      document.getElementById(
+        "partyEdit"
+      ).href =
+        builderURL;
+
+
+      document.getElementById(
+        "bottomBack"
+      ).href =
+        builderURL;
 
 
       /*
-        PARTY
+        Delivery Details edit correctly returns
+        to the customer details page.
       */
 
-      document.getElementById("reviewPackage").textContent =
-        valueOrDash(booking.packageName);
+      document.getElementById(
+        "detailsEdit"
+      ).href =
+        "details.html";
 
-      document.getElementById("reviewDelivery").textContent =
-        formatDate(booking.deliveryDate);
 
-      document.getElementById("reviewCollection").textContent =
-        formatDate(booking.collectionDate);
+      /* ==================================================
+         PARTY
+         ================================================== */
 
-      document.getElementById("reviewNights").textContent =
+      document.getElementById(
+        "reviewPackage"
+      ).textContent =
+        valueOrDash(
+          booking.packageName
+        );
+
+
+      document.getElementById(
+        "reviewDelivery"
+      ).textContent =
+        formatDate(
+          booking.deliveryDate
+        );
+
+
+      document.getElementById(
+        "reviewCollection"
+      ).textContent =
+        formatDate(
+          booking.collectionDate
+        );
+
+
+      document.getElementById(
+        "reviewNights"
+      ).textContent =
         booking.nights
-          ? booking.nights + (Number(booking.nights) === 1 ? " night" : " nights")
+          ? booking.nights +
+            (
+              Number(booking.nights) === 1
+                ? " night"
+                : " nights"
+            )
           : "—";
 
 
-      /*
-        DRINK
-      */
+      /* ==================================================
+         DRINK
+         ================================================== */
 
-      document.getElementById("reviewDrink").textContent =
-        valueOrDash(booking.drink);
+      document.getElementById(
+        "reviewDrink"
+      ).textContent =
+        valueOrDash(
+          booking.drink
+        );
 
-      document.getElementById("reviewABV").textContent =
+
+      document.getElementById(
+        "reviewABV"
+      ).textContent =
         booking.abv
           ? booking.abv
           : "—";
 
 
-      /*
-        EXTRAS
-      */
+      /* ==================================================
+         EXTRAS
+         ================================================== */
 
       const extrasCard =
-        document.getElementById("extrasCard");
+        document.getElementById(
+          "extrasCard"
+        );
+
 
       const extrasRows =
-        document.getElementById("extrasRows");
+        document.getElementById(
+          "extrasRows"
+        );
+
 
       const extras =
-        Array.isArray(booking.extras)
+        Array.isArray(
+          booking.extras
+        )
           ? booking.extras
           : [];
 
 
       if (extras.length === 0) {
 
-        extrasCard.style.display = "none";
+        extrasCard.style.display =
+          "none";
 
       } else {
 
-        extras.forEach(function(extra) {
+        extras.forEach(
+          function(extra) {
 
-          const row =
-            document.createElement("div");
+            const row =
+              document.createElement(
+                "div"
+              );
 
-          row.className = "row";
-
-
-          const label =
-            document.createElement("span");
-
-          label.className = "row-label";
-          label.textContent =
-            valueOrDash(extra.name);
+            row.className =
+              "row";
 
 
-          const value =
-            document.createElement("span");
+            const label =
+              document.createElement(
+                "span"
+              );
 
-          value.className = "row-value";
+            label.className =
+              "row-label";
 
-          if (extra.price !== undefined) {
+            label.textContent =
+              valueOrDash(
+                extra.name
+              );
 
-            value.textContent =
-              valueOrDash(extra.detail) +
-              "  +" +
-              "£" +
-              Number(extra.price).toFixed(0);
 
-          } else {
+            const value =
+              document.createElement(
+                "span"
+              );
 
-            value.textContent =
-              valueOrDash(extra.detail);
+            value.className =
+              "row-value";
+
+
+            if (
+              extra.price !== undefined
+            ) {
+
+              value.textContent =
+                valueOrDash(
+                  extra.detail
+                ) +
+                "  +£" +
+                Number(
+                  extra.price
+                ).toFixed(0);
+
+            } else {
+
+              value.textContent =
+                valueOrDash(
+                  extra.detail
+                );
+
+            }
+
+
+            row.appendChild(
+              label
+            );
+
+            row.appendChild(
+              value
+            );
+
+            extrasRows.appendChild(
+              row
+            );
 
           }
-
-
-          row.appendChild(label);
-          row.appendChild(value);
-
-          extrasRows.appendChild(row);
-
-        });
+        );
 
       }
 
 
-      /*
-        CUSTOMER / DELIVERY DETAILS
-      */
+      /* ==================================================
+         CUSTOMER / DELIVERY DETAILS
+         ================================================== */
 
       const customer =
         booking.customer || {};
 
 
-      document.getElementById("reviewName").textContent =
-        valueOrDash(customer.name);
+      document.getElementById(
+        "reviewName"
+      ).textContent =
+        valueOrDash(
+          customer.name
+        );
 
-      document.getElementById("reviewMobile").textContent =
-        valueOrDash(customer.mobile);
 
-      document.getElementById("reviewEmail").textContent =
-        valueOrDash(customer.email);
+      document.getElementById(
+        "reviewMobile"
+      ).textContent =
+        valueOrDash(
+          customer.mobile
+        );
+
+
+      document.getElementById(
+        "reviewEmail"
+      ).textContent =
+        valueOrDash(
+          customer.email
+        );
 
 
       const addressParts = [
@@ -829,7 +1414,9 @@
       ].filter(Boolean);
 
 
-      document.getElementById("reviewAddress").textContent =
+      document.getElementById(
+        "reviewAddress"
+      ).textContent =
         addressParts.length
           ? addressParts.join(", ")
           : "—";
@@ -837,12 +1424,16 @@
 
       if (customer.guests) {
 
-        document.getElementById("reviewGuests").textContent =
+        document.getElementById(
+          "reviewGuests"
+        ).textContent =
           customer.guests;
 
       } else {
 
-        document.getElementById("guestsRow").style.display =
+        document.getElementById(
+          "guestsRow"
+        ).style.display =
           "none";
 
       }
@@ -850,47 +1441,63 @@
 
       if (customer.notes) {
 
-        document.getElementById("reviewNotes").textContent =
+        document.getElementById(
+          "reviewNotes"
+        ).textContent =
           customer.notes;
 
       } else {
 
-        document.getElementById("notesRow").style.display =
+        document.getElementById(
+          "notesRow"
+        ).style.display =
           "none";
 
       }
 
 
-      /*
-        TOTAL
-      */
+      /* ==================================================
+         TOTAL
+         ================================================== */
 
-      document.getElementById("reviewTotal").textContent =
-        "£" + Number(booking.total || 0).toFixed(0);
+      document.getElementById(
+        "reviewTotal"
+      ).textContent =
+        "£" +
+        Number(
+          booking.total || 0
+        ).toFixed(0);
 
     }
 
   }
 
 
-  /*
-    NEXT STAGE
+  /* ======================================================
+     NEXT STAGE
+     ====================================================== */
 
-    We will connect this to the temporary booking/payment
-    page after the builder and review page are tested.
-  */
+  const continueButton =
+    document.getElementById(
+      "continueButton"
+    );
 
-  document
-  .getElementById('continueButton')
-  .addEventListener(
-    'click',
-    function () {
-      window.location.href = 'payment.html';
-    }
-  );
+
+  if (continueButton) {
+
+    continueButton.addEventListener(
+      "click",
+      function () {
+
+        window.location.href =
+          "payment.html";
+
+      }
+    );
+
+  }
 
 </script>
-
 
 </body>
 </html>
