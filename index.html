@@ -10,7 +10,7 @@
   <!-- Tap'd Up display font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -235,16 +235,17 @@
     .eyebrow,
     .package-label,
     .brand-line {
-      font-family: "Anton", Impact, sans-serif;
+      font-family: "Bowlby One SC", "Arial Black", sans-serif;
       text-transform: uppercase;
       font-weight: 400;
-      letter-spacing: 1.8px;
+      letter-spacing: .6px;
     }
 
     .brand-line {
       color: var(--cyan);
-      font-size: .95rem;
-      margin-bottom: 8px;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      margin-bottom: 10px;
     }
 
     .brand-line.pink {
@@ -279,7 +280,8 @@
 
     .eyebrow {
       color: var(--cyan);
-      font-size: 1rem;
+      font-size: 1.15rem;
+      line-height: 1.2;
       margin-bottom: 18px;
     }
 
@@ -455,23 +457,23 @@
 
     .package-label {
       color: var(--pink);
-      font-size: .84rem;
-      line-height: 1.2;
+      font-size: 1rem;
+      line-height: 1.25;
     }
 
     .package-mini-logo {
       position: absolute;
       top: 15px;
       right: 17px;
-      width: 72px;
+      width: 82px;
       height: auto;
       display: block;
-      opacity: .42;
+      opacity: .62;
       pointer-events: none;
     }
 
     .package-standard {
-      padding-right: 92px;
+      padding-right: 105px;
     }
 
     .package h3 {
@@ -1136,7 +1138,7 @@
       }
 
       .package-mini-logo {
-        width: 68px;
+        width: 78px;
       }
 
       .footer-inner {
@@ -1767,49 +1769,25 @@
 
       <div class="footer-socials">
 
-        <a
-          href="https://www.facebook.com/get.tapdup/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Tap’d Up on Facebook"
-          class="tap-icon facebook"
-        >
+        <a href="https://www.facebook.com/get.tapdup/" target="_blank" rel="noopener noreferrer" aria-label="Tap’d Up on Facebook" class="tap-icon facebook">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path stroke="none" d="M13.5 22v-9h3l.5-3.5h-3.5V7.25c0-1 .28-1.75 1.78-1.75H17V2.38C16.7 2.34 15.66 2.25 14.43 2.25c-2.57 0-4.33 1.57-4.33 4.45v2.8H7.2V13h2.9v9h3.4z"/>
           </svg>
         </a>
 
-        <a
-          href="https://www.instagram.com/get.tapdup/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Tap’d Up on Instagram"
-          class="tap-icon instagram"
-        >
+        <a href="https://www.instagram.com/get.tapdup/" target="_blank" rel="noopener noreferrer" aria-label="Tap’d Up on Instagram" class="tap-icon instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path stroke="none" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
           </svg>
         </a>
 
-        <a
-          href="https://www.tiktok.com/@get.tapdup"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Tap’d Up on TikTok"
-          class="tap-icon tiktok"
-        >
+        <a href="https://www.tiktok.com/@get.tapdup" target="_blank" rel="noopener noreferrer" aria-label="Tap’d Up on TikTok" class="tap-icon tiktok">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path stroke="none" d="M15.5 3c.35 2.1 1.55 3.45 3.5 3.9v3.1a8.2 8.2 0 0 1-3.45-1v6.15A5.85 5.85 0 1 1 10.5 9.35v3.15a2.75 2.75 0 1 0 1.9 2.65V3h3.1z"/>
           </svg>
         </a>
 
-        <a
-          href="https://www.youtube.com/@get.tapdup"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Tap’d Up on YouTube"
-          class="tap-icon youtube"
-        >
+        <a href="https://www.youtube.com/@get.tapdup" target="_blank" rel="noopener noreferrer" aria-label="Tap’d Up on YouTube" class="tap-icon youtube">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path stroke="none" d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C19 4.8 12 4.8 12 4.8s-7 0-8.5.4a3 3 0 0 0-2.1 2.1C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.5.4 8.5.4 8.5.4s7 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12zm-13.2 3.4V8.6L15.8 12l-6 3.4z"/>
           </svg>
@@ -1831,13 +1809,7 @@
 
           <span class="tap-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
-              <path
-                fill="none"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 6h18v12H3V6zm0 1 9 7 9-7"
-              />
+              <path fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 6h18v12H3V6zm0 1 9 7 9-7"/>
             </svg>
           </span>
 
@@ -1852,13 +1824,7 @@
 
           <span class="tap-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
-              <path
-                fill="none"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6.7 3.5 9.3 7l-1.8 2.1c1.4 2.8 3.6 5 6.4 6.4l2.1-1.8 3.5 2.6c.4.3.6.8.4 1.3-.5 1.5-1.9 2.5-3.5 2.4C9.8 19.6 4.4 14.2 4 7.6 3.9 6 4.9 4.6 6.4 4.1c.1-.1.2-.1.3-.1z"
-              />
+              <path fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6.7 3.5 9.3 7l-1.8 2.1c1.4 2.8 3.6 5 6.4 6.4l2.1-1.8 3.5 2.6c.4.3.6.8.4 1.3-.5 1.5-1.9 2.5-3.5 2.4C9.8 19.6 4.4 14.2 4 7.6 3.9 6 4.9 4.6 6.4 4.1c.1-.1.2-.1.3-.1z"/>
             </svg>
           </span>
 
@@ -1873,19 +1839,8 @@
 
           <span class="tap-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
-              <circle
-                cx="12"
-                cy="12"
-                r="9"
-                fill="none"
-                stroke-width="2"
-              />
-              <path
-                fill="none"
-                stroke-width="2"
-                stroke-linecap="round"
-                d="M3.5 12h17M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21M12 3C9.5 5.5 8.2 8.5 8.2 12s1.3 6.5 3.8 9"
-              />
+              <circle cx="12" cy="12" r="9" fill="none" stroke-width="2"/>
+              <path fill="none" stroke-width="2" stroke-linecap="round" d="M3.5 12h17M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21M12 3C9.5 5.5 8.2 8.5 8.2 12s1.3 6.5 3.8 9"/>
             </svg>
           </span>
 
@@ -1903,11 +1858,9 @@
   </div>
 
   <div class="footer-bottom">
-
     <span>© 2026 Tap’d Up</span>
     <span>South Wales</span>
     <span>Enjoy responsibly. 18+ only.</span>
-
   </div>
 
 </footer>
