@@ -672,8 +672,22 @@
   }
 
   .summary-row {
-    align-items: flex-start;
-  }
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.summary-row span,
+.summary-row strong {
+  min-width: 0;
+}
+
+.summary-row strong {
+  text-align: right;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
   footer {
     padding-top: 32px;
