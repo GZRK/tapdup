@@ -570,76 +570,103 @@
       font-size: .76rem;
     }
 
-    /* =========================================================
-       MOBILE
-       ========================================================= */
+   /* =========================================================
+   MOBILE
+   ========================================================= */
 
-    @media (max-width: 900px) {
-      .footer-inner {
-        grid-template-columns: 1fr 1fr;
-      }
+@media (max-width: 900px) {
 
-      footer::before {
-        width: 390px;
-        height: 270px;
-        right: -70px;
-        bottom: -35px;
-      }
-    }
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    @media (max-width: 650px) {
+  footer::before {
+    width: 390px;
+    height: 270px;
+    right: -70px;
+    bottom: -35px;
+  }
+}
 
-      .nav {
-        min-height: 80px;
-      }
+@media (max-width: 650px) {
 
-      .nav-logo {
-        width: 95px;
-        height: 70px;
-      }
+  .nav {
+    min-height: 80px;
+  }
 
-      main {
-        padding: 40px 16px 70px;
-      }
+  .nav-logo {
+    width: 95px;
+    height: 70px;
+  }
 
-      .package-bar {
-        padding: 20px;
-      }
+  main {
+    padding: 24px 16px 32px;
+  }
 
-      .date-area {
-        padding: 26px 20px;
-      }
+  .step {
+    margin-bottom: 7px;
+  }
 
-      .continue-area {
-        padding: 0 20px 25px;
-      }
+  h1 {
+    font-size: 2.15rem;
+    margin-bottom: 9px;
+  }
 
-      .date-grid {
-        grid-template-columns: 1fr;
-      }
+  .intro {
+    font-size: .9rem;
+    margin-bottom: 24px;
+  }
 
-      .summary-row {
-        align-items: flex-start;
-      }
+  .booking-panel {
+    border-radius: 20px;
+  }
 
-      .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
+  .package-bar {
+    padding: 18px 20px;
+  }
 
-      .footer-bottom {
-        flex-direction: column;
-        gap: 7px;
-      }
+  .date-area {
+    padding: 24px 20px 20px;
+  }
 
-      footer::before {
-        width: 310px;
-        height: 215px;
-        right: -90px;
-        bottom: -25px;
-        opacity: .055;
-      }
-    }
+  .date-help {
+    margin-bottom: 20px;
+  }
+
+  .continue-area {
+    padding: 0 20px 22px;
+  }
+
+  .date-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-row {
+    align-items: flex-start;
+  }
+
+  footer {
+    padding-top: 32px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  footer::before {
+    width: 310px;
+    height: 215px;
+    right: -90px;
+    bottom: -25px;
+    opacity: .055;
+  }
+}
 
   </style>
 </head>
