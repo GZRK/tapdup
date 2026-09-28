@@ -185,6 +185,32 @@
       resize: vertical;
     }
 
+    /* PARTY START TIME */
+
+    .party-time-field {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+    }
+
+    .party-time-field input[type="time"] {
+      color-scheme: dark;
+    }
+
+    .party-time-help {
+      margin-top: 2px;
+      padding: 12px 14px;
+      border: 1px solid rgba(22, 217, 227, .28);
+      border-radius: 11px;
+      background: rgba(22, 217, 227, .06);
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.5;
+    }
+
+    .party-time-help strong {
+      color: var(--cyan);
+    }
+
     .required-note {
       color: var(--muted);
       font-size: .72rem;
@@ -590,7 +616,8 @@
         grid-template-columns: 1fr;
       }
 
-      .field.full {
+      .field.full,
+      .party-time-field {
         grid-column: auto;
       }
 
@@ -752,6 +779,29 @@
           </div>
 
 
+          <!-- PARTY START TIME -->
+
+          <div class="field party-time-field">
+
+            <label for="party-start-time">
+              Party Start Time *
+            </label>
+
+            <input
+              id="party-start-time"
+              type="time"
+              required
+            >
+
+            <div class="party-time-help">
+              <strong>Delivery &amp; setup:</strong>
+              We’ll deliver and set up at least 4 hours before your party starts,
+              giving your draught time to cool and settle ready for the first pour.
+            </div>
+
+          </div>
+
+
           <div class="field">
             <label for="customer-guests">Approx. Guests</label>
             <input
@@ -810,6 +860,12 @@
 
 
         <div class="summary-row">
+          <span>Party Start</span>
+          <strong id="summary-party-time">—</strong>
+        </div>
+
+
+        <div class="summary-row">
           <span>Collection</span>
           <strong id="summary-collection">—</strong>
         </div>
@@ -845,8 +901,7 @@
 
 </main>
 
-
-<!-- FOOTER -->
+  <!-- FOOTER -->
 
 <footer id="footer">
 
@@ -1085,6 +1140,36 @@
   }
 
 
+  function formatTime(timeString) {
+
+    if (!timeString) {
+      return '—';
+    }
+
+    const parts =
+      timeString.split(':');
+
+    const date =
+      new Date();
+
+    date.setHours(
+      Number(parts[0]),
+      Number(parts[1]),
+      0,
+      0
+    );
+
+    return date.toLocaleTimeString(
+      'en-GB',
+      {
+        hour: 'numeric',
+        minute: '2-digit'
+      }
+    );
+
+  }
+
+
   function addExtraRow(extra) {
 
     const row =
@@ -1175,6 +1260,14 @@
       );
 
 
+    document.getElementById(
+      'summary-party-time'
+    ).textContent =
+      formatTime(
+        booking.partyStartTime
+      );
+
+
     if (Array.isArray(booking.extras)) {
 
       booking.extras.forEach(
@@ -1224,11 +1317,46 @@
     }
 
 
+    /* RESTORE PARTY START TIME */
+
+    if (booking.partyStartTime) {
+
+      document.getElementById(
+        'party-start-time'
+      ).value =
+        booking.partyStartTime;
+
+    }
+
+
+    /* UPDATE SUMMARY AS PARTY TIME IS CHANGED */
+
+    document
+      .getElementById('party-start-time')
+      .addEventListener(
+        'change',
+        function () {
+
+          document.getElementById(
+            'summary-party-time'
+          ).textContent =
+            formatTime(this.value);
+
+        }
+      );
+
+
     document
       .getElementById('continue-button')
       .addEventListener(
         'click',
         function () {
+
+          const partyStartTime =
+            document
+              .getElementById('party-start-time')
+              .value;
+
 
           const customer = {
 
@@ -1295,11 +1423,12 @@
             !customer.email ||
             !customer.address1 ||
             !customer.town ||
-            !customer.postcode
+            !customer.postcode ||
+            !partyStartTime
           ) {
 
             alert(
-              'Please complete all required delivery details before continuing.'
+              'Please complete all required details, including your party start time, before continuing.'
             );
 
             return;
@@ -1326,6 +1455,10 @@
             customer;
 
 
+          booking.partyStartTime =
+            partyStartTime;
+
+
           sessionStorage.setItem(
             'tapdupBooking',
             JSON.stringify(booking)
@@ -1344,3 +1477,4 @@
 
 </body>
 </html>
+  
