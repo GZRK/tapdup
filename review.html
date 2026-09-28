@@ -162,6 +162,27 @@
       overflow-wrap: anywhere;
     }
 
+    /* DELIVERY / COLLECTION INFORMATION */
+
+    .timing-note {
+      margin-top: 18px;
+      background: rgba(22,217,227,.06);
+      border: 1px solid rgba(22,217,227,.28);
+      border-radius: 14px;
+      padding: 15px 17px;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.55;
+    }
+
+    .timing-note strong {
+      color: var(--cyan);
+    }
+
+    .timing-note p + p {
+      margin-top: 7px;
+    }
+
     .total-card {
       border: 2px solid var(--cyan);
       background:
@@ -194,6 +215,67 @@
       font-size: .82rem;
       line-height: 1.6;
       text-align: center;
+    }
+
+    /* TERMS & CONDITIONS */
+
+    .terms-card {
+      border: 1px solid rgba(255,61,141,.42);
+      background:
+        linear-gradient(135deg, rgba(255,61,141,.05), rgba(22,217,227,.025)),
+        var(--panel);
+    }
+
+    .terms-card h2 {
+      margin-bottom: 12px;
+    }
+
+    .terms-intro {
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .terms-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      color: white;
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+
+    .terms-check input {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      margin-top: 1px;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+
+    .terms-check a {
+      color: var(--cyan);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .terms-check a:hover {
+      color: var(--pink);
+    }
+
+    .terms-error {
+      display: none;
+      color: var(--pink);
+      font-size: .78rem;
+      font-weight: 800;
+      margin-top: 12px;
+    }
+
+    .terms-error.active {
+      display: block;
     }
 
     .actions {
@@ -613,6 +695,7 @@
         opacity: .055;
       }
     }
+
   </style>
 </head>
 
@@ -717,6 +800,11 @@
           </div>
 
           <div class="row">
+            <span class="row-label">Party Start</span>
+            <span class="row-value" id="reviewPartyTime">—</span>
+          </div>
+
+          <div class="row">
             <span class="row-label">Collection</span>
             <span class="row-value" id="reviewCollection">—</span>
           </div>
@@ -725,6 +813,22 @@
             <span class="row-label">Hire duration</span>
             <span class="row-value" id="reviewNights">—</span>
           </div>
+
+        </div>
+
+
+        <div class="timing-note">
+
+          <p>
+            <strong>Delivery &amp; setup:</strong>
+            We’ll deliver and set up at least 4 hours before your party starts,
+            giving your draught time to cool and settle ready for the first pour.
+          </p>
+
+          <p>
+            <strong>Collection:</strong>
+            From 12pm on the final day of your hire.
+          </p>
 
         </div>
 
@@ -851,6 +955,47 @@
       </div>
 
 
+      <!-- TERMS & CONDITIONS -->
+
+      <div class="review-card terms-card">
+
+        <h2>Terms &amp; Conditions</h2>
+
+        <p class="terms-intro">
+          Please confirm that you have read and agree to the Tap’d Up
+          Terms &amp; Conditions before continuing.
+        </p>
+
+        <label class="terms-check">
+
+          <input
+            type="checkbox"
+            id="termsCheckbox"
+          >
+
+          <span>
+            I have read and agree to the
+            <a
+              href="terms.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Terms &amp; Conditions
+            </a>.
+          </span>
+
+        </label>
+
+        <div
+          class="terms-error"
+          id="termsError"
+        >
+          Please agree to the Terms &amp; Conditions before continuing.
+        </div>
+
+      </div>
+
+
       <!-- ACTIONS -->
 
       <div class="actions">
@@ -879,8 +1024,7 @@
 
 </main>
 
-
-<!-- FOOTER -->
+  <!-- FOOTER -->
 
 <footer id="footer">
 
@@ -1119,6 +1263,40 @@
 
 
   /* ======================================================
+     FORMAT TIME
+     ====================================================== */
+
+  function formatTime(timeString) {
+
+    if (!timeString) {
+      return "—";
+    }
+
+    const parts =
+      timeString.split(":");
+
+    const date =
+      new Date();
+
+    date.setHours(
+      Number(parts[0]),
+      Number(parts[1]),
+      0,
+      0
+    );
+
+    return date.toLocaleTimeString(
+      "en-GB",
+      {
+        hour: "numeric",
+        minute: "2-digit"
+      }
+    );
+
+  }
+
+
+  /* ======================================================
      SAFE TEXT
      ====================================================== */
 
@@ -1223,6 +1401,16 @@
       ).textContent =
         formatDate(
           booking.deliveryDate
+        );
+
+
+      /* PARTY START TIME */
+
+      document.getElementById(
+        "reviewPartyTime"
+      ).textContent =
+        formatTime(
+          booking.partyStartTime
         );
 
 
@@ -1474,7 +1662,7 @@
 
 
   /* ======================================================
-     NEXT STAGE
+     TERMS & NEXT STAGE
      ====================================================== */
 
   const continueButton =
@@ -1482,12 +1670,95 @@
       "continueButton"
     );
 
+  const termsCheckbox =
+    document.getElementById(
+      "termsCheckbox"
+    );
 
-  if (continueButton) {
+  const termsError =
+    document.getElementById(
+      "termsError"
+    );
+
+
+  if (
+    continueButton &&
+    termsCheckbox
+  ) {
+
+    termsCheckbox.addEventListener(
+      "change",
+      function () {
+
+        if (this.checked) {
+
+          termsError.classList.remove(
+            "active"
+          );
+
+        }
+
+      }
+    );
+
 
     continueButton.addEventListener(
       "click",
       function () {
+
+        if (!termsCheckbox.checked) {
+
+          termsError.classList.add(
+            "active"
+          );
+
+          termsCheckbox.focus();
+
+          return;
+
+        }
+
+
+        /*
+          Record acceptance in this booking.
+          This can later be carried into the
+          confirmed booking/payment record.
+        */
+
+        const currentBookingJSON =
+          sessionStorage.getItem(
+            "tapdupBooking"
+          );
+
+
+        if (currentBookingJSON) {
+
+          try {
+
+            const currentBooking =
+              JSON.parse(
+                currentBookingJSON
+              );
+
+            currentBooking.termsAccepted =
+              true;
+
+            sessionStorage.setItem(
+              "tapdupBooking",
+              JSON.stringify(
+                currentBooking
+              )
+            );
+
+          } catch (error) {
+
+            /* Leave booking untouched if
+               stored data cannot be read. */
+
+          }
+
+        }
+
 
         window.location.href =
           "payment.html";
@@ -1501,3 +1772,4 @@
 
 </body>
 </html>
+  
