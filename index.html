@@ -248,82 +248,90 @@
       margin-bottom: 10px;
     }
 
-    /* =========================================================
-       HERO
-       ========================================================= */
+  /* =========================================================
+   HERO
+   ========================================================= */
 
-    .hero {
-      min-height: 82vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 90px 24px;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(8,9,11,0.08), rgba(8,9,11,0.08)),
-        url("tapdup-hero.png") center 60% / cover no-repeat;
-    }
+.hero {
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 24px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(8,9,11,0.08), rgba(8,9,11,0.08)),
+    url("tapdup-hero.png") center 60% / cover no-repeat;
+}
 
-    .hero-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-      text-align: left;
-    }
+.hero-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
 
-    .eyebrow {
-      color: var(--cyan);
-      font-size: 1.15rem;
-      line-height: 1.2;
-      margin-bottom: 18px;
-    }
+.eyebrow {
+  color: var(--cyan);
+  font-size: 1.15rem;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
 
-    h1 {
-      font-size: clamp(3.5rem, 6vw, 5.8rem);
-      line-height: .92;
-      letter-spacing: -3px;
-      margin-bottom: 22px;
-    }
+h1 {
+  font-size: clamp(3.5rem, 6vw, 5.8rem);
+  line-height: .92;
+  letter-spacing: -3px;
+  margin-bottom: 22px;
+}
 
-    .hero p {
-      max-width: 600px;
-      margin: 0 0 32px;
-      color: var(--muted);
-      font-size: 1.15rem;
-    }
+.hero p {
+  max-width: 600px;
+  margin: 0 0 32px;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
 
-    .buttons {
-      display: flex;
-      justify-content: flex-start;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+.hero p strong {
+  display: block;
+  margin-top: 10px;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 15px 25px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 900;
-      transition: .2s;
-    }
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 
-    .btn-primary {
-      background: var(--cyan);
-      color: #071013;
-    }
+.btn {
+  display: inline-block;
+  padding: 15px 25px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 900;
+  transition: .2s;
+}
 
-    .btn-secondary {
-      border: 2px solid var(--pink);
-      color: white;
-    }
+.btn-primary {
+  background: var(--cyan);
+  color: #071013;
+}
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+.btn-secondary {
+  border: 2px solid var(--pink);
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
 
     /* =========================================================
        GENERAL
