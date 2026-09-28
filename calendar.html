@@ -570,7 +570,7 @@
       font-size: .76rem;
     }
 
-   /* =========================================================
+  /* =========================================================
    MOBILE
    ========================================================= */
 
@@ -590,6 +590,13 @@
 
 @media (max-width: 650px) {
 
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .nav {
     min-height: 80px;
   }
@@ -603,14 +610,13 @@
     width: 100%;
     max-width: 100%;
     padding: 24px 16px 32px;
-    overflow-x: hidden;
   }
 
   .container {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    margin: 0;
+    margin: 0 auto;
   }
 
   .booking-panel {
@@ -621,28 +627,60 @@
     border-radius: 20px;
   }
 
-  .package-bar,
-  .date-area,
-  .continue-area,
-  .date-grid,
+  .package-bar {
+    width: 100%;
+    min-width: 0;
+    padding: 18px 20px;
+  }
+
+  .date-area {
+    width: 100%;
+    min-width: 0;
+    padding: 24px 20px 20px;
+  }
+
+  .date-grid {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .date-field {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .date-field + .date-field {
+    margin-top: 18px;
+  }
+
+  .date-field input[type="date"] {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+  }
+
   .date-summary {
     width: 100%;
     max-width: 100%;
     min-width: 0;
   }
 
-  .date-field {
+  .continue-area {
     width: 100%;
-    max-width: 100%;
     min-width: 0;
+    padding: 0 20px 22px;
   }
 
-  .date-field input {
-    display: block;
+  .continue-btn {
     width: 100%;
     max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
   }
 
   .step {
@@ -659,24 +697,8 @@
     margin-bottom: 24px;
   }
 
-  .package-bar {
-    padding: 18px 20px;
-  }
-
-  .date-area {
-    padding: 24px 20px 20px;
-  }
-
   .date-help {
     margin-bottom: 20px;
-  }
-
-  .continue-area {
-    padding: 0 20px 22px;
-  }
-
-  .date-grid {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .summary-row {
