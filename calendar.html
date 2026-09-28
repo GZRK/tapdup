@@ -570,7 +570,7 @@
       font-size: .76rem;
     }
 
-    /* =========================================================
+   /* =========================================================
    MOBILE
    ========================================================= */
 
@@ -606,35 +606,43 @@
     overflow-x: hidden;
   }
 
-  .booking-wrap {
+  .container {
     width: 100%;
     max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    min-width: 0;
+    margin: 0;
   }
 
   .booking-panel {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    margin: 0;
     border-radius: 20px;
   }
 
   .package-bar,
   .date-area,
   .continue-area,
-  .summary-box,
   .date-grid,
-  .field {
+  .date-summary {
     width: 100%;
     max-width: 100%;
     min-width: 0;
   }
 
-  input[type="date"] {
+  .date-field {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+  }
+
+  .date-field input {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .step {
@@ -668,26 +676,26 @@
   }
 
   .date-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .summary-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
-  gap: 12px;
-  align-items: start;
-}
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: 12px;
+    align-items: start;
+  }
 
-.summary-row span,
-.summary-row strong {
-  min-width: 0;
-}
+  .summary-row span,
+  .summary-row strong {
+    min-width: 0;
+  }
 
-.summary-row strong {
-  text-align: right;
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
+  .summary-row strong {
+    text-align: right;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
 
   footer {
     padding-top: 32px;
