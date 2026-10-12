@@ -765,7 +765,8 @@
       }
     }
 
-  </style>
+  .availability-picker{width:min(480px,95vw);background:#11141a;color:white;border:1px solid #30343c;border-radius:15px;padding:20px}.availability-picker::backdrop{background:#000b}.picker-toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:18px}.picker-toolbar button,.date-picker-open{background:#16d9e3;color:#071013;border:0;border-radius:8px;padding:10px;cursor:pointer;font:inherit}.date-picker-open{width:100%;text-align:left}.picker-days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.picker-day{position:relative;min-height:46px;background:#222630;color:white;border:1px solid #3d424c;border-radius:6px;cursor:pointer}.picker-day:disabled{opacity:.45;cursor:not-allowed}.picker-day.unavailable{background:repeating-linear-gradient(135deg,#401b28,#401b28 8px,#6d2339 8px,#6d2339 11px)}.picker-day.unavailable::after{content:'';position:absolute;left:12%;right:12%;top:50%;height:3px;background:#ff4774;transform:rotate(-25deg)}.picker-day:focus-visible,.date-picker-open:focus-visible{outline:3px solid #ff3d8d;outline-offset:2px}.picker-weekday{font-size:12px;text-align:center}.availability-picker p,#availability-note{font-size:14px;line-height:1.5}.date-field input[hidden]{display:none!important}
+</style>
 </head>
 
 <body>
@@ -1688,6 +1689,32 @@
 </script>
 
 
+<script>
+(() => {
+  const start=document.getElementById('startDate'), end=document.getElementById('endDate'), proceed=document.getElementById('continueBtn');
+  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  const shift=(value,days)=>new Date(Date.parse(value+'T00:00:00Z')+days*86400000).toISOString().slice(0,10);
+  const horizon=shift(today,365);let blocked=new Set(),loaded=false,field='start',month=today.slice(0,7),passing=false,checking=false;
+  const notice=document.createElement('p');notice.id='availability-note';notice.setAttribute('role','status');notice.textContent='Loading available nights…';document.querySelector('.date-grid').after(notice);
+  const dialog=document.createElement('dialog');dialog.className='availability-picker';dialog.setAttribute('aria-label','Choose your hire dates');
+  const toolbar=document.createElement('div');toolbar.className='picker-toolbar';const back=document.createElement('button'),forward=document.createElement('button'),title=document.createElement('strong'),close=document.createElement('button');back.type=forward.type=close.type='button';back.textContent='←';back.setAttribute('aria-label','Previous month');forward.textContent='→';forward.setAttribute('aria-label','Next month');close.textContent='Close';toolbar.append(back,title,forward,close);
+  const grid=document.createElement('div');grid.className='picker-days';const legend=document.createElement('p');legend.textContent='Red stripe = unavailable hire night. A collection date may fall on an unavailable night if your stay ends before that night.';dialog.append(toolbar,grid,legend);document.body.append(dialog);
+  const buttons=[];
+  for(const [input,kind] of [[start,'start'],[end,'end']]){input.hidden=true;const button=document.createElement('button');button.type='button';button.className='date-picker-open';button.textContent=kind==='start'?'Choose delivery date':'Choose collection date';input.after(button);buttons.push(button);button.addEventListener('click',()=>{if(kind==='end'&&!start.value){notice.textContent='Choose delivery first.';return;}field=kind;month=(input.value||start.value||today).slice(0,7);render();dialog.showModal();});}
+  const hasConflict=(first,last)=>{for(let night=first;night<last;night=shift(night,1))if(blocked.has(night))return true;return false;};
+  function sync(){buttons[0].textContent=start.value?new Date(start.value+'T12:00:00').toLocaleDateString('en-GB'):'Choose delivery date';buttons[1].textContent=end.value?new Date(end.value+'T12:00:00').toLocaleDateString('en-GB'):'Choose collection date';
+    if(!loaded){proceed.disabled=true;return;}if(start.value&&end.value&&hasConflict(start.value,end.value)){notice.textContent='Dates unavailable: your stay includes a booked or held night. Choose different dates.';proceed.disabled=true;}else if(start.value&&end.value&&end.value>start.value){notice.textContent='These nights are currently available. They will be checked again before payment.';}else{notice.textContent='Choose your delivery and collection dates. Red-striped nights are unavailable.';}}
+  function render(){title.textContent=new Date(month+'-01T12:00:00').toLocaleDateString('en-GB',{month:'long',year:'numeric'});grid.replaceChildren();for(const name of ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']){const label=document.createElement('span');label.textContent=name;label.className='picker-weekday';grid.append(label);}const first=new Date(month+'-01T00:00:00Z'),offset=(first.getUTCDay()+6)%7;for(let i=0;i<offset;i++)grid.append(document.createElement('span'));const days=new Date(first.getUTCFullYear(),first.getUTCMonth()+1,0).getDate();
+    for(let day=1;day<=days;day++){const value=month+'-'+String(day).padStart(2,'0'),button=document.createElement('button');button.type='button';button.className='picker-day'+(blocked.has(value)?' unavailable':'');button.textContent=String(day);const disabled=!loaded||value<today||value>=horizon||(field==='start'?blocked.has(value):value<=start.value||hasConflict(start.value,value));button.disabled=disabled;button.setAttribute('aria-label',value+(blocked.has(value)?' — unavailable hire night':'')+(field==='end'&&!disabled?' — collection allowed':''));if(blocked.has(value))button.title=field==='end'&&!disabled?'Unavailable night; collection allowed before this night':'Unavailable night';button.addEventListener('click',()=>{const input=field==='start'?start:end;input.value=value;input.dispatchEvent(new Event('change',{bubbles:true}));dialog.close();sync();});grid.append(button);}
+    back.disabled=month<=today.slice(0,7);forward.disabled=month>=shift(horizon,-1).slice(0,7);}
+  const move=delta=>{const date=new Date(month+'-01T00:00:00Z');date.setUTCMonth(date.getUTCMonth()+delta);month=date.toISOString().slice(0,7);render();};back.addEventListener('click',()=>move(-1));forward.addEventListener('click',()=>move(1));close.addEventListener('click',()=>dialog.close());
+  async function refresh(){loaded=false;proceed.disabled=true;const response=await fetch('https://tapdup-stripe.late-sky-1b25.workers.dev/availability?from='+today+'&to='+horizon,{cache:'no-store',signal:AbortSignal.timeout(10000)});if(!response.ok)throw Error('Unavailable');const data=await response.json();if(!Array.isArray(data.unavailable_nights))throw Error('Unavailable');blocked=new Set(data.unavailable_nights);loaded=true;updateBooking();sync();}
+  start.addEventListener('change',sync);end.addEventListener('change',sync);
+  proceed.addEventListener('click',async event=>{if(passing)return;event.preventDefault();event.stopImmediatePropagation();if(checking)return;checking=true;notice.textContent='Checking your nights again…';try{await refresh();if(start.value&&end.value&&end.value>start.value&&!hasConflict(start.value,end.value)){sessionStorage.removeItem('tapdupCheckoutRequest');passing=true;proceed.disabled=false;proceed.click();passing=false;}}catch{notice.textContent='Availability could not be checked. Please refresh and try again.';proceed.disabled=true;}finally{checking=false;}},true);
+  refresh().catch(()=>{notice.textContent='Availability could not be loaded. Refresh this page to try again.';proceed.disabled=true;});
+})();
+
+</script>
 </body>
 </html>
   
