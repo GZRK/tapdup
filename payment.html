@@ -682,8 +682,7 @@
         <h2>Pay Securely</h2>
 
         <p class="muted">
-          When online payments are activated, you'll be able to
-          complete your booking securely here.
+          Test your booking securely with Stripe Sandbox. Use a test card only.
         </p>
 
 
@@ -704,7 +703,7 @@
           </div>
 
           <p class="muted">
-            Your payment will be processed securely by SumUp.
+            Your test payment will be processed securely by Stripe.
             Tap’d Up will not store your card details.
           </p>
 
@@ -712,12 +711,11 @@
           <div class="payment-placeholder">
 
             <strong>
-              Online payments coming soon
+              Stripe Sandbox checkout
             </strong>
 
             <p>
-              This is where the secure SumUp checkout will appear
-              when Tap’d Up online payments are activated.
+              Continue below to open Stripe’s secure test checkout.
             </p>
 
           </div>
@@ -743,8 +741,7 @@
 
 
         <div class="coming-soon">
-          No payment will be taken at this stage.
-          Online payment is not yet active.
+          Sandbox testing only — no real payment and no party date reserved.
         </div>
 
       </section>
@@ -794,15 +791,15 @@
 
         <button
           type="button"
-          class="pay-button"
+          class="pay-button" id="stripe-pay-button"
           disabled
         >
-          PAY SECURELY
+          CONTINUE TO TEST CHECKOUT
         </button>
 
 
         <div class="payment-note">
-          Payment will be enabled when online booking goes live.
+          This is a test booking. Use a Stripe test card only.
         </div>
 
       </aside>
@@ -969,12 +966,9 @@
 
 <script>
 
-  const booking =
-    JSON.parse(
-      sessionStorage.getItem(
-        'tapdupBooking'
-      ) || 'null'
-    );
+  let booking = null;
+  try { booking = JSON.parse(sessionStorage.getItem('tapdupBooking') || 'null'); } catch {}
+
 
 
   function money(value) {
@@ -1024,20 +1018,11 @@
       'summary-row';
 
 
-    const label =
-      extra.detail
-        ? extra.name +
-          '<br><small style="color:#8e929c;">' +
-          extra.detail +
-          '</small>'
-        : extra.name;
-
-
-    row.innerHTML = `
-      <span>${label}</span>
-      <strong>+${money(extra.price)}</strong>
-    `;
-
+    const label = document.createElement('span');
+    label.textContent = extra.name || '';
+    if (extra.detail) { const detail = document.createElement('small'); detail.textContent = extra.detail; label.appendChild(document.createElement('br')); label.appendChild(detail); }
+    const cost = document.createElement('strong'); cost.textContent = '+' + money(extra.price);
+    row.append(label, cost);
 
     extras.appendChild(row);
 
@@ -1131,5 +1116,37 @@
 
 </script>
 
+<script>
+(() => {
+  const button = document.getElementById('stripe-pay-button');
+  if (!button || !booking) return;
+  const note = document.querySelector('.payment-note');
+  if (!booking.customer || booking.termsAccepted !== true) {
+    note.textContent = 'Return to Review to check your details and accept the booking terms.';
+    const link = document.createElement('a'); link.href = 'review.html'; link.textContent = ' Return to Review'; note.appendChild(link);
+    return;
+  }
+  button.disabled = false;
+  button.addEventListener('click', () => {
+    button.disabled = true; button.textContent = 'OPENING TEST CHECKOUT…';
+    try {
+      const snapshot = JSON.stringify(booking);
+      let previous = null;
+      try { previous = JSON.parse(sessionStorage.getItem('tapdupCheckoutRequest') || 'null'); } catch {}
+      const requestId = previous?.snapshot === snapshot ? previous.id : crypto.randomUUID();
+      sessionStorage.setItem('tapdupCheckoutRequest', JSON.stringify({ id: requestId, snapshot }));
+      const form = document.createElement('form'); form.method = 'POST'; form.action = 'https://tapdup-stripe.late-sky-1b25.workers.dev/create-booking-checkout';
+      for (const [name, value] of Object.entries({ booking: snapshot, request_id: requestId })) {
+        const field = document.createElement('input'); field.type = 'hidden'; field.name = name; field.value = value; form.appendChild(field);
+      }
+      document.body.appendChild(form); form.submit();
+    } catch {
+      button.disabled = false; button.textContent = 'CONTINUE TO TEST CHECKOUT'; note.textContent = 'Could not open checkout. Check that browser storage is enabled and try again.';
+    }
+  });
+  window.addEventListener('pageshow', () => { button.disabled = false; button.textContent = 'CONTINUE TO TEST CHECKOUT'; });
+})();
+
+</script>
 </body>
 </html>
