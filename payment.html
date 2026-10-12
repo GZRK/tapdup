@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -280,6 +280,9 @@
       cursor: not-allowed;
     }
 
+    .pay-button:not(:disabled) { background:var(--cyan); color:#071013; cursor:pointer; }
+    .pay-button:not(:disabled):hover { filter:brightness(1.08); }
+    .pay-button:focus-visible { outline:3px solid var(--pink); outline-offset:4px; }
     .payment-note {
       color: var(--muted);
       text-align: center;
@@ -1150,3 +1153,4 @@
 </script>
 </body>
 </html>
+
