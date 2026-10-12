@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Payment Received | Tap'd Up</title>
+  <title>Check Test Payment | Tap'd Up</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,6 +132,10 @@
         padding: 38px 22px;
       }
     }
+    .reference-value { display:block; overflow-wrap:anywhere; font: .95rem monospace; margin-top:10px; }
+    .tick[hidden], [hidden] { display:none !important; }
+    button.btn { border:0; cursor:pointer; font:inherit; font-weight:900; }
+    a:focus-visible, button:focus-visible { outline:3px solid var(--pink); outline-offset:4px; }
   </style>
 </head>
 
@@ -145,41 +149,71 @@
       class="logo"
     >
 
-    <div class="tick">✓</div>
-
-    <h1>
-  CHEERS!<br>
-  <span class="pink nowrap">YOU'RE TAP'D UP.</span>
-    </h1>
-
-    <p class="highlight">
-      Your payment has been submitted.
-    </p>
-
-    <p>
-      We're just confirming your payment and booking details.
-      Your Tap'd Up booking confirmation will contain everything
-      you need for your party.
-    </p>
-
-    <div class="notice">
-      Keep an eye on your email for your booking confirmation.
+    <div class="tick" id="payment-icon" aria-hidden="true">…</div>
+    <div aria-live="polite" aria-atomic="true">
+      <h1 id="payment-title">CHECKING PAYMENT</h1>
+      <p class="highlight" id="payment-detail">Checking your test payment record…</p>
+      <p id="booking-reference" hidden>Booking reference<strong class="reference-value" id="reference-value"></strong></p>
+      <div class="notice" id="payment-notice">No payment has been verified yet.</div>
     </div>
-
-    <p>
-      Questions? Email us at
-      <strong>hello@tapdup.co.uk</strong>
-    </p>
-
-    <a class="btn" href="index.html">
-      Back to Tap'd Up
-    </a>
-
-    <div class="footer-note">
-      BRING THE DRAUGHT HOME.
-    </div>
-
+    <noscript><p>JavaScript is required to check payment. Opening this page does not confirm payment. Contact Tap’d Up if you need help.</p></noscript>
+    <button type="button" class="btn" id="check-again" hidden>Check payment again</button>
+    <p>Questions? Email <a style="color:var(--cyan)" href="mailto:hello@tapdup.co.uk">hello@tapdup.co.uk</a></p>
+    <a class="btn" href="index.html">Back to Tap’d Up</a>
+    <div class="footer-note">SANDBOX TEST — NO REAL PAYMENT OR DATE RESERVATION.</div>
   </main>
 
+<script>
+(() => {
+  const title = document.getElementById('payment-title');
+  const icon = document.getElementById('payment-icon');
+  const detail = document.getElementById('payment-detail');
+  const notice = document.getElementById('payment-notice');
+  const retry = document.getElementById('check-again');
+  const reference = document.getElementById('booking-reference');
+  const sessionId = new URLSearchParams(location.search).get('session_id');
+  let running = false;
+  function unverified(message) {
+    icon.textContent = '?'; title.textContent = 'PAYMENT NOT VERIFIED'; detail.textContent = message;
+    notice.textContent = 'Opening this page does not confirm payment or reserve a party date.';
+    reference.hidden = true;
+  }
+  async function check() {
+    if (running) return;
+    if (!/^cs_test_[A-Za-z0-9]{20,250}$/.test(sessionId || '')) {
+      unverified('There is no valid Sandbox payment reference in this link.'); retry.hidden = true; return;
+    }
+    running = true; retry.hidden = true; reference.hidden = true;
+    icon.textContent = '…'; title.textContent = 'CHECKING PAYMENT'; detail.textContent = 'Checking the saved payment record…';
+    notice.textContent = 'Please wait. Do not make another payment while we check.';
+    for (let attempt = 0; attempt < 8; attempt++) {
+      try {
+        const response = await fetch('https://tapdup-stripe.late-sky-1b25.workers.dev/booking-status?session_id=' + encodeURIComponent(sessionId), { cache: 'no-store', signal: AbortSignal.timeout(8000) });
+        const result = await response.json();
+        if (response.ok && result.status === 'paid' && result.sandbox === true && typeof result.booking_reference === 'string' && Number.isInteger(result.amount_total) && result.currency === 'gbp') {
+          icon.textContent = '✓'; title.textContent = 'TEST PAYMENT RECEIVED';
+          detail.textContent = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(result.amount_total / 100) + ' Sandbox payment verified.';
+          document.getElementById('reference-value').textContent = result.booking_reference;
+          reference.hidden = false;
+          notice.textContent = 'Your test booking and payment are saved. No real money was taken and no party date is reserved. Confirmation emails are not enabled yet.';
+          running = false; return;
+        }
+        if (response.status === 400 || (response.ok && result.status === 'unverified')) {
+          unverified('This link does not match a verified paid booking. If you completed payment, contact Tap’d Up before paying again.');
+          retry.hidden = false; running = false; return;
+        }
+      } catch {}
+      if (attempt < 7) await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    icon.textContent = '…'; title.textContent = 'PAYMENT NOT YET VERIFIED';
+    detail.textContent = 'We could not verify payment yet. Stripe’s notification may still be arriving, or the status service may be unavailable.';
+    notice.textContent = 'Check again shortly. If you completed payment, do not pay again; contact Tap’d Up if the status does not update.';
+    retry.hidden = false; running = false;
+  }
+  retry.addEventListener('click', check);
+  check();
+})();
+
+</script>
 </body>
 </html>
