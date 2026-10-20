@@ -144,11 +144,12 @@
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
     .field {
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -166,6 +167,8 @@
     .field input,
     .field textarea {
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
       border: 1px solid #343841;
       border-radius: 11px;
       background: #0b0d10;
@@ -193,7 +196,20 @@
     }
 
     .party-time-field input[type="time"] {
+      display: block;
+      box-sizing: border-box;
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+      min-height: 48px;
+      -webkit-appearance: none;
+      appearance: none;
       color-scheme: dark;
+    }
+
+    .party-time-field input[type="time"]::-webkit-date-and-time-value {
+      min-width: 0;
+      text-align: left;
     }
 
     .party-time-help {
