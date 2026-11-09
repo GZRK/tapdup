@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Review Your Booking | Tap’d Up</title>
+  <title>Review Your Enquiry | Tap’d Up</title>
   <meta name="description" content="Review your Tap’d Up party booking before continuing.">
 
   <style>
@@ -697,10 +697,12 @@
     }
 
   </style>
+<link rel="stylesheet" href="enquiry.css">
 </head>
 
 
 <body>
+<aside class="tapdup-enquiry-banner" aria-label="Service status"><strong>Enquiries only.</strong> Alcohol licensing is pending. No bookings, date reservations or payments are being accepted. <a href="enquiry.html">Ask about your event</a>.</aside>
 
 <header>
   <div class="nav">
@@ -734,7 +736,7 @@
     </div>
 
     <h1>
-      REVIEW YOUR BOOKING
+      REVIEW YOUR ENQUIRY
     </h1>
 
     <p class="intro">
@@ -749,7 +751,7 @@
       id="emptyState"
     >
 
-      <h2>No booking to review yet</h2>
+      <h2>No enquiry to review yet</h2>
 
       <p>
         Choose your Tap’d Up package and party dates first,
@@ -821,13 +823,12 @@
 
           <p>
             <strong>Delivery &amp; setup:</strong>
-            We’ll deliver and set up at least 4 hours before your party starts,
-            giving your draught time to cool and settle ready for the first pour.
+            Tell us your preferred party start time. Any delivery and setup arrangements would be agreed separately, subject to availability and licensing.
           </p>
 
           <p>
             <strong>Collection:</strong>
-            From 12pm on the final day of your hire.
+            Preferred collection arrangements will be discussed with you.
           </p>
 
         </div>
@@ -935,7 +936,7 @@
         <div class="total-row">
 
           <div class="total-label">
-            Booking Total
+            Estimated Total
           </div>
 
           <div
@@ -948,8 +949,8 @@
         </div>
 
         <p class="booking-note">
-          All bookings are subject to availability and confirmation.
-          No payment will be taken at this stage.
+          Prices are indicative. Enquiries are subject to availability and licensing; no booking is confirmed.
+          No booking is confirmed, no dates are reserved and no payment is requested.
         </p>
 
       </div>
@@ -959,28 +960,27 @@
 
       <div class="review-card terms-card">
 
-        <h2>Terms &amp; Conditions</h2>
+        <h2>Before You Send</h2>
 
         <p class="terms-intro">
-          Please confirm that you have read and agree to the Tap’d Up
-          Terms &amp; Conditions before continuing.
+          Read how we use your enquiry details in our privacy notice. Sending this form does not create a booking or reserve dates.
         </p>
 
         <label class="terms-check">
 
           <input
             type="checkbox"
-            id="termsCheckbox"
+            id="privacyAcknowledged"
           >
 
           <span>
-            I have read and agree to the
+            I have read the
             <a
-              href="terms.html"
+              href="privacy.html"
               target="_blank"
               rel="noopener"
             >
-              Terms &amp; Conditions
+              Privacy Notice
             </a>.
           </span>
 
@@ -990,12 +990,13 @@
           class="terms-error"
           id="termsError"
         >
-          Please agree to the Terms &amp; Conditions before continuing.
+          Please acknowledge the privacy notice before sending.
         </div>
 
       </div>
 
 
+<div id="enquiry-turnstile"></div><p id="enquiry-status" class="enquiry-status" role="status" aria-live="polite">Preparing your enquiry…</p><div class="enquiry-honeypot" aria-hidden="true"><label for="contact-website">Website</label><input id="contact-website" tabindex="-1" autocomplete="off"></div>
       <!-- ACTIONS -->
 
       <div class="actions">
@@ -1011,10 +1012,8 @@
         <button
           type="button"
           class="btn btn-primary"
-          id="continueButton"
-        >
-          Continue
-        </button>
+          id="send-enquiry" disabled
+        >Send enquiry</button>
 
       </div>
 
@@ -1221,6 +1220,7 @@
     <span>Enjoy responsibly. 18+ only.</span>
   </div>
 
+<p style="text-align:center;padding:16px"><a href="privacy.html">Privacy notice</a> · <a href="terms.html">Enquiry information</a></p>
 </footer>
 
 
@@ -1661,115 +1661,9 @@
   }
 
 
-  /* ======================================================
-     TERMS & NEXT STAGE
-     ====================================================== */
-
-  const continueButton =
-    document.getElementById(
-      "continueButton"
-    );
-
-  const termsCheckbox =
-    document.getElementById(
-      "termsCheckbox"
-    );
-
-  const termsError =
-    document.getElementById(
-      "termsError"
-    );
-
-
-  if (
-    continueButton &&
-    termsCheckbox
-  ) {
-
-    termsCheckbox.addEventListener(
-      "change",
-      function () {
-
-        if (this.checked) {
-
-          termsError.classList.remove(
-            "active"
-          );
-
-        }
-
-      }
-    );
-
-
-    continueButton.addEventListener(
-      "click",
-      function () {
-
-        if (!termsCheckbox.checked) {
-
-          termsError.classList.add(
-            "active"
-          );
-
-          termsCheckbox.focus();
-
-          return;
-
-        }
-
-
-        /*
-          Record acceptance in this booking.
-          This can later be carried into the
-          confirmed booking/payment record.
-        */
-
-        const currentBookingJSON =
-          sessionStorage.getItem(
-            "tapdupBooking"
-          );
-
-
-        if (currentBookingJSON) {
-
-          try {
-
-            const currentBooking =
-              JSON.parse(
-                currentBookingJSON
-              );
-
-            currentBooking.termsAccepted =
-              true;
-
-            sessionStorage.setItem(
-              "tapdupBooking",
-              JSON.stringify(
-                currentBooking
-              )
-            );
-
-          } catch (error) {
-
-            /* Leave booking untouched if
-               stored data cannot be read. */
-
-          }
-
-        }
-
-
-        window.location.href =
-          "payment.html";
-
-      }
-    );
-
-  }
-
 </script>
 
+<script src="enquiry-flow.js" defer></script>
 </body>
 </html>
   

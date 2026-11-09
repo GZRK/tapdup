@@ -9,7 +9,7 @@
 </head>
 <body><main>
 <header><div><h1>Tap’d Up bookings</h1><p>Private owner calendar</p></div><span class="badge">SANDBOX BOOKINGS</span></header>
-<p>This calendar shows saved test bookings. Availability limits are not enforced yet. A customer’s collection day can also be another customer’s delivery day.</p>
+<p>This calendar shows saved test bookings. This is the legacy sandbox booking calendar. A customer’s collection day can also be another customer’s delivery day.</p>
 <section id="login" class="login"><h2>Sign in to your calendar</h2><p>Your calendar access key is stored in Cloudflare. Enter it here to view customer details.</p><form id="login-form"><label for="key">Calendar access key</label><input id="key" type="password" autocomplete="current-password" required minlength="24"><button type="submit">Open calendar</button></form></section>
 <section id="owner" hidden>
 <div class="toolbar"><div><button id="previous" class="secondary" aria-label="Previous month">←</button> <input id="month" type="month" aria-label="Calendar month"> <button id="next" class="secondary" aria-label="Next month">→</button></div><div><button id="refresh">Refresh</button> <button id="logout" class="secondary">Sign out</button></div></div>
@@ -44,5 +44,5 @@
   byId('login-form').addEventListener('submit',event=>{event.preventDefault();accessKey=byId('key').value;load();});byId('logout').addEventListener('click',signOut);byId('refresh').addEventListener('click',load);byId('month').addEventListener('change',load);byId('pending').addEventListener('change',load);byId('close-details').addEventListener('click',()=>byId('details').close());
   function changeMonth(delta){const date=new Date(byId('month').value+'-01T12:00:00');date.setMonth(date.getMonth()+delta);byId('month').value=date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0');load();}byId('previous').addEventListener('click',()=>changeMonth(-1));byId('next').addEventListener('click',()=>changeMonth(1));
 })();
-</script></body></html>
+</script><p><a href="admin-enquiries.html">Open enquiry administration</a></p></body></html>
 
