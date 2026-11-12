@@ -17,7 +17,7 @@
 
   </div>
 
-</header><div class="enquiry-wrap"><main><section class="enquiry-card"><p class="enquiry-label">TAP’D UP ENQUIRIES</p><h1 id="receipt-title">Check your enquiry receipt</h1><p id="receipt-message">A receipt is shown here after your enquiry has been saved. Opening this page alone does not submit an enquiry.</p><p class="enquiry-reference" id="receipt-reference"></p><p class="enquiry-notice">No booking is confirmed, no dates are reserved and no payment has been taken.</p><a class="enquiry-link" href="enquiry.html">Send another enquiry</a><p>Questions? <a href="mailto:hello@tapdup.co.uk">hello@tapdup.co.uk</a></p></section></main></div><script>(()=>{let r;try{r=JSON.parse(sessionStorage.getItem('tapdupEnquiryReceipt')||'null')}catch{}const id=new URLSearchParams(location.search).get('reference');if(r?.status==='received'&&/^[0-9a-f-]{36}$/i.test(id||'')&&r.reference===id&&Number.isFinite(r.savedAt)&&Date.now()-r.savedAt>=0&&Date.now()-r.savedAt<86400000){document.getElementById('receipt-title').textContent='Enquiry received';document.getElementById('receipt-message').textContent=r.message;document.getElementById('receipt-reference').textContent='Your reference: '+r.reference}})();</script><footer id="footer" class="restored-footer">
+</header><div class="enquiry-wrap"><main><section class="enquiry-card"><p class="enquiry-label">TAP’D UP ENQUIRIES</p><h1 id="receipt-title">Check your enquiry receipt</h1><p id="receipt-message">A receipt is shown here after your enquiry has been saved. Opening this page alone does not submit an enquiry.</p><p class="enquiry-reference" id="receipt-reference"></p><p class="enquiry-notice">No booking is confirmed, no dates are reserved and no payment has been taken.</p><a class="enquiry-link" href="enquiry.html">Send another enquiry</a><p>Questions? <a href="mailto:enquiries@tapdup.co.uk">enquiries@tapdup.co.uk</a></p></section></main></div><script>(()=>{let r;try{r=JSON.parse(sessionStorage.getItem('tapdupEnquiryReceipt')||'null')}catch{}const id=new URLSearchParams(location.search).get('reference');if(r?.status==='received'&&/^[0-9a-f-]{36}$/i.test(id||'')&&r.reference===id&&Number.isFinite(r.savedAt)&&Date.now()-r.savedAt>=0&&Date.now()-r.savedAt<86400000){document.getElementById('receipt-title').textContent='Enquiry received';document.getElementById('receipt-message').textContent=r.message;document.getElementById('receipt-reference').textContent='Your reference: '+r.reference}})();</script><footer id="footer" class="restored-footer">
 
   <div class="footer-inner">
 
@@ -92,7 +92,7 @@
 
       <div class="contact-list">
 
-        <a href="mailto:hello@tapdup.co.uk" class="contact-row email">
+        <a href="mailto:information@tapdup.co.uk" class="contact-row email">
 
           <span class="tap-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -102,7 +102,7 @@
 
           <span class="contact-copy">
             <span class="contact-label">Email</span>
-            <span class="contact-value">hello@tapdup.co.uk</span>
+            <span class="contact-value">information@tapdup.co.uk</span>
           </span>
 
         </a>
@@ -152,3 +152,4 @@
 
 <p style="text-align:center;padding:16px"><a href="privacy.html">Privacy notice</a> · <a href="terms.html">Enquiry information</a> · <a href="contact.html">Contact &amp; complaints</a></p>
 </footer></body></html>
+

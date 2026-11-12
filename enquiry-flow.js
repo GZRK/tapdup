@@ -44,7 +44,7 @@
         method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(20000),
         body:JSON.stringify({request_id:requestId,enquiry,turnstileToken:token,website:value('contact-website')}),
       });
-      let result; try { result = await response.json(); } catch { throw Error('We could not confirm receipt. Please try again or email hello@tapdup.co.uk.'); }
+      let result; try { result = await response.json(); } catch { throw Error('We could not confirm receipt. Please try again or email enquiries@tapdup.co.uk.'); }
       if (![200,201].includes(response.status) || result.status!=='received' || result.enquiry_reference!==requestId) {
         if(response.status===409)sessionStorage.removeItem('tapdupEnquiryRequest');
         throw Error(typeof result.error==='string'?result.error:'Your enquiry was not confirmed. Please try again.');
@@ -82,7 +82,7 @@
       sitekey:window.tapdupEnquirySitekey,action:'tapdup-enquiry',
       callback:value=>{token=value;button.disabled=busy;message(feedback ? feedback+' Security check complete; you can retry.' : 'Security check complete. You can send your enquiry.');},
       'expired-callback':()=>{token='';button.disabled=true;message('The security check expired. Please complete it again.');},
-      'error-callback':()=>{token='';button.disabled=true;message('The security check could not load. Refresh this page or email hello@tapdup.co.uk.');},
+      'error-callback':()=>{token='';button.disabled=true;message('The security check could not load. Refresh this page or email enquiries@tapdup.co.uk.');},
     });
   };
   (async()=>{
@@ -93,9 +93,10 @@
       window.tapdupEnquirySitekey=config.sitekey;
       const script=document.createElement('script');
       script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tapdupTurnstileReady&render=explicit';
-      script.async=true;script.defer=true;script.onerror=()=>message('The security check could not load. Refresh this page or email hello@tapdup.co.uk.');
+      script.async=true;script.defer=true;script.onerror=()=>message('The security check could not load. Refresh this page or email enquiries@tapdup.co.uk.');
       document.head.append(script);
       message('Complete the security check before sending.');
-    } catch { message('Online enquiries are temporarily unavailable. Please email hello@tapdup.co.uk or call 07962 717784.'); }
+    } catch { message('Online enquiries are temporarily unavailable. Please email enquiries@tapdup.co.uk or call 07962 717784.'); }
   })();
 })();
+
