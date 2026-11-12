@@ -5,14 +5,13 @@
   if (!input && !review) return;
   const panel = document.createElement('section');
   panel.className = 'tapdup-delivery-check';
+  panel.hidden = true;
   panel.setAttribute('aria-label', 'Delivery area');
-  const title = document.createElement('h3'); title.textContent = 'Delivery area';
+  const title = document.createElement('h3'); title.textContent = 'Outside our usual delivery area?';
   const result = document.createElement('p'); result.setAttribute('role', 'status'); result.setAttribute('aria-live', 'polite');
-  result.textContent = 'Enter your full event postcode to check our standard delivery area.';
-  const check = document.createElement('button'); check.type = 'button'; check.textContent = 'Check delivery area';
   const contact = document.createElement('a'); contact.href = 'contact.html'; contact.className = 'tapdup-delivery-contact';
-  contact.textContent = 'Contact us about delivery'; contact.hidden = true;
-  panel.append(title, result, check, contact);
+  contact.textContent = 'Contact us about delivery';
+  panel.append(title, result, contact);
   if (input) input.parentElement.append(panel); else review.parentElement.insertBefore(panel, review);
   let postcodeSet, pending, revision = 0;
   const normalise = value => String(value || '').toUpperCase().replace(/\s+/g, '');
@@ -31,29 +30,26 @@
     return pending;
   }
   async function run() {
-    const current = ++revision, postcode = normalise(value()); contact.hidden = true;
+    const current = ++revision, postcode = normalise(value()); panel.hidden = true;
     if (!/^[A-Z]{1,2}[0-9][A-Z0-9]?[0-9][A-Z]{2}$/.test(postcode)) {
-      result.textContent = 'Enter a complete UK postcode, for example NP23 6AA. If you need help, contact us about delivery.';
-      contact.hidden = false; return;
+      return;
     }
-    result.textContent = 'Checking delivery area…';
     try {
       const allowed = await list(); if (current !== revision) return;
-      if (allowed.has(postcode)) {
-        result.textContent = 'Your postcode is inside our standard delivery area. You can continue with your enquiry. Dates, access and any delivery charge still need confirmation; this does not reserve a booking.';
-      } else {
-        result.textContent = 'Your postcode is not in our automatic delivery area list. Please contact us to discuss delivery and any additional charge. You can also send an enquiry using this form.';
-        contact.hidden = false;
+      if (!allowed.has(postcode)) {
+        title.textContent = 'Outside our usual delivery area?';
+        result.textContent = 'We may still be able to help. Contact us to discuss delivery and any additional charge, or send us an enquiry.';
+        panel.hidden = false;
       }
     } catch {
       if (current !== revision) return;
       result.textContent = 'We could not check delivery coverage. Please contact us about delivery, or send your enquiry for a manual check.';
-      contact.hidden = false;
+      title.textContent = 'Please ask us about delivery';
+      panel.hidden = false;
     }
   }
-  check.addEventListener('click', run);
   if (input) {
-    input.addEventListener('input', () => { revision++; contact.hidden = true; result.textContent = 'Check your updated event postcode before continuing.'; });
+    input.addEventListener('input', () => { revision++; panel.hidden = true; });
     input.addEventListener('blur', () => { if (input.value.trim()) run(); });
   } else run();
 })();
