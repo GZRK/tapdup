@@ -7,7 +7,7 @@
   panel.className = 'tapdup-delivery-check';
   panel.hidden = true;
   panel.setAttribute('aria-label', 'Delivery area');
-  const title = document.createElement('h3'); title.textContent = 'Outside our usual delivery area?';
+  const title = document.createElement('h3'); title.textContent = 'Delivery information';
   const result = document.createElement('p'); result.setAttribute('role', 'status'); result.setAttribute('aria-live', 'polite');
   const contact = document.createElement('a'); contact.href = 'contact.html'; contact.className = 'tapdup-delivery-contact';
   contact.textContent = 'Contact us about delivery';
@@ -37,8 +37,8 @@
     try {
       const allowed = await list(); if (current !== revision) return;
       if (!allowed.has(postcode)) {
-        title.textContent = 'Outside our usual delivery area?';
-        result.textContent = 'We may still be able to help. Contact us to discuss delivery and any additional charge, or send us an enquiry.';
+        title.textContent = 'Delivery information';
+        result.textContent = 'Please contact for further delivery information to your postcode';
         panel.hidden = false;
       }
     } catch {
